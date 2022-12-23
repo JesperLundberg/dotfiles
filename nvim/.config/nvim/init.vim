@@ -17,11 +17,14 @@ set mouse=a                 " enable mouse click
 set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set ttyfast                 " Speed up scrolling in Vim
+let g:airline_theme='bubblegum'  " Theme is bubblegum
 
 call plug#begin()
  Plug 'dracula/vim', { 'as': 'dracula' }
  Plug 'ryanoasis/vim-devicons'
  Plug 'mhinz/vim-startify'
+ Plug 'vim-airline/vim-airline'
+ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " color schemes
