@@ -1,10 +1,3 @@
-# Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-
-smart_borders no_gaps
-
 # This file is a modified version based on default i3-config-wizard config
 # source is available here:
 # https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
@@ -20,6 +13,13 @@ smart_borders no_gaps
 # Source for complete framework of our i3 config and theming here: https://github.com/endeavouros-team/endeavouros-i3wm-setup
 # EndeavourOS wiki holds some Information also: https://discovery.endeavouros.com/window-tiling-managers/i3-wm/
 # Please see http://i3wm.org/docs/userguide.html for the official i3 reference!
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+smart_gaps on
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+
+smart_borders no_gaps
 
 #######################
 # config starts here: #
@@ -53,9 +53,6 @@ workspace_layout default
 # extra options for windows: #
 ##############################
 
-# Hide title bar
-for_window [class=".*"] border pixel 1
-
 #border indicator on windows:
 new_window pixel 1
 
@@ -64,7 +61,7 @@ new_window pixel 1
 
 # Set inner/outer gaps
 gaps inner 6
-gaps outer 2
+gaps outer 3
 
 # show window title bars (not officially supported with i3gaps)
 #default_border normal
@@ -211,23 +208,11 @@ bindsym F1 exec ~/.config/i3/scripts/keyhint-2
 bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+b focus up
-bindsym $mod+o focus right
-
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+b move up
-bindsym $mod+Shift+o move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -245,9 +230,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+g layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+g layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -283,6 +268,11 @@ bindsym XF86AudioPrev exec playerctl previous
 # Redirect sound to headphones
 bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
+## App shortcuts
+bindsym $mod+w exec /usr/bin/firefox
+bindsym $mod+n exec /usr/bin/thunar
+bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
@@ -292,39 +282,39 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
+set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:note"
-set $ws7 "7:"
-set $ws8 "8:misc"
-set $ws9 "9:misc"
-set $ws10 "10:misc"
+set $ws4 "4:note"
+set $ws5 "5:"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
-workspace $ws1 output DP3
-workspace $ws2 output eDP1
-workspace $ws3 output DP3
-workspace $ws4 output DP3
-workspace $ws5 output DP3
-workspace $ws6 output DP3
-workspace $ws7 output DP3
-workspace $ws8 output DP3
-workspace $ws9 output DP3
+#workspace $ws1 output VGA-0
+#workspace $ws2 output VGA-0
+#workspace $ws3 output HDMI-0
+#workspace $ws4 output HDMI-0
+#workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Slack"] $ws1
-assign [class="discord"] $ws1
-assign [class="Microsoft Teams - Preview"] $ws1
-for_window [class="Spotify"] move to workspace $ws2
+assign [class="steam"] $ws1
+assign [class="lutris"] $ws1
+for_window [class="spotify"] $ws2
 assign [class="(?i)firefox"] $ws3
-assign [class="jetbrains-rider"] $ws4
-assign [class="Code"] $ws5
-assign [class="obsidian"] $ws6
+assign [class="obsidian"] $ws4
+
+# automatic set focus new window if it opens on another workspace then the current:
+#for_window [class=Xfce4-terminal] focus
+#for_window [class=(?i)firefox] focus
+#for_window [class=Thunar] focus
+#for_window [class=Thunderbird] focus
+#for_window [class=TelegramDesktop] focus
 
 ##############
 # compositor #
@@ -373,11 +363,10 @@ exec --no-startup-id dex --autostart --environment i3
 #exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 
 
 # num lock activated
-#exec --no-startup-id numlockx on
+exec --no-startup-id numlockx on
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
 #exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
-exec_always --no-startup-id setxkbmap -layout 'se,us' -option -option 'grp:ctrls_toggle'
 
 # start conky:
 #exec_always --no-startup-id conky
@@ -416,12 +405,9 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 #exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
-exec --no-startup-id sleep 1 && slack
-exec --no-startup-id sleep 1 && teams
-exec --no-startup-id sleep 1 && discord
-exec --no-startup-id sleep 2 && spotify
-exec --no-startup-id sleep 2 && firefox
-exec --no-startup-id sleep 3 && obsidian
+#exec --no-startup-id sleep 2 && xfce4-terminal
+#exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
+#exec --no-startup-id sleep 3 && thunar
 
 ###############
 # system tray #
@@ -509,6 +495,7 @@ bar {
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
+#strip_workspace_numbers yes
 strip_workspace_name no
 
 		    colors {
@@ -580,11 +567,17 @@ bindsym $mod+t exec rofi -show window \
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
 
-
-#################################
-# Custom
-#################################
+##########
+# Custom #
+##########
 
 # start unclutter with a timeout of 5 seconds
 exec --no-startup-id unclutter --timeout 5
+
+# bind program to workspace and focus to them on startup:
+assign [class="Steam"] $ws1
+for_window [class="Spotify"] move to workspace $ws2
+assign [class="(?i)firefox"] $ws3
+assign [class="obsidian"] $ws4
+
 focus_follows_mouse no
