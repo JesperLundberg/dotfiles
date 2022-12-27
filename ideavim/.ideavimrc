@@ -1,0 +1,16 @@
+" General options
+set scrolloff=10            " When to start scrolling
+set showmode                " Show mode in bottom
+set showcmd                 " Show command in bottom
+set visualbell              " Visual bell instead of audio
+set clipboard+=unnamed      " Same clipboard as system
+
+" Search options
+set ignorecase              " Case insesitive search
+set smartcase               " Unless there are upper case characters
+set incsearch               " Search from first character
+set hlsearch                " Higlight searchterms
+
+" Third party plugins
+set surround
+set highlightedyank
