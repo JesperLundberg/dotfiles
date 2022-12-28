@@ -20,6 +20,9 @@ set ttyfast                         " Speed up scrolling in Vim
 let g:airline_theme='bubblegum'     " Theme is bubblegum
 let g:airline_powerline_fonts = 1   " Use powerline fonts in airline
 
+" Custom remappings
+inoremap jk <esc>                   " Same as pressing esc
+
 call plug#begin()
  Plug 'dracula/vim', { 'as': 'dracula' }
  Plug 'ryanoasis/vim-devicons'
