@@ -11,7 +11,7 @@ set shiftwidth=4                    " width for autoindents
 set autoindent                      " indent a new line the same amount as the line just typed
 set number                          " add line numbers
 set wildmode=longest,list           " get bash-like tab completions
-filetype plugin indent on           "allow auto-indenting depending on file type
+filetype plugin indent on           " allow auto-indenting depending on file type
 syntax on                           " syntax highlighting
 set mouse=a                         " enable mouse click
 set clipboard=unnamedplus           " using system clipboard
@@ -20,14 +20,20 @@ set ttyfast                         " Speed up scrolling in Vim
 let g:airline_theme='bubblegum'     " Theme is bubblegum
 let g:airline_powerline_fonts = 1   " Use powerline fonts in airline
 
-" Custom remappings
-inoremap jk <esc>                   " Same as pressing esc
+" Do not create backup/swap/undo files
+set nobackup
+set noswapfile
+set noundofile
+
+" Custom maps
+inoremap jj <Esc>
 
 call plug#begin()
  Plug 'dracula/vim', { 'as': 'dracula' }
  Plug 'ryanoasis/vim-devicons'
  Plug 'mhinz/vim-startify'
  Plug 'vim-airline/vim-airline'
+ Plug 'preservim/nerdtree'
  Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
@@ -36,8 +42,10 @@ call plug#end()
  set termguicolors
  endif
  syntax enable
+
 " colorscheme evening
  colorscheme dracula 
+ 
 " open new split panes to right and below
  set splitright
  set splitbelow
