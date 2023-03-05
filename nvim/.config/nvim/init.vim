@@ -26,7 +26,15 @@ set noswapfile
 set noundofile
 
 " Custom maps
+let mapleader="\<SPACE>"
 inoremap jj <Esc>
+nmap l o<Esc>
+nmap L O<Esc>
+nmap h :nop<CR>
+nmap j :nop<CR>
+nmap k :nop<CR>
+nnoremap <leader>x :NERDTree<CR>
+nnoremap <leader>X :NERDTreeToggle<CR>
 
 call plug#begin()
  Plug 'dracula/vim', { 'as': 'dracula' }
