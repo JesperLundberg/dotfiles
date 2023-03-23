@@ -97,19 +97,30 @@ let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error in solution"
 "" Key mappings
 "" ========================================================
 
+" Exit insert mode
 inoremap jj <Esc>
 
-" Tab navigation
-nnoremap <A-n> :tabnext<CR>
-nnoremap <A-p> :tabprev<CR>
+" Go to start/end of line in insert mode
+inoremap <C-b> <Esc>^i
+inoremap <C-e> <End>
 
-" Pane navigation
-nnoremap <A-h> <C-w>h
-nnoremap <A-l> <C-w>l
-nnoremap <A-k> <C-w>k
-nnoremap <A-j> <C-w>j
+" Make a newline from normal mode
+nnoremap l o<Esc>
+nnoremap L O<Esc>
 
-" Jump between methods
+" Toggle relative numbers
+nnoremap <leader>mm :set rnu! <CR>
+
+" Clear highlights
+nnoremap <Esc> :noh <CR>
+
+" Disable hjk
+nnoremap h :nop<CR>
+nnoremap j :nop<CR>
+nnoremap k :nop<CR>
+
+" Copy entire file (not working?)
+nnoremap <C-c> :%y+ <CR>" Jump between methods
 nnoremap [[ <Action>(MethodUp)
 nnoremap ]] <Action>(MethodDown)
 
