@@ -3,15 +3,11 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
--- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "csharp_ls" }
-
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
-
--- 
--- lspconfig.pyright.setup { blabla}
+lspconfig.csharp_ls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {"/home/jesper/.dotnet/tools/csharp-ls"},
+  filetypes = {"cs"},
+  init_options = {AutomaticWorkspaceInit = true},
+  root_dir = lspconfig.util.root_pattern("*.sln", ".git")
+})
