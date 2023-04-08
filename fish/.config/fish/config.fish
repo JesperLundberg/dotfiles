@@ -9,3 +9,5 @@ set -g theme_display_git_branch yes
 
 # Set environment variable
 set -gx EDITOR nvim
+
+thefuck --alias | source
