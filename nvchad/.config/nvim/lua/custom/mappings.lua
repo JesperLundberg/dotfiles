@@ -7,9 +7,24 @@ M.general = {
  },
 
   n = {
-    ["<C-b>"] = { "<ESC>^i", "beginning of line" },
+    -- ["<C-b>"] = { "<ESC>^i", "beginning of line" },
     ["l"] = {"o<ESC>", "newline after cursor"},
     ["L"] = {"O<ESC>", "newline before cursor"},
+
+    ["<leader>t"] = {
+      function ()
+        require("neotest").run.run()
+      end,
+      "run test under cursor"
+    },
+
+    ["<leader>T"] = {
+      function()
+        require("neotest").run.run(vim.fn.expand("%"))
+      end,
+      "run tests in current file",
+    },
+
   },
 
   t = {
@@ -27,6 +42,27 @@ M.general = {
     -- Don't copy the replaced text after pasting in visual mode
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
     ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "dont copy replaced text", opts = { silent = true } },
+  },
+}
+
+M.neotest = {
+  plugin = true,
+
+  n = {
+    ["<leader>t"] = {
+      function ()
+        require("neotest").run.run()
+      end,
+      "run test under cursor"
+    },
+
+    ["<leader>T"] = {
+      function()
+        require("neotest").run.run(vim.fn.expand("%"))
+      end,
+      "run tests in current file",
+    },
+
   },
 }
 
