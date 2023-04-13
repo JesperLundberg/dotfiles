@@ -6,7 +6,7 @@ local lspconfig = require("lspconfig")
 lspconfig.csharp_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = { "/home/jesper/.dotnet/tools/csharp-ls" },
+	cmd = { "/home/jesper/.local/share/nvim/mason/bin/csharp-ls" },
 	filetypes = { "cs" },
 	init_options = { AutomaticWorkspaceInit = true },
 	root_dir = lspconfig.util.root_pattern("*.sln", ".git"),

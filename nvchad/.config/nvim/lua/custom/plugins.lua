@@ -56,7 +56,7 @@ local plugins = {
 		},
 	},
 	{
-    -- TODO: Is this really necessary?!
+		-- TODO: Is this really necessary?!
 		"folke/neodev.nvim",
 		config = function()
 			require("custom.configs.neodev")
