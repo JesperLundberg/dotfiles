@@ -76,6 +76,15 @@ local plugins = {
 			require("custom.configs.nvim-dap-ui")
 		end,
 	},
+	{
+		"folke/trouble.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("custom.configs.trouble")
+		end,
+	},
 }
 
 return plugins
