@@ -60,6 +60,13 @@ M.general = {
 			end,
 			"toggle breakpoint",
 		},
+
+		-- Trouble (show errors)
+		["<leader>ww"] = {
+			"<cmd>TroubleToggle workspace_diagnostics<cr>",
+			"Toggle trouple with workspace diagnostics",
+			opts = { silent = true, noremap = true },
+		},
 	},
 
 	t = {
