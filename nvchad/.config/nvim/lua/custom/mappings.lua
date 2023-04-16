@@ -10,13 +10,13 @@ M.general = {
 		["L"] = { "O<ESC>", "newline before cursor" },
 
 		-- Run tests
-		["<leader>t"] = {
+		["<leader>tt"] = {
 			function()
 				require("neotest").run.run()
 			end,
 			"run neastest test",
 		},
-		["<leader>T"] = {
+		["<leader>ta"] = {
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
 			end,
