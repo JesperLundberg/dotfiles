@@ -13,16 +13,18 @@ M.general = {
 		["<leader>tt"] = {
 			function()
 				require("neotest").run.run()
+        require("neotest").summary.open()
 			end,
 			"run neastest test",
 		},
 		["<leader>ta"] = {
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
+        require("neotest").summary.open()
 			end,
 			"run tests in current file",
 		},
-		["<leader>dt"] = {
+		["<leader>td"] = {
 			function()
 				require("neotest").run.run({ strategy = "dap" })
 			end,
