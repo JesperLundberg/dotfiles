@@ -1,3 +1,4 @@
+
 -- n, v, i, t = mode names
 
 local M = {}
@@ -8,30 +9,40 @@ M.general = {
 	n = {
 		["l"] = { "o<ESC>", "newline after cursor" },
 		["L"] = { "O<ESC>", "newline before cursor" },
+	},
 
-		-- Run tests
-		["<leader>tt"] = {
-			function()
-				require("neotest").run.run()
-        require("neotest").summary.open()
-			end,
-			"run neastest test",
-		},
-		["<leader>ta"] = {
-			function()
-				require("neotest").run.run(vim.fn.expand("%"))
-        require("neotest").summary.open()
-			end,
-			"run tests in current file",
-		},
-		["<leader>td"] = {
-			function()
-				require("neotest").run.run({ strategy = "dap" })
-			end,
-			"debug nearest test",
-		},
+	t = {
+		["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "escape terminal mode" },
+	},
 
-		-- Debugging
+	v = {
+		["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "move up", opts = { expr = true } },
+		["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "move down", opts = { expr = true } },
+	},
+
+	x = {
+		["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "move down", opts = { expr = true } },
+		["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "move up", opts = { expr = true } },
+		-- Don't copy the replaced text after pasting in visual mode
+		-- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
+		["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "dont copy replaced text", opts = { silent = true } },
+	},
+}
+
+M.trouble = {
+	n = {
+		["<leader>ww"] = {
+			"<cmd>TroubleToggle workspace_diagnostics<cr>",
+			"toggle trouble with workspace diagnostics",
+			opts = { silent = true, noremap = true },
+		},
+	},
+}
+
+M.dap = {
+	-- Debug adapter protocol
+
+	n = {
 		["<F5>"] = {
 			function()
 				require("dap").continue()
@@ -62,49 +73,48 @@ M.general = {
 			end,
 			"toggle breakpoint",
 		},
+	},
+}
 
-		-- Trouble (show errors)
-		["<leader>ww"] = {
-			"<cmd>TroubleToggle workspace_diagnostics<cr>",
-			"Toggle trouple with workspace diagnostics",
-			opts = { silent = true, noremap = true },
+M.harpoon = {
+	n = {
+		["<leader>ha"] = {
+			function()
+				require("harpoon.mark").add_file()
+			end,
+			"add file to harpoon",
 		},
-	},
-
-	t = {
-		["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "escape terminal mode" },
-	},
-
-	v = {
-		["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "move up", opts = { expr = true } },
-		["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "move down", opts = { expr = true } },
-	},
-
-	x = {
-		["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "move down", opts = { expr = true } },
-		["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "move up", opts = { expr = true } },
-		-- Don't copy the replaced text after pasting in visual mode
-		-- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-		["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "dont copy replaced text", opts = { silent = true } },
+		["<leader>hu"] = {
+			function()
+				require("harpoon.ui").toggle_quick_menu()
+			end,
+			"toggle harpoon quick menu",
+		},
 	},
 }
 
 M.neotest = {
-	plugin = true,
-
 	n = {
-		["<leader>t"] = {
+		-- Run tests
+		["<leader>tt"] = {
 			function()
 				require("neotest").run.run()
+				require("neotest").summary.open()
 			end,
-			"run test under cursor",
+			"run neastest test",
 		},
-
-		["<leader>T"] = {
+		["<leader>ta"] = {
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
+				require("neotest").summary.open()
 			end,
 			"run tests in current file",
+		},
+		["<leader>tdb"] = {
+			function()
+				require("neotest").run.run({ strategy = "dap" })
+			end,
+			"debug nearest test",
 		},
 	},
 }
@@ -496,3 +506,4 @@ M.gitsigns = {
 }
 
 return M
+
