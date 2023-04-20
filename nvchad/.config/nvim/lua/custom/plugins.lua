@@ -60,16 +60,12 @@ local plugins = {
 		},
 	},
 	{
-		-- TODO: Is this really necessary?!
+		-- Api completion - does not work with symlinks?!
 		"folke/neodev.nvim",
 		config = function()
 			require("custom.configs.neodev")
 		end,
 	},
-	-- {
-	-- Used for neotest
-	-- "nvim-lua/plenary.nvim"
-	-- },
 	{
 		-- UI for debugging
 		"rcarriga/nvim-dap-ui",
