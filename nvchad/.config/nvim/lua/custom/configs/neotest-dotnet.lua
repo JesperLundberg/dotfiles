@@ -4,5 +4,4 @@ neotest.setup({
   adapters = {
     require("neotest-dotnet")
   },
-  -- require("neotest-plenary")
 })

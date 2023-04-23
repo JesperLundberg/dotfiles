@@ -1,4 +1,3 @@
-
 -- n, v, i, t = mode names
 
 local M = {}
@@ -29,6 +28,27 @@ M.general = {
 	},
 }
 
+M.minimove = {
+	n = {
+		-- command is :lua require("mini.move").move_line('up') [for up]
+
+		-- Keymaps for mini.move are in the setup for the plugin until I solve the issue to put it here
+		["<A-Left>"] = { "", "move line left" },
+		["<A-Right>"] = { "", "move line right" },
+		["<A-Down>"] = { "", "move line down" },
+		["<A-Up>"] = { "", "move line up" },
+	},
+
+	v = {
+		-- command is :lua require("mini.move").move('up') [for up]
+
+		-- Keymaps for mini.move are in the setup for the plugin until I solve the issue to put it here
+		["<A-Left>"] = { "", "move selection left" },
+		["<A-Right>"] = { "", "move selection right" },
+		["<A-Down>"] = { "", "move selection down" },
+		["<A-Up>"] = { "", "move selection up" },
+	},
+}
 M.trouble = {
 	n = {
 		["<leader>ww"] = {
@@ -87,6 +107,18 @@ M.harpoon = {
 		["<leader>hu"] = {
 			function()
 				require("harpoon.ui").toggle_quick_menu()
+			end,
+			"toggle harpoon quick menu",
+		},
+		["<C-1>"] = {
+			function()
+				require("harpoon.ui").nav_next()
+			end,
+			"toggle harpoon quick menu",
+		},
+		["<C-2>"] = {
+			function()
+				require("harpoon.ui").nav_prev()
 			end,
 			"toggle harpoon quick menu",
 		},
@@ -506,4 +538,3 @@ M.gitsigns = {
 }
 
 return M
-
