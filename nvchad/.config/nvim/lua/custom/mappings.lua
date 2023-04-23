@@ -8,6 +8,11 @@ M.general = {
 	n = {
 		["l"] = { "o<ESC>", "newline after cursor" },
 		["L"] = { "O<ESC>", "newline before cursor" },
+
+		["<C-left>"] = { "<C-w>h", "window left" },
+		["<C-right>"] = { "<C-w>l", "window right" },
+		["<C-down>"] = { "<C-w>j", "window down" },
+		["<C-up>"] = { "<C-w>k", "window up" },
 	},
 
 	t = {
@@ -143,7 +148,15 @@ M.neotest = {
 		},
 		["<leader>tdb"] = {
 			function()
-				require("neotest").run.run({ strategy = "dap" })
+				-- netcoredbg needs special strategy
+				if vim.bo.filetype == "cs" then
+					require("neotest").run.run({
+						strategy = require("neotest-dotnet.strategies.netcoredbg"),
+						is_custom_dotnet_debug = true,
+					})
+				else -- for all others, use regular dap strategy
+					require("neotest").run.run({ strategy = "dap" })
+				end
 			end,
 			"debug nearest test",
 		},
