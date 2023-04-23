@@ -131,7 +131,6 @@ M.neotest = {
 		["<leader>tt"] = {
 			function()
 				require("neotest").run.run()
-				require("neotest").summary.open()
 			end,
 			"run neastest test",
 		},
