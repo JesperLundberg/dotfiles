@@ -1,5 +1,14 @@
 local plugins = {
 	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+
+		config = function()
+			require("custom.configs.copilot")
+		end,
+	},
+	{
 		"echasnovski/mini.move",
 		version = false,
 		config = function()
