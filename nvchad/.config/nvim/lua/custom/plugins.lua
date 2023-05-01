@@ -1,5 +1,11 @@
 local plugins = {
   {
+    "aznhe21/actions-preview.nvim",
+    config = function()
+    end,
+    event = "VeryLazy"
+  },
+  {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     event = "VeryLazy",

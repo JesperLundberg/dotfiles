@@ -35,13 +35,6 @@ M.todocomments = {
   },
 }
 
-M.lspconfig = {
-  n = {
-    -- To use code action menu rather than regular code action
-    ["<leader>ca"] = { "<cmd>CodeActionMenu<cr>", "lsp code_action" },
-  },
-}
-
 M.minimove = {
   n = {
     -- command is :lua require("mini.move").move_line('up') [for up]
@@ -265,7 +258,8 @@ M.lspconfig = {
     },
     ["<leader>ca"] = {
       function()
-        vim.lsp.buf.code_action()
+        require("actions-preview").code_actions()
+        -- vim.lsp.buf.code_action()
       end,
       "lsp code_action",
     },
