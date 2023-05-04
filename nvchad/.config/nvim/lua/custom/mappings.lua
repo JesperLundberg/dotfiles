@@ -40,19 +40,59 @@ M.minimove = {
     -- command is :lua require("mini.move").move_line('up') [for up]
 
     -- Keymaps for mini.move are in the setup for the plugin until I solve the issue to put it here
-    ["<A-Left>"] = { "", "move line left" },
-    ["<A-Right>"] = { "", "move line right" },
-    ["<A-Down>"] = { "", "move line down" },
-    ["<A-Up>"] = { "", "move line up" },
+    ["<A-Left>"] = {
+      function()
+        require("mini.move").move_line("left")
+      end,
+      "move line left",
+    },
+    ["<A-Right>"] = {
+      function()
+        require("mini.move").move_line("right")
+      end,
+      "move line right",
+    },
+    ["<A-Down>"] = {
+      function()
+        require("mini.move").move_line("down")
+      end,
+      "move line down",
+    },
+    ["<A-Up>"] = {
+      function()
+        require("mini.move").move_line("up")
+      end,
+      "move line up",
+    },
   },
   v = {
     -- command is :lua require("mini.move").move('up') [for up]
 
     -- Keymaps for mini.move are in the setup for the plugin until I solve the issue to put it here
-    ["<A-Left>"] = { "", "move selection left" },
-    ["<A-Right>"] = { "", "move selection right" },
-    ["<A-Down>"] = { "", "move selection down" },
-    ["<A-Up>"] = { "", "move selection up" },
+    ["<A-Left>"] = {
+      function()
+        require("mini.move").move("left")
+      end,
+      "move selection left",
+    },
+    ["<A-Right>"] = {
+      function()
+        require("mini.move").move("right")
+      end,
+      "move selection right",
+    },
+    ["<A-Down>"] = {
+      function()
+        require("mini.move").move("down")
+      end,
+      "move selection down",
+    },
+    ["<A-Up>"] = {
+      function()
+        require("mini.move").move("up")
+      end,
+      "move selection up",
+    },
   },
 }
 M.trouble = {

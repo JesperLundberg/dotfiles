@@ -37,22 +37,7 @@ local plugins = {
     version = false,
     config = function()
       require("mini.move").setup({
-        -- Module mappings. Use `''` (empty string) to disable one.
-        mappings = {
-          -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
-          left = "<A-left>",
-          right = "<A-right>",
-          down = "<A-down>",
-          up = "<A-up>",
-          -- Move current line in Normal mode
-          line_left = "<A-left>",
-          line_right = "<A-right>",
-          line_down = "<A-down>",
-          line_up = "<A-up>",
-        },
-        -- Options which control moving behavior
         options = {
-          -- Automatically reindent selection during linewise vertical move
           reindent_linewise = true,
         },
       })
