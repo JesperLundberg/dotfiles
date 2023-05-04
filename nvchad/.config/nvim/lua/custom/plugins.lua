@@ -1,9 +1,13 @@
 local plugins = {
   {
+    "wuelnerdotexe/vim-astro",
+    event = "BufRead",
+  },
+  {
     "aznhe21/actions-preview.nvim",
     config = function()
     end,
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "folke/todo-comments.nvim",
