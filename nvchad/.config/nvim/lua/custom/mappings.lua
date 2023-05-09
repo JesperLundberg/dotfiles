@@ -29,6 +29,17 @@ M.general = {
   },
 }
 
+M.zenmode = {
+  n = {
+    ["<leader>z"] = {
+      function()
+        require("zen-mode").toggle({ window = { width = 0.8 } })
+      end,
+      "toggle zen mode",
+    },
+  },
+}
+
 M.todocomments = {
   n = {
     ["<leader>tc"] = { "<cmd>TodoTelescope<cr>", "toggle todo comments" },

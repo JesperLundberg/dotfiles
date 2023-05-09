@@ -1,5 +1,21 @@
 local plugins = {
   {
+    -- Focus on one file
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup({})
+    end,
+    event = "VeryLazy",
+  },
+  {
+    -- Dim everything but the current function where cursor resides
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup({})
+    end,
+    event = "VeryLazy",
+  },
+  {
     "wuelnerdotexe/vim-astro",
     event = "BufRead",
   },
