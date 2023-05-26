@@ -1,4 +1,10 @@
+local mason = require("custom.configs.mason")
+
 local plugins = {
+  {
+    "williamboman/mason.nvim",
+    opts = mason.opts,
+  },
   {
     -- Focus on one file
     "folke/zen-mode.nvim",
