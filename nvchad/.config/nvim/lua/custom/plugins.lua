@@ -1,7 +1,14 @@
 local mason = require("custom.configs.mason")
+local treesitter = require("custom.configs.treesitter")
 
 local plugins = {
   {
+    -- Just to override and set ensure_installed
+    "nvim-treesitter/nvim-treesitter",
+    opts = treesitter.opts,
+  },
+  {
+    -- Just to override and set ensure_installed
     "williamboman/mason.nvim",
     opts = mason.opts,
   },
