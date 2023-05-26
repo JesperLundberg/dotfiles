@@ -3,6 +3,7 @@ local api = vim.api
 
 opt.relativenumber = true
 
+-- highlight yank
 local highlight_group = api.nvim_create_augroup("YankHighlight", { clear = true })
 
 api.nvim_create_autocmd("TextYankPost", {
@@ -11,4 +12,12 @@ api.nvim_create_autocmd("TextYankPost", {
   end,
   group = highlight_group,
   pattern = "*",
+})
+
+-- fix comment on new line
+api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.cmd([[set formatoptions-=c formatoptions-=r formatoptions-=o]])
+  end,
 })

@@ -12,6 +12,9 @@ M.opts = {
 
     -- Astro
     "astro-language-server",
+
+    -- HTML
+    "prettier",
   },
 }
 
