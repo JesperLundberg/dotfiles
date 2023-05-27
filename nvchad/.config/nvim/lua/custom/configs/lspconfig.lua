@@ -6,7 +6,7 @@ local lspconfig = require("lspconfig")
 lspconfig.omnisharp.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "dotnet", "/home/jesper/.local/share/nvim/mason/packages/omnisharp/OmniSharp.dll" },
+  cmd = { "dotnet", "/home/jesper/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
   -- Enables support for reading code style, naming convention and analyzer
   -- settings from .editorconfig.
   enable_editorconfig_support = true,
