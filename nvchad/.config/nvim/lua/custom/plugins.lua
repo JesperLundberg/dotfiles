@@ -3,6 +3,13 @@ local treesitter = require("custom.configs.treesitter")
 
 local plugins = {
   {
+    "ggandor/leap.nvim",
+    config = function()
+      require("leap").add_default_mappings()
+    end,
+    event = "VeryLazy",
+  },
+  {
     -- Just to override and set ensure_installed
     "nvim-treesitter/nvim-treesitter",
     opts = treesitter.opts,
@@ -34,8 +41,7 @@ local plugins = {
   },
   {
     "aznhe21/actions-preview.nvim",
-    config = function()
-    end,
+    config = function() end,
     event = "VeryLazy",
   },
   {
