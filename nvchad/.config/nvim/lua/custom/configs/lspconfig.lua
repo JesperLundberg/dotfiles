@@ -36,11 +36,3 @@ lspconfig.omnisharp.setup({
   -- true
   analyze_open_documents_only = false,
 })
-
-lspconfig.astro.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "/home/jesper/.local/share/nvim/mason/bin/astro-ls", "--stdio" },
-  filetypes = { "astro" },
-  -- root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")
-})

@@ -1,16 +1,15 @@
-
 local M = {}
 
 M.opts = {
-  ensure_installed = {
-    "c_sharp",
-    "css",
-    "lua",
-    "html",
-    "typescript",
-    "tsx",
-    "dockerfile",
-  },
+	ensure_installed = {
+		"c_sharp",
+		"css",
+		"lua",
+		"html",
+		"dockerfile",
+		"markdown",
+		"markdown_inline",
+	},
 }
 
 return M
