@@ -1,13 +1,27 @@
-local mason = require "custom.configs.mason"
-local treesitter = require "custom.configs.treesitter"
-
 local plugins = {
   {
-    "stevearc/conform.nvim",
+    dir = "~/dev/projektgunnar.nvim/",
+    dependencies = {
+      "echasnovski/mini.pick",
+    },
     event = "VeryLazy",
+  },
+  -- {
+  --   -- Handle dotnet packages and references
+  --   "JesperLundberg/projektgunnar.nvim",
+  --   dependencies = {
+  --     "echasnovski/mini.pick",
+  --   },
+  --   event = "VeryLazy",
+  -- },
+  {
+    -- Code formatter
+    "stevearc/conform.nvim",
     opts = require("custom.configs.conform").opts,
+    event = "VeryLazy",
   },
   {
+    -- Disable nvim-tree that is included in NvChad
     "nvim-tree/nvim-tree.lua",
     enabled = false,
   },
@@ -29,12 +43,12 @@ local plugins = {
   {
     -- Just to override and set ensure_installed
     "nvim-treesitter/nvim-treesitter",
-    opts = treesitter.opts,
+    opts = require("custom.configs.treesitter").opts,
   },
   {
     -- Just to override and set ensure_installed
     "williamboman/mason.nvim",
-    opts = mason.opts,
+    opts = require("custom.configs.mason").opts,
   },
   {
     -- Code actions in telescope
@@ -55,11 +69,10 @@ local plugins = {
     -- Copilot plugin
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "InsertEnter",
-
     config = function()
       require "custom.configs.copilot"
     end,
+    event = "InsertEnter",
   },
   {
     -- File manager
@@ -69,10 +82,24 @@ local plugins = {
       require("core.utils").load_mappings "minifiles"
       require("mini.files").setup {
         mappings = {
-          go_in = "<Right>",
-          go_out = "<Left>",
+          go_in_plus = "<Right>",
+          go_out_plus = "<Left>",
           synchronize = "<C-s>",
         },
+      }
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "echasnovski/mini.notify",
+    version = false,
+    config = function()
+      local notify = require "mini.notify"
+      notify.setup()
+      vim.notify = notify.make_notify {
+        ERROR = { duration = 2000 },
+        WARN = { duration = 2000 },
+        INFO = { duration = 2000 },
       }
     end,
     event = "VeryLazy",
@@ -111,13 +138,6 @@ local plugins = {
     -- Setup for lsp and formatting
     "neovim/nvim-lspconfig",
 
-    -- dependencies = {
-    --   "nvimtools/none-ls.nvim",
-    --   config = function()
-    --     require "custom.configs.null-ls"
-    --   end,
-    -- },
-
     -- The setup of the different lsps
     config = function()
       require "plugins.configs.lspconfig"
@@ -130,7 +150,6 @@ local plugins = {
     config = function()
       require("better_escape").setup()
     end,
-
     event = "InsertEnter",
   },
   {
@@ -142,10 +161,24 @@ local plugins = {
     config = function()
       require "custom.configs.nvim-dap"
     end,
+    event = "VeryLazy",
+  },
+  {
+    -- UI for debugging
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+    config = function()
+      require "custom.configs.nvim-dap-ui"
+    end,
   },
   {
     -- To be able to mark often used files and easily get back to them
     "ThePrimeagen/harpoon",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
   {
     -- Setup of the unit testing for dotnet
@@ -169,16 +202,6 @@ local plugins = {
     "folke/neodev.nvim",
     config = function()
       require "custom.configs.neodev"
-    end,
-  },
-  {
-    -- UI for debugging
-    "rcarriga/nvim-dap-ui",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-    },
-    config = function()
-      require "custom.configs.nvim-dap-ui"
     end,
   },
   {

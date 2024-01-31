@@ -5,18 +5,20 @@ M.opts = {
 		timeout_ms = 500,
 		lsp_fallback = true,
 	},
-	ignore_errors = false,
 	formatters = {
-		csharpier = {
-			command = "dotnet-csharpier",
-			args = "--write-stdout",
-			stdin = true,
+		xmlformat = {
+			cmd = { "xmlformat" },
+			args = { "--selfclose", "-" },
 		},
 	},
 	formatters_by_ft = {
 		cs = { "csharpier" },
+		html = { "prettier" },
+		json = { "prettier" },
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
+		xml = { "xmlformat" },
+		-- yaml = { "yamlfix" },
 	},
 }
 

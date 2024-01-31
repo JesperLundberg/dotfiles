@@ -17,11 +17,21 @@ M.general = {
     ["<C-up>"] = { "<C-w>k", "window up" },
 
     ["<leader>q"] = { "<cmd>q<cr>", "quit focused window" },
+    ["<leader>x"] = { "<cmd>bd<cr>", "close current buffer" },
   },
 
   t = {
     ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "escape terminal mode" },
     ["<C-d>"] = { '<cmd>echo "Use Toggle!"<cr>', "disable killing terminal" },
+  },
+}
+
+M.projektgunnar = {
+  n = {
+    ["<leader>pap"] = { "<cmd>AddNugetToProject<cr>", "Add packages to project" },
+    ["<leader>par"] = { "<cmd>AddProjectToProject<cr>", "Add project reference to other project" },
+    ["<leader>pup"] = { "<cmd>UpdateNugetsInProject<cr>", "Update packages in project" },
+    ["<leader>pus"] = { "<cmd>UpdateNugetsInSolution<cr>", "Update packages in solution" },
   },
 }
 
@@ -86,25 +96,25 @@ M.minimove = {
   v = {
     ["<A-Left>"] = {
       function()
-        require("mini.move").move "left"
+        require("mini.move").move_selection "left"
       end,
       "move selection left",
     },
     ["<A-Right>"] = {
       function()
-        require("mini.move").move "right"
+        require("mini.move").move_selection "right"
       end,
       "move selection right",
     },
     ["<A-Down>"] = {
       function()
-        require("mini.move").move "down"
+        require("mini.move").move_selection "down"
       end,
       "move selection down",
     },
     ["<A-Up>"] = {
       function()
-        require("mini.move").move "up"
+        require("mini.move").move_selection "up"
       end,
       "move selection up",
     },
@@ -112,6 +122,7 @@ M.minimove = {
 }
 
 M.copilot = {
+  -- Only here for the cheatsheet
   i = {
     ["<A-l>"] = { "", "complete suggestion from copilot" },
   },
@@ -121,7 +132,7 @@ M.trouble = {
   n = {
     ["<leader>ww"] = {
       function()
-        require("trouble").open "document_diagnostics"
+        require("trouble").open "workspace_diagnostics"
       end,
       "toggle trouble with workspace diagnostics",
       opts = { silent = true, noremap = true },
@@ -130,8 +141,6 @@ M.trouble = {
 }
 
 M.dap = {
-  -- Debug adapter protocol
-
   n = {
     ["<F5>"] = {
       function()
