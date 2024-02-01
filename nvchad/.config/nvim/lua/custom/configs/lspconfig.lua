@@ -1,12 +1,14 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require("lspconfig")
+local lspconfig = require "lspconfig"
 
-lspconfig.omnisharp.setup({
+local mason_package_path = vim.fn.stdpath "data"
+
+lspconfig.omnisharp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "dotnet", "/home/jesper/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+  cmd = { "dotnet", mason_package_path .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
   -- Enables support for reading code style, naming convention and analyzer
   -- settings from .editorconfig.
   enable_editorconfig_support = true,
@@ -35,4 +37,4 @@ lspconfig.omnisharp.setup({
   -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
   -- true
   analyze_open_documents_only = false,
-})
+}
