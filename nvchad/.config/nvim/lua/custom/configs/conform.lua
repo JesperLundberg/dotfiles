@@ -18,7 +18,6 @@ M.opts = {
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
 		xml = { "xmlformat" },
-		-- yaml = { "yamlfix" },
 	},
 }
 
