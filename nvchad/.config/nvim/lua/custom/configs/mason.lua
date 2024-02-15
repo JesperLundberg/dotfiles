@@ -12,6 +12,9 @@ M.opts = {
 
 		-- HTML
 		"prettier",
+
+		-- Markdown
+		"marksman",
 	},
 }
 
