@@ -39,10 +39,8 @@ local plugins = {
 		opts = require("custom.configs.treesitter").opts,
 	},
 	{
-		-- Just to override and set ensure_installed
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
 		opts = require("custom.configs.mason").opts,
 	},
 	{
@@ -173,8 +171,8 @@ local plugins = {
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		config = function()
-      require("harpoon").setup({})
-    end,
+			require("harpoon").setup({})
+		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
