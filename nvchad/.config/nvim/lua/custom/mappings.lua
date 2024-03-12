@@ -52,9 +52,12 @@ M.nvterm = {
 M.projektgunnar = {
   n = {
     ["<leader>pap"] = { "<cmd>AddNugetToProject<cr>", "Add packages to project" },
-    ["<leader>par"] = { "<cmd>AddProjectToProject<cr>", "Add project reference to other project" },
     ["<leader>pup"] = { "<cmd>UpdateNugetsInProject<cr>", "Update packages in project" },
     ["<leader>pus"] = { "<cmd>UpdateNugetsInSolution<cr>", "Update packages in solution" },
+    ["<leader>prp"] = { "<cmd>RemoveNugetFromProject<cr>", "Remove package from project" },
+    ["<leader>pasp"] = { "<cmd>AddProjectToSolution<cr>", "Add project to solution" },
+    ["<leader>par"] = { "<cmd>AddProjectToProject<cr>", "Add project reference to other project" },
+    ["<leader>prr"] = { "<cmd>RemoveProjectFromProject<cr>", "Remove project reference from project" },
   },
 }
 
