@@ -40,15 +40,9 @@ local plugins = {
 	},
 	{
 		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		opts = require("configs.mason").opts,
-
-		config = function()
-			require("mason").setup({})
-			require("mason-lspconfig").setup({ ensure_installed = require("configs.mason").ensure_installed })
-		end,
-
-		lazy = false,
+		opts = {
+			ensure_installed = require("configs.mason").opts.ensure_installed,
+		},
 	},
 	{
 		-- Code actions in telescope
