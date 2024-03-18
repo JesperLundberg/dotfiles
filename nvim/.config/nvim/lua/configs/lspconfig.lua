@@ -1,11 +1,18 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+-- local on_attach = require("nvchad.configs.lspconfig").on_attach
+-- local capabilities = require("nvchad.configs.lspconfig").capabilities
+
+local configs = require("nvchad.configs.lspconfig")
+
+local on_attach = configs.on_attach
+local on_init = configs.on_init
+local capabilities = configs.capabilities
 
 local lspconfig = require("lspconfig")
 
 local mason_package_path = vim.fn.stdpath("data")
 
 lspconfig.omnisharp.setup({
+	on_init = on_init,
 	on_attach = on_attach,
 	capabilities = capabilities,
 	cmd = { "dotnet", mason_package_path .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
@@ -40,6 +47,7 @@ lspconfig.omnisharp.setup({
 })
 
 lspconfig.marksman.setup({
+	on_init = on_init,
 	on_attach = on_attach,
 	capabilities = capabilities,
 })

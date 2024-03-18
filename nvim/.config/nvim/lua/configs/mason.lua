@@ -16,6 +16,9 @@ M.opts = {
 
 		-- Markdown
 		"marksman",
+
+		-- XML
+		"xmlformatter",
 	},
 }
 
