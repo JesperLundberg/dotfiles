@@ -41,7 +41,7 @@ local plugins = {
 	{
 		"williamboman/mason.nvim",
 		opts = {
-			ensure_installed = require("configs.mason").opts.ensure_installed,
+			ensure_installed = require("configs.mason").ensure_installed,
 		},
 	},
 	{

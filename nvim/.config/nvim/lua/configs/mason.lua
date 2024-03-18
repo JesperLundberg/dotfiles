@@ -1,25 +1,23 @@
 local M = {}
 
-M.opts = {
-	ensure_installed = {
-		-- lua
-		"lua-language-server",
-		"stylua",
+M.ensure_installed = {
+	-- lua
+	"lua-language-server",
+	"stylua",
 
-		-- C#
-		"omnisharp",
-		"csharpier",
-		"netcoredbg",
+	-- C#
+	"omnisharp",
+	"csharpier",
+	"netcoredbg",
 
-		-- HTML
-		"prettier",
+	-- HTML
+	"prettier",
 
-		-- Markdown
-		"marksman",
+	-- Markdown
+	"marksman",
 
-		-- XML
-		"xmlformatter",
-	},
+	-- XML
+	"xmlformatter",
 }
 
 return M
