@@ -73,7 +73,6 @@ local plugins = {
 		"echasnovski/mini.files",
 		version = false,
 		config = function()
-			-- require("core.utils").load_mappings("minifiles")
 			require("mini.files").setup({
 				mappings = {
 					go_in_plus = "<Right>",
@@ -83,20 +82,6 @@ local plugins = {
 			})
 		end,
 		event = "VeryLazy",
-	},
-	{
-		-- "echasnovski/mini.notify",
-		-- version = false,
-		-- config = function()
-		--   local notify = require "mini.notify"
-		--   notify.setup()
-		--   vim.notify = notify.make_notify {
-		--     ERROR = { duration = 2000 },
-		--     WARN = { duration = 2000 },
-		--     INFO = { duration = 2000 },
-		--   }
-		-- end,
-		-- event = "VeryLazy",
 	},
 	{
 		-- Move lines and blocks of code
