@@ -40,8 +40,8 @@ M.ui = {
 			"mode",
 			"file",
 			"git",
-			"harpoon",
 			"%=",
+			"harpoon",
 			"diagnostics",
 			"clients",
 			"cwd",
@@ -62,7 +62,7 @@ M.ui = {
 
 				local length = math.min(list:length(), #options.indicators)
 
-				local status = { options.separator }
+				local status = { "󰀱" }
 				local get_full_path = function(root, value)
 					if vim.loop.os_uname().sysname == "Windows_NT" then
 						return root .. "\\" .. value
@@ -81,6 +81,8 @@ M.ui = {
 						table.insert(status, options.indicators[i])
 					end
 				end
+
+				table.insert(status, #status + 1, "󰀱")
 
 				return table.concat(status, options.separator)
 			end,
