@@ -177,6 +177,7 @@ local plugins = {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+		event = "VeryLazy",
 	},
 	{
 		-- Setup of the unit testing for dotnet
