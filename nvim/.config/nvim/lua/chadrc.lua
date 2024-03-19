@@ -32,15 +32,15 @@ M.ui = {
 	},
 
 	statusline = {
-		theme = "minimal", -- default/vscode/vscode_colored/minimal
+		theme = "default", -- default/vscode/vscode_colored/minimal
 		-- default/round/block/arrow separators work only for default statusline theme
 		-- round and block will work for minimal theme only
-		separator_style = "round",
+		separator_style = "default",
 		order = {
 			"mode",
 			"file",
 			"git",
-			-- "harpoon",
+			"harpoon",
 			"%=",
 			"diagnostics",
 			"clients",
@@ -62,7 +62,7 @@ M.ui = {
 
 				local length = math.min(list:length(), #options.indicators)
 
-				local status = {}
+				local status = { options.separator }
 				local get_full_path = function(root, value)
 					if vim.loop.os_uname().sysname == "Windows_NT" then
 						return root .. "\\" .. value
