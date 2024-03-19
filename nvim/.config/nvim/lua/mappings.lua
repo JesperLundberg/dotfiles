@@ -125,7 +125,7 @@ end, { desc = "Neotest Debug nearest test" })
 -- Code actions
 map("n", "<leader>ca", function()
 	require("actions-preview").code_actions()
-end, { desc = "CodeAction Lsp code action" })
+end, { desc = "CodeAction Lsp code action", remap = true })
 
 -- DAP
 map("n", "<F5>", function()
