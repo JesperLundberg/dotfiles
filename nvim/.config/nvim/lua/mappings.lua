@@ -123,9 +123,9 @@ map("n", "<leader>tdb", function()
 end, { desc = "Neotest Debug nearest test" })
 
 -- Code actions
-map("n", "<leader>ca", function()
+map("n", "<leader>cr", function()
 	require("actions-preview").code_actions()
-end, { desc = "CodeAction Lsp code action", remap = true })
+end, { desc = "CodeAction Lsp code action" })
 
 -- DAP
 map("n", "<F5>", function()

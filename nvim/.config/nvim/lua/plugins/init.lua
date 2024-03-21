@@ -45,6 +45,15 @@ local plugins = {
 		},
 	},
 	{
+		-- Setup for lsp and formatting
+		"neovim/nvim-lspconfig",
+
+		-- The setup of the different lsps
+		config = function()
+			require("configs.lspconfig")
+		end,
+	},
+	{
 		-- Code actions in telescope
 		"aznhe21/actions-preview.nvim",
 		config = function() end,
@@ -112,16 +121,6 @@ local plugins = {
 			require("mini.ai").setup({})
 		end,
 		event = "BufRead",
-	},
-	{
-		-- Setup for lsp and formatting
-		"neovim/nvim-lspconfig",
-
-		-- The setup of the different lsps
-		config = function()
-			require("nvchad.configs.lspconfig").defaults()
-			require("configs.lspconfig")
-		end,
 	},
 	{
 		-- Enables jj and jk commands to exit insert mode
