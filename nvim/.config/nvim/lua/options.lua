@@ -23,3 +23,11 @@ api.nvim_create_autocmd({ "bufenter", "bufwinenter" }, {
 		vim.cmd([[set formatoptions-=c formatoptions-=r formatoptions-=o]])
 	end,
 })
+
+-- toggle inlay hints (requires nvim version >= 10)
+-- api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
+-- 	callback = function(args)
+-- 		local enabled = args.event ~= "InsertEnter"
+-- 		vim.lsp.inlay_hint.enable(args.buf, enabled)
+-- 	end,
+-- })

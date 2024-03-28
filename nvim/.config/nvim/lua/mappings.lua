@@ -1,6 +1,9 @@
 require("nvchad.mappings")
+--
+-- Disable mappings
+local nomap = vim.keymap.del
 
--- n, v, i, t = mode names
+-- Set mappings
 local map = vim.keymap.set
 
 -- General
@@ -27,7 +30,7 @@ map(
 	vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true),
 	{ desc = "Terminal Escape terminal mode" }
 )
-map({ "n", "t" }, "<C-i>", function()
+map({ "n", "t" }, "<C-S-i>", function()
 	require("nvchad.term").toggle({ pos = "float", id = "floatTerm" })
 end, { desc = "Terminal Toggle Floating term" })
 
@@ -35,7 +38,7 @@ end, { desc = "Terminal Toggle Floating term" })
 map("n", "<leader>pap", "<cmd>AddNugetToProject<cr>", { desc = "ProjektGunnar Add packages to project" })
 map("n", "<leader>pup", "<cmd>UpdateNugetsInProject<cr>", { desc = "ProjektGunnar Update packages in project" })
 map("n", "<leader>pus", "<cmd>UpdateNugetsInSolution<cr>", { desc = "ProjektGunnar Update packages in solution" })
-map("n", "<leader>prp", "<cmd>RemoveNugetFromProject<cr>", { desc = "ProjektGunnar Write current buffer" })
+map("n", "<leader>prp", "<cmd>RemoveNugetFromProject<cr>", { desc = "ProjektGunnar Remove nuget from project" })
 map("n", "<leader>pasp", "<cmd>AddProjectToSolution<cr>", { desc = "ProjektGunnar Add project to solution" })
 map(
 	"n",

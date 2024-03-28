@@ -68,15 +68,15 @@ local plugins = {
 		end,
 		event = "VeryLazy",
 	},
-	-- {
-	-- 	-- Copilot plugin
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	cmd = "Copilot",
-	-- 	config = function()
-	-- 		require("configs.copilot")
-	-- 	end,
-	-- 	event = "InsertEnter",
-	-- },
+	{
+		-- Copilot plugin
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		config = function()
+			require("configs.copilot")
+		end,
+		event = "InsertEnter",
+	},
 	{
 		-- File manager
 		"echasnovski/mini.files",
@@ -146,6 +146,7 @@ local plugins = {
 		"rcarriga/nvim-dap-ui",
 		dependencies = {
 			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
 		},
 		config = function()
 			require("configs.nvim-dap-ui")
