@@ -1,5 +1,5 @@
 require("nvchad.mappings")
---
+
 -- Disable mappings
 local nomap = vim.keymap.del
 
@@ -7,17 +7,16 @@ local nomap = vim.keymap.del
 local map = vim.keymap.set
 
 -- General
-map("n", "U", "<C-r>", { desc = "General Undo" })
+map("n", "U", "<C-r>", { desc = "General Redo" })
 map("n", "l", "o<ESC>", { desc = "General Newline after cursor" })
 map("n", "L", "O<ESC>", { desc = "General Newline before cursor" })
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "General Write current buffer" })
 
 -- Figure out new mappings that work with mac!
--- map("n", "<S>Left", "<C-w>h", { desc = "window left" })
---["<C-left>"] = { "<C-w>h", "window left" },
---["<C-right>"] = { "<C-w>l", "window right" },
---["<C-down>"] = { "<C-w>j", "window down" },
---["<C-up>"] = { "<C-w>k", "window up" },
+map("n", "<C-S-Left>", "<C-w>h", { desc = "General Window left" })
+map("n", "<C-S-Right>", "<C-w>l", { desc = "General Window right" })
+map("n", "<C-S-Down>", "<C-w>j", { desc = "General Window down" })
+map("n", "<C-S-Up>", "<C-w>k", { desc = "General Window up" })
 
 -- Windowmgmt
 map("n", "<leader>q", "<cmd>q<cr>", { desc = "Windowmgmt Quit focused window" })

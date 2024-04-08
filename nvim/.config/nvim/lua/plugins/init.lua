@@ -15,6 +15,13 @@ local plugins = {
 		event = "VeryLazy",
 	},
 	{
+		-- Automatically star the plugin if it is used
+		"jsongerber/thanks.nvim",
+		opts = {
+			plugin_manager = "lazy",
+		},
+	},
+	{
 		-- Code formatter
 		"stevearc/conform.nvim",
 		opts = require("configs.conform").opts,
@@ -194,9 +201,9 @@ local plugins = {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()
-			require("trouble").setup({})
-		end,
+		-- config = function()
+		-- 	require("trouble").setup({})
+		-- end,
 	},
 }
 

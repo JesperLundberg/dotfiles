@@ -6,13 +6,37 @@ local capabilities = configs.capabilities
 
 local lspconfig = require("lspconfig")
 
-local mason_package_path = vim.fn.stdpath("data")
+local data_path = vim.fn.stdpath("data")
+
+lspconfig.lua_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	on_init = on_init,
+
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+					[data_path .. "/lazy/ui/nvchad_types"] = true,
+					[data_path .. "/lazy/lazy.nvim/lua/lazy"] = true,
+				},
+				maxPreload = 100000,
+				preloadFileSize = 10000,
+			},
+		},
+	},
+})
 
 lspconfig.omnisharp.setup({
 	on_init = on_init,
 	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = { "dotnet", mason_package_path .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+	cmd = { "dotnet", data_path .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
 	-- Enables support for reading code style, naming convention and analyzer
 	-- settings from .editorconfig.
 	enable_editorconfig_support = true,
