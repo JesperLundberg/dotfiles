@@ -10,8 +10,11 @@ M.ensure_installed = {
 	"csharpier",
 	"netcoredbg",
 
-	-- HTML
+	-- HTML, TS, JS, CSS
+	"typescript-language-server",
 	"prettier",
+	"eslint-lsp",
+	"js-debug-adapter",
 
 	-- Markdown
 	"marksman",

@@ -7,6 +7,10 @@ M.opts = {
 		"lua",
 		"html",
 		"dockerfile",
+		"markdown",
+		"markdown_inline",
+		"typescript",
+		"javascript",
 	},
 }
 

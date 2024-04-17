@@ -1,5 +1,27 @@
 local dap = require("dap")
 
+dap.adapters["pwa-node"] = {
+	type = "server",
+	host = "127.0.0.1",
+	port = 8123,
+	executable = {
+		command = "js-node-adapter",
+	},
+}
+
+for _, lang in ipairs({ "javascript", "typescript" }) do
+	dap.configurations[lang] = {
+		{
+			type = "pwa-node",
+			request = "launch",
+			name = "Launch file",
+			program = "${file}",
+			cwd = "${workspaceFolder}",
+			runtimeExecutable = "node",
+		},
+	}
+end
+
 dap.adapters.coreclr = {
 	type = "executable",
 	command = "/usr/bin/netcoredbg",

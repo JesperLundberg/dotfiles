@@ -1,7 +1,7 @@
 require("nvchad.mappings")
 
 -- Disable mappings
-local nomap = vim.keymap.del
+-- local nomap = vim.keymap.del
 
 -- Set mappings
 local map = vim.keymap.set
@@ -94,7 +94,7 @@ end, { desc = "Trouble Toggle trouble with workspace diagnostics", silent = true
 
 -- Harpoon
 map("n", "<leader>ha", function()
-	require("harpoon"):list():append()
+	require("harpoon"):list():add()
 end, { desc = "Harpoon Add file" })
 map("n", "<leader>hu", function()
 	require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())

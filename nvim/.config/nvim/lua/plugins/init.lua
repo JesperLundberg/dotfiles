@@ -15,6 +15,22 @@ local plugins = {
 		event = "VeryLazy",
 	},
 	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("configs.lint")
+		end,
+		event = "VeryLazy",
+	},
+	{
+		"MeanderingProgrammer/markdown.nvim",
+		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("render-markdown").setup({})
+		end,
+		event = "VeryLazy",
+	},
+	{
 		-- Automatically star the plugin if it is used
 		"jsongerber/thanks.nvim",
 		opts = {
