@@ -9,7 +9,7 @@ local lspconfig = require("lspconfig")
 local data_path = vim.fn.stdpath("data")
 
 -- Activate LSPs
-local servers = { "marksman", "tsserver" } --, "eslint" }
+local servers = { "marksman" } --, "eslint" }
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
@@ -17,6 +17,17 @@ for _, lsp in pairs(servers) do
 		on_init = on_init,
 	})
 end
+
+lspconfig.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	on_init = on_init,
+	init_options = {
+		preferences = {
+			disableSuggestions = true,
+		},
+	},
+})
 
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
