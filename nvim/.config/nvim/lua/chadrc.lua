@@ -51,7 +51,8 @@ M.ui = {
 			harpoon = function()
 				-- simplified version of this https://github.com/letieu/harpoon-lualine
 				local options = {
-					icon = "󰀱",
+					icon_open = "{",
+					icon_close = "}",
 					indicators = { "1", "2", "3", "4" },
 					active_indicators = { "[1]", "[2]", "[3]", "[4]" },
 					separator = " ",
@@ -63,7 +64,13 @@ M.ui = {
 				-- how many files should be shown (maxes out at indicators.length)
 				local length = math.min(list:length(), #options.indicators)
 
-				local status = { options.icon }
+				-- if there are no files, return the icon
+				-- this is a hack to prevent the statusline from breaking
+				if length == 0 then
+					return options.icon_open .. options.icon_close
+				end
+
+				local status = { options.icon_open }
 				local get_full_path = function(root, value)
 					if vim.loop.os_uname().sysname == "Windows_NT" then
 						return root .. "\\" .. value
@@ -85,7 +92,7 @@ M.ui = {
 				end
 
 				-- use icon as end delimiter as well
-				table.insert(status, #status + 1, options.icon)
+				table.insert(status, #status + 1, options.icon_close)
 
 				return table.concat(status, options.separator)
 			end,

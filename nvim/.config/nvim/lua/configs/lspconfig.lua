@@ -22,11 +22,11 @@ lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	on_init = on_init,
-	init_options = {
-		preferences = {
-			disableSuggestions = true,
-		},
-	},
+	-- init_options = {
+	-- 	preferences = {
+	-- 		disableSuggestions = true,
+	-- 	},
+	-- },
 })
 
 lspconfig.lua_ls.setup({
