@@ -15,6 +15,7 @@ M.ensure_installed = {
 	"prettier",
 	"eslint-lsp",
 	"js-debug-adapter",
+	"astro-language-server",
 
 	-- Markdown
 	"marksman",

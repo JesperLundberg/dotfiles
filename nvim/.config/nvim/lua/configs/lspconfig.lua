@@ -9,7 +9,7 @@ local lspconfig = require("lspconfig")
 local data_path = vim.fn.stdpath("data")
 
 -- Activate LSPs
-local servers = { "marksman" } --, "eslint" }
+local servers = { "marksman", "tsserver" }
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
@@ -18,15 +18,10 @@ for _, lsp in pairs(servers) do
 	})
 end
 
-lspconfig.tsserver.setup({
+lspconfig.astro.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	on_init = on_init,
-	-- init_options = {
-	-- 	preferences = {
-	-- 		disableSuggestions = true,
-	-- 	},
-	-- },
+	root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsonconfig.json", ".git"),
 })
 
 lspconfig.lua_ls.setup({
