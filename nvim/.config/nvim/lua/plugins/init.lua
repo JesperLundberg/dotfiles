@@ -217,9 +217,9 @@ local plugins = {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		-- config = function()
-		-- 	require("trouble").setup({})
-		-- end,
+	},
+	{
+		"nvim-lua/plenary.nvim",
 	},
 }
 
