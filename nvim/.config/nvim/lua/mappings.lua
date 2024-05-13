@@ -34,21 +34,41 @@ map({ "n", "t" }, "<C-S-i>", function()
 end, { desc = "Terminal Toggle Floating term" })
 
 -- ProjektGunnar
-map("n", "<leader>pap", "<cmd>AddNugetToProject<cr>", { desc = "ProjektGunnar Add packages to project" })
-map("n", "<leader>pup", "<cmd>UpdateNugetsInProject<cr>", { desc = "ProjektGunnar Update packages in project" })
-map("n", "<leader>pus", "<cmd>UpdateNugetsInSolution<cr>", { desc = "ProjektGunnar Update packages in solution" })
-map("n", "<leader>prp", "<cmd>RemoveNugetFromProject<cr>", { desc = "ProjektGunnar Remove nuget from project" })
-map("n", "<leader>pasp", "<cmd>AddProjectToSolution<cr>", { desc = "ProjektGunnar Add project to solution" })
+map("n", "<leader>pap", "<cmd>ProjektGunnar AddNugetToProject<cr>", { desc = "ProjektGunnar Add packages to project" })
+map(
+	"n",
+	"<leader>pup",
+	"<cmd>ProjektGunnar UpdateNugetsInProject<cr>",
+	{ desc = "ProjektGunnar Update packages in project" }
+)
+map(
+	"n",
+	"<leader>pus",
+	"<cmd>ProjektGunnar UpdateNugetsInSolution<cr>",
+	{ desc = "ProjektGunnar Update packages in solution" }
+)
+map(
+	"n",
+	"<leader>prp",
+	"<cmd>ProjektGunnar RemoveNugetFromProject<cr>",
+	{ desc = "ProjektGunnar Remove nuget from project" }
+)
+map(
+	"n",
+	"<leader>pasp",
+	"<cmd>ProjektGunnar AddProjectToSolution<cr>",
+	{ desc = "ProjektGunnar Add project to solution" }
+)
 map(
 	"n",
 	"<leader>par",
-	"<cmd>AddProjectToProject<cr>",
+	"<cmd>ProjektGunnar AddProjectToProject<cr>",
 	{ desc = "ProjektGunnar Add project reference to other project" }
 )
 map(
 	"n",
 	"<leader>prr",
-	"<cmd>RemoveProjectFromProject<cr>",
+	"<cmd>ProjektGunnar RemoveProjectFromProject<cr>",
 	{ desc = "ProjektGunnar Remove project reference from project" }
 )
 
