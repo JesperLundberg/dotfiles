@@ -1,10 +1,23 @@
 local plugins = {
+	{
+		-- Pomodoro timer
+		dir = "~/dev/eget/tomat.nvim/",
+		dependencies = {
+			"rcarriga/nvim-notify",
+		},
+		config = function()
+			require("tomat").setup({
+				session_time_in_minutes = 1,
+			})
+		end,
+		event = "VeryLazy",
+	},
 	-- {
-	--   dir = "~/dev/eget/projektgunnar.nvim/",
-	--   dependencies = {
-	--     "echasnovski/mini.pick",
-	--   },
-	--   event = "VeryLazy",
+	-- 	dir = "~/dev/eget/projektgunnar.nvim/",
+	-- 	dependencies = {
+	-- 		"echasnovski/mini.pick",
+	-- 	},
+	-- 	event = "VeryLazy",
 	-- },
 	{
 		-- Handle dotnet packages and references
