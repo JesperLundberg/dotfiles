@@ -1,14 +1,22 @@
 local plugins = {
+	-- {
+	-- 	-- Pomodoro timer
+	-- 	dir = "~/dev/eget/tomat.nvim/",
+	-- 	dependencies = {
+	-- 		"rcarriga/nvim-notify",
+	-- 	},
+	-- 	config = function()
+	-- 		require("tomat").setup()
+	-- 	end,
+	-- 	event = "VeryLazy",
+	-- },
 	{
-		-- Pomodoro timer
-		dir = "~/dev/eget/tomat.nvim/",
+		"JesperLundberg/tomat.nvim",
 		dependencies = {
 			"rcarriga/nvim-notify",
 		},
 		config = function()
-			require("tomat").setup({
-				session_time_in_minutes = 1,
-			})
+			require("tomat").setup()
 		end,
 		event = "VeryLazy",
 	},
