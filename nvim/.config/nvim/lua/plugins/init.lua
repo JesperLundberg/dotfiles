@@ -4,6 +4,7 @@ local plugins = {
 	-- 	dir = "~/dev/eget/tomat.nvim/",
 	-- 	dependencies = {
 	-- 		"rcarriga/nvim-notify",
+	-- 		"nvim-lua/plenary.nvim",
 	-- 	},
 	-- 	config = function()
 	-- 		require("tomat").setup()
@@ -14,6 +15,7 @@ local plugins = {
 		"JesperLundberg/tomat.nvim",
 		dependencies = {
 			"rcarriga/nvim-notify",
+			"nvim-lua/plenary.nvim",
 		},
 		config = function()
 			require("tomat").setup()
