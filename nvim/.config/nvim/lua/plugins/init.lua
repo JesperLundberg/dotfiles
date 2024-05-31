@@ -237,9 +237,8 @@ local plugins = {
 	{
 		-- Show errors in the solution
 		"folke/trouble.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
+		opts = {},
+		event = "VeryLazy",
 	},
 	{
 		"nvim-lua/plenary.nvim",

@@ -108,9 +108,12 @@ map("v", "<A-Down>", function()
 end, { desc = "Mini.move Move selection down" })
 
 -- Trouble
-map("n", "<leader>ww", function()
-	require("trouble").open("workspace_diagnostics")
-end, { desc = "Trouble Toggle trouble with workspace diagnostics", silent = true })
+map(
+	"n",
+	"<leader>ww",
+	"<cmd>Trouble diagnostics toggle<cr>",
+	{ desc = "Trouble Toggle trouble with workspace diagnostics", silent = true }
+)
 
 -- Harpoon
 map("n", "<leader>ha", function()
