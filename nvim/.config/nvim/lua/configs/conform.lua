@@ -13,9 +13,11 @@ M.opts = {
 	},
 	formatters_by_ft = {
 		cs = { "csharpier" },
+		css = { "prettier" },
 		html = { "prettier" },
 		json = { "prettier" },
 		javascript = { "prettier" },
+		ts = { "prettier" },
 		typescript = { "prettier" },
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
