@@ -1,5 +1,16 @@
 local plugins = {
 	-- {
+	-- 	-- Cube scramble generator
+	-- 	"JesperLundberg/svartafanan.nvim",
+	-- 	branch = "getScrambleFromFile",
+	-- 	event = "VeryLazy",
+	-- },
+	{
+		-- Cube scramble generator
+		dir = "~/dev/eget/svartafanan.nvim/",
+		event = "VeryLazy",
+	},
+	-- {
 	-- 	-- Pomodoro timer
 	-- 	dir = "~/dev/eget/tomat.nvim/",
 	-- 	dependencies = {
