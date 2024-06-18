@@ -64,12 +64,6 @@ M.ui = {
 				-- how many files should be shown (maxes out at indicators.length)
 				local length = math.min(list:length(), #options.indicators)
 
-				-- if there are no files, return the icon
-				-- this is a hack to prevent the statusline from breaking
-				if length == 0 then
-					return options.icon_open .. options.icon_close
-				end
-
 				local status = { options.icon_open }
 				local get_full_path = function(root, value)
 					if vim.loop.os_uname().sysname == "Windows_NT" then
@@ -102,7 +96,7 @@ M.ui = {
 				local buf = vim.api.nvim_get_current_buf()
 
 				-- Iterate through all the clients for the current buffer
-				for _, client in pairs(vim.lsp.get_active_clients({ bufnr = buf })) do
+				for _, client in pairs(vim.lsp.get_clients({ bufnr = buf })) do
 					-- Add the client name to the `clients` table
 					table.insert(clients, client.name)
 				end
