@@ -242,13 +242,6 @@ local plugins = {
 		"folke/lazydev.nvim",
 		event = "VeryLazy",
 	},
-	-- {
-	-- 	-- Docs and completion for the neovim API
-	-- 	"folke/neodev.nvim",
-	-- 	config = function()
-	-- 		require("configs.neodev")
-	-- 	end,
-	-- },
 	{
 		-- Show errors in the solution
 		"folke/trouble.nvim",
