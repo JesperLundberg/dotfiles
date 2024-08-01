@@ -1,15 +1,23 @@
 local plugins = {
-	-- {
-	-- 	-- Cube scramble generator
-	-- 	"JesperLundberg/svartafanan.nvim",
-	-- 	branch = "getScrambleFromFile",
-	-- 	event = "VeryLazy",
-	-- },
 	{
-		-- Cube scramble generator
-		dir = "~/dev/eget/svartafanan.nvim/",
+		-- Notes for project
+		dir = "~/dev/eget/notisnisse.nvim/",
+		dependencies = {
+			"kkharji/sqlite.lua",
+			"nvim-lua/plenary.nvim",
+		},
 		event = "VeryLazy",
 	},
+	{
+		-- Cube scramble generator
+		"JesperLundberg/svartafanan.nvim",
+		event = "VeryLazy",
+	},
+	-- {
+	-- 	-- Cube scramble generator
+	-- 	dir = "~/dev/eget/svartafanan.nvim/",
+	-- 	event = "VeryLazy",
+	-- },
 	-- {
 	-- 	-- Pomodoro timer
 	-- 	dir = "~/dev/eget/tomat.nvim/",
@@ -37,6 +45,7 @@ local plugins = {
 	-- 	dir = "~/dev/eget/projektgunnar.nvim/",
 	-- 	dependencies = {
 	-- 		"echasnovski/mini.pick",
+	-- 		"nvim-lua/plenary.nvim",
 	-- 	},
 	-- 	event = "VeryLazy",
 	-- },
@@ -45,6 +54,7 @@ local plugins = {
 		"JesperLundberg/projektgunnar.nvim",
 		dependencies = {
 			"echasnovski/mini.pick",
+			"nvim-lua/plenary.nvim",
 		},
 		event = "VeryLazy",
 	},
@@ -63,13 +73,6 @@ local plugins = {
 			require("render-markdown").setup({})
 		end,
 		event = "VeryLazy",
-	},
-	{
-		-- Automatically star the plugin if it is used
-		"jsongerber/thanks.nvim",
-		opts = {
-			plugin_manager = "lazy",
-		},
 	},
 	{
 		-- Code formatter
@@ -110,11 +113,22 @@ local plugins = {
 			require("configs.lspconfig")
 		end,
 	},
+	-- {
+	-- 	-- Code actions in telescope
+	-- 	"aznhe21/actions-preview.nvim",
+	-- 	config = function() end,
+	-- 	event = "VeryLazy",
+	-- },
 	{
-		-- Code actions in telescope
-		"aznhe21/actions-preview.nvim",
-		config = function() end,
-		event = "VeryLazy",
+		"rachartier/tiny-code-action.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope.nvim" },
+		},
+		event = "LspAttach",
+		config = function()
+			require("tiny-code-action").setup()
+		end,
 	},
 	{
 		-- Show all todo comments in solution
