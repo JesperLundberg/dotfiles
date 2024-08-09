@@ -5,6 +5,7 @@ local api = vim.api
 
 opt.relativenumber = true
 opt.autoread = true
+opt.scrolloff = 10
 
 -- highlight yank
 local highlight_group = api.nvim_create_augroup("YankHighlight", { clear = true })
