@@ -13,10 +13,10 @@ map("n", "L", "O<ESC>", { desc = "General Newline before cursor" })
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "General Write current buffer" })
 
 -- Figure out new mappings that work with mac!
-map("n", "<C-S-Left>", "<C-w>h", { desc = "General Window left" })
-map("n", "<C-S-Right>", "<C-w>l", { desc = "General Window right" })
-map("n", "<C-S-Down>", "<C-w>j", { desc = "General Window down" })
-map("n", "<C-S-Up>", "<C-w>k", { desc = "General Window up" })
+map("n", "<A-S-Left>", "<C-w>h", { desc = "General Window left" })
+map("n", "<A-S-Right>", "<C-w>l", { desc = "General Window right" })
+map("n", "<A-S-Down>", "<C-w>j", { desc = "General Window down" })
+map("n", "<A-S-Up>", "<C-w>k", { desc = "General Window up" })
 
 -- Windowmgmt
 map("n", "<leader>q", "<cmd>q<cr>", { desc = "Windowmgmt Quit focused window" })
@@ -150,7 +150,6 @@ end, { desc = "Neotest Debug nearest test" })
 -- Code actions
 map("n", "<leader>cr", function()
 	require("tiny-code-action").code_action()
-	-- require("actions-preview").code_actions()
 end, { desc = "CodeAction Lsp code action" })
 
 -- DAP
