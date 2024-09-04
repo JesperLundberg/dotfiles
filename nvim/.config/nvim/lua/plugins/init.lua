@@ -58,6 +58,9 @@ local plugins = {
 		},
 		event = "VeryLazy",
 	},
+	-- {
+	-- 	"Issafalcon/lsp-overloads.nvim",
+	-- },
 	{
 		"kdheepak/lazygit.nvim",
 		cmd = {

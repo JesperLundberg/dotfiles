@@ -10,6 +10,9 @@ M.ensure_installed = {
 	"csharpier",
 	"netcoredbg",
 
+	-- Bicep
+	"bicep-lsp",
+
 	-- HTML, TS, JS, CSS
 	"typescript-language-server",
 	"prettier",

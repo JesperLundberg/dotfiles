@@ -18,6 +18,13 @@ for _, lsp in pairs(servers) do
 	})
 end
 
+lspconfig.bicep.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	on_init = on_init,
+	cmd = { "dotnet", data_path .. "/mason/packages/bicep-lsp/extension/bicepLanguageServer/Bicep.LangServer.dll" },
+})
+
 lspconfig.astro.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,

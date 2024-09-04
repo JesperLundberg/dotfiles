@@ -3,6 +3,7 @@ local M = {}
 M.opts = {
 	ensure_installed = {
 		"astro",
+		"bicep",
 		"c_sharp",
 		"css",
 		"lua",
