@@ -1,18 +1,18 @@
 local plugins = {
-	{
-		-- Notes for project
-		dir = "~/dev/eget/notisnisse.nvim/",
-		dependencies = {
-			"kkharji/sqlite.lua",
-			"nvim-lua/plenary.nvim",
-		},
-		event = "VeryLazy",
-	},
-	{
-		-- Cube scramble generator
-		"JesperLundberg/svartafanan.nvim",
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	-- Notes for project
+	-- 	dir = "~/dev/eget/notisnisse.nvim/",
+	-- 	dependencies = {
+	-- 		"kkharji/sqlite.lua",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	event = "VeryLazy",
+	-- },
+	-- {
+	-- 	-- Cube scramble generator
+	-- 	"JesperLundberg/svartafanan.nvim",
+	-- 	event = "VeryLazy",
+	-- },
 	-- {
 	-- 	-- Cube scramble generator
 	-- 	dir = "~/dev/eget/svartafanan.nvim/",
@@ -58,9 +58,14 @@ local plugins = {
 		},
 		event = "VeryLazy",
 	},
-	-- {
-	-- 	"Issafalcon/lsp-overloads.nvim",
-	-- },
+	{
+		-- Delete, change etc does not overwrite clipboard content
+		"gbprod/cutlass.nvim",
+		opts = {
+			-- x (or delete) will NOT cut to the clipboard
+			override_del = true,
+		},
+	},
 	{
 		"kdheepak/lazygit.nvim",
 		cmd = {
@@ -135,12 +140,6 @@ local plugins = {
 			require("configs.lspconfig")
 		end,
 	},
-	-- {
-	-- 	-- Code actions in telescope
-	-- 	"aznhe21/actions-preview.nvim",
-	-- 	config = function() end,
-	-- 	event = "VeryLazy",
-	-- },
 	{
 		"rachartier/tiny-code-action.nvim",
 		dependencies = {
