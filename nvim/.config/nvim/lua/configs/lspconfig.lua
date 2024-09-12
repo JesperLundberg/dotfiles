@@ -9,7 +9,7 @@ local lspconfig = require("lspconfig")
 local data_path = vim.fn.stdpath("data")
 
 -- Activate LSPs
-local servers = { "marksman", "tsserver" }
+local servers = { "marksman", "ts_ls" }
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
