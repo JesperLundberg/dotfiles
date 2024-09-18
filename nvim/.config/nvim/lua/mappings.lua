@@ -1,7 +1,9 @@
 require("nvchad.mappings")
 
 -- Disable mappings
--- local nomap = vim.keymap.del
+local nomap = vim.keymap.del
+
+nomap("n", "<tab>")
 
 -- Set mappings
 local map = vim.keymap.set
