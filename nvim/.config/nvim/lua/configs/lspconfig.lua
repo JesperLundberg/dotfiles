@@ -9,7 +9,7 @@ local lspconfig = require("lspconfig")
 local data_path = vim.fn.stdpath("data")
 
 -- Activate LSPs
-local servers = { "marksman", "ts_ls" }
+local servers = { "marksman" } --, "ts_ls" }
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
@@ -25,11 +25,11 @@ lspconfig.bicep.setup({
 	cmd = { "dotnet", data_path .. "/mason/packages/bicep-lsp/extension/bicepLanguageServer/Bicep.LangServer.dll" },
 })
 
-lspconfig.astro.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsonconfig.json", ".git"),
-})
+-- lspconfig.astro.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsonconfig.json", ".git"),
+-- })
 
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
