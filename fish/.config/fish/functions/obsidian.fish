@@ -1,3 +1,3 @@
 function obsidian
-~/Dropbox/Obsidian
+~/Sync/
 end
