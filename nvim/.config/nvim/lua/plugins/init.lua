@@ -127,9 +127,9 @@ local plugins = {
 	},
 	{
 		"williamboman/mason.nvim",
-		opts = {
-			ensure_installed = require("configs.mason").ensure_installed,
-		},
+		-- opts = {
+		-- ensure_installed = require("configs.mason").ensure_installed,
+		-- },
 	},
 	{
 		-- Setup for lsp and formatting

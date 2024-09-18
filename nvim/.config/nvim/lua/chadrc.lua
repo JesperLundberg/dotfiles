@@ -1,4 +1,5 @@
 local M = {}
+
 M.ui = {
 	theme = "catppuccin",
 	nvdash = {
@@ -124,6 +125,8 @@ M.ui = {
 		enabled = false,
 	},
 }
+
+M.mason = { cmd = true, pkgs = { "netcoredbg" } }
 
 -- read the custom plugins
 M.plugins = "plugins"
