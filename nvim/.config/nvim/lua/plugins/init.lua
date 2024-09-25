@@ -65,6 +65,7 @@ local plugins = {
 			-- x (or delete) will NOT cut to the clipboard
 			override_del = true,
 		},
+		event = "VeryLazy",
 	},
 	{
 		"kdheepak/lazygit.nvim",
