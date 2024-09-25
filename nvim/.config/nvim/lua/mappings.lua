@@ -4,6 +4,7 @@ require("nvchad.mappings")
 local nomap = vim.keymap.del
 
 nomap("n", "<tab>")
+nomap("n", "<leader>h")
 
 -- Set mappings
 local map = vim.keymap.set
