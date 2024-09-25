@@ -64,6 +64,8 @@ local plugins = {
 		opts = {
 			-- x (or delete) will NOT cut to the clipboard
 			override_del = true,
+			-- do not use s S mappings (to not override leap.nvim)
+			exclude = { "ns", "nS" },
 		},
 		event = "VeryLazy",
 	},
