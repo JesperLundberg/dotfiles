@@ -1,37 +1,34 @@
 local M = {}
 
-M.ui = {
+M.base46 = {
 	theme = "catppuccin",
-	nvdash = {
-		load_on_startup = true,
+}
 
-		header = {
-			"        Coffe into code      ",
-			"        ██    ██    ██       ",
-			"      ██      ██  ██         ",
-			"      ██    ██    ██         ",
-			"        ██  ██      ██       ",
-			"        ██    ██    ██       ",
-			"                             ",
-			"    ████████████████████     ",
-			"    ██                ██████ ",
-			"    ██                ██  ██ ",
-			"    ██                ██  ██ ",
-			"    ██                ██████ ",
-			"      ██            ██       ",
-			"  ████████████████████████   ",
-			"  ██                    ██   ",
-			"    ████████████████████     ",
-		},
+M.nvdash = {
+	load_on_startup = true,
 
-		buttons = {
-			{ "  Find Files", "Spc f f", "Telescope find_files" },
-			{ "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-			{ "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-			{ "  Mappings", "Spc c h", "NvCheatsheet" },
-		},
+	header = {
+		"        Coffe into code      ",
+		"        ██    ██    ██       ",
+		"      ██      ██  ██         ",
+		"      ██    ██    ██         ",
+		"        ██  ██      ██       ",
+		"        ██    ██    ██       ",
+		"                             ",
+		"    ████████████████████     ",
+		"    ██                ██████ ",
+		"    ██                ██  ██ ",
+		"    ██                ██  ██ ",
+		"    ██                ██████ ",
+		"      ██            ██       ",
+		"  ████████████████████████   ",
+		"  ██                    ██   ",
+		"    ████████████████████     ",
+		"",
 	},
+}
 
+M.ui = {
 	statusline = {
 		theme = "default", -- default/vscode/vscode_colored/minimal
 		-- default/round/block/arrow separators work only for default statusline theme
