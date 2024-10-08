@@ -26,6 +26,15 @@ api.nvim_create_autocmd({ "bufenter", "bufwinenter" }, {
 	end,
 })
 
+-- Change the padding and margin of the kitty terminal when entering and leaving neovim
+api.nvim_create_autocmd("VimEnter", {
+	command = ":silent !kitty @ set-spacing padding=0 margin=0",
+})
+
+api.nvim_create_autocmd("VimLeavePre", {
+	command = ":silent !kitty @ set-spacing padding=20 margin=10",
+})
+
 -- toggle inlay hints (requires nvim version >= 10)
 -- api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
 -- 	callback = function(args)
