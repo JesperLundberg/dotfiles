@@ -1,32 +1,33 @@
+---@type ChadrcConfig
 local M = {}
 
 M.base46 = {
 	theme = "catppuccin",
 }
 
-M.nvdash = {
-	load_on_startup = true,
-
-	header = {
-		"        Coffe into code      ",
-		"        ██    ██    ██       ",
-		"      ██      ██  ██         ",
-		"      ██    ██    ██         ",
-		"        ██  ██      ██       ",
-		"        ██    ██    ██       ",
-		"                             ",
-		"    ████████████████████     ",
-		"    ██                ██████ ",
-		"    ██                ██  ██ ",
-		"    ██                ██  ██ ",
-		"    ██                ██████ ",
-		"      ██            ██       ",
-		"  ████████████████████████   ",
-		"  ██                    ██   ",
-		"    ████████████████████     ",
-		"",
-	},
-}
+-- M.nvdash = {
+-- 	load_on_startup = true,
+--
+-- 	header = {
+-- 		"        Coffe into code      ",
+-- 		"        ██    ██    ██       ",
+-- 		"      ██      ██  ██         ",
+-- 		"      ██    ██    ██         ",
+-- 		"        ██  ██      ██       ",
+-- 		"        ██    ██    ██       ",
+-- 		"                             ",
+-- 		"    ████████████████████     ",
+-- 		"    ██                ██████ ",
+-- 		"    ██                ██  ██ ",
+-- 		"    ██                ██  ██ ",
+-- 		"    ██                ██████ ",
+-- 		"      ██            ██       ",
+-- 		"  ████████████████████████   ",
+-- 		"  ██                    ██   ",
+-- 		"    ████████████████████     ",
+-- 		"",
+-- 	},
+-- }
 
 M.ui = {
 	statusline = {
@@ -124,11 +125,5 @@ M.ui = {
 }
 
 M.mason = { cmd = true, pkgs = { "netcoredbg" } }
-
--- read the custom plugins
-M.plugins = "plugins"
-
--- check core.mappings for table structure
-M.mappings = require("mappings")
 
 return M
