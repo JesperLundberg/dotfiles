@@ -62,12 +62,10 @@ local plugins = {
 		-- Delete, change etc does not overwrite clipboard content
 		"gbprod/cutlass.nvim",
 		opts = {
-			-- x (or delete) will NOT cut to the clipboard
-			override_del = true,
 			-- do not use s S mappings (to not override leap.nvim)
 			exclude = { "ns", "nS" },
 		},
-		event = "VeryLazy",
+		lazy = false,
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -225,28 +223,28 @@ local plugins = {
 		end,
 		event = "InsertEnter",
 	},
-	{
-		-- Debug Framework
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-		},
-		config = function()
-			require("configs.nvim-dap")
-		end,
-		event = "VeryLazy",
-	},
-	{
-		-- UI for debugging
-		"rcarriga/nvim-dap-ui",
-		dependencies = {
-			"mfussenegger/nvim-dap",
-			"nvim-neotest/nvim-nio",
-		},
-		config = function()
-			require("configs.nvim-dap-ui")
-		end,
-	},
+	-- {
+	-- 	-- Debug Framework
+	-- 	"mfussenegger/nvim-dap",
+	-- 	dependencies = {
+	-- 		"rcarriga/nvim-dap-ui",
+	-- 	},
+	-- 	config = function()
+	-- 		require("configs.nvim-dap")
+	-- 	end,
+	-- 	event = "VeryLazy",
+	-- },
+	-- {
+	-- 	-- UI for debugging
+	-- 	"rcarriga/nvim-dap-ui",
+	-- 	dependencies = {
+	-- 		"mfussenegger/nvim-dap",
+	-- 		"nvim-neotest/nvim-nio",
+	-- 	},
+	-- 	config = function()
+	-- 		require("configs.nvim-dap-ui")
+	-- 	end,
+	-- },
 	{
 		-- To be able to mark often used files and easily get back to them
 		"ThePrimeagen/harpoon",
@@ -270,7 +268,7 @@ local plugins = {
 		-- Framework for unit testing
 		"nvim-neotest/neotest",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			"nvim-neotest/nvim-nio",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
 			"Issafalcon/neotest-dotnet",
