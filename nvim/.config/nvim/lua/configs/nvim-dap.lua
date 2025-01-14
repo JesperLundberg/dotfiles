@@ -1,5 +1,7 @@
 local dap = require("dap")
 
+local data_path = vim.fn.stdpath("data")
+
 dap.adapters["pwa-node"] = {
 	type = "server",
 	host = "127.0.0.1",
@@ -22,15 +24,17 @@ for _, lang in ipairs({ "javascript", "typescript" }) do
 	}
 end
 
+local dap_path = data_path .. "/mason/packages/netcoredbg/libexec/netcoredbg/netcoredbg"
+
 dap.adapters.coreclr = {
 	type = "executable",
-	command = "/usr/bin/netcoredbg",
+	command = dap_path,
 	args = { "--interpreter=vscode" },
 }
 
 dap.adapters.netcoredbg = {
 	type = "executable",
-	command = "/usr/bin/netcoredbg",
+	command = dap_path,
 	args = { "--interpreter=vscode" },
 }
 

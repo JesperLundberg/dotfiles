@@ -8,11 +8,11 @@ local plugins = {
 	-- 	},
 	-- 	event = "VeryLazy",
 	-- },
-	-- {
-	-- 	-- Cube scramble generator
-	-- 	"JesperLundberg/svartafanan.nvim",
-	-- 	event = "VeryLazy",
-	-- },
+	{
+		-- Cube scramble generator
+		"JesperLundberg/svartafanan.nvim",
+		event = "VeryLazy",
+	},
 	-- {
 	-- 	-- Cube scramble generator
 	-- 	dir = "~/dev/eget/svartafanan.nvim/",
@@ -128,9 +128,14 @@ local plugins = {
 	},
 	{
 		"williamboman/mason.nvim",
-		-- opts = {
-		-- ensure_installed = require("configs.mason").ensure_installed,
-		-- },
+		config = function()
+			require("mason").setup({
+				registries = {
+					"github:mason-org/mason-registry",
+					"github:Crashdummyy/mason-registry",
+				},
+			})
+		end,
 	},
 	{
 		-- Setup for lsp and formatting
@@ -223,28 +228,28 @@ local plugins = {
 		end,
 		event = "InsertEnter",
 	},
-	-- {
-	-- 	-- Debug Framework
-	-- 	"mfussenegger/nvim-dap",
-	-- 	dependencies = {
-	-- 		"rcarriga/nvim-dap-ui",
-	-- 	},
-	-- 	config = function()
-	-- 		require("configs.nvim-dap")
-	-- 	end,
-	-- 	event = "VeryLazy",
-	-- },
-	-- {
-	-- 	-- UI for debugging
-	-- 	"rcarriga/nvim-dap-ui",
-	-- 	dependencies = {
-	-- 		"mfussenegger/nvim-dap",
-	-- 		"nvim-neotest/nvim-nio",
-	-- 	},
-	-- 	config = function()
-	-- 		require("configs.nvim-dap-ui")
-	-- 	end,
-	-- },
+	{
+		-- Debug Framework
+		"mfussenegger/nvim-dap",
+		dependencies = {
+			"rcarriga/nvim-dap-ui",
+		},
+		config = function()
+			require("configs.nvim-dap")
+		end,
+		event = "VeryLazy",
+	},
+	{
+		-- UI for debugging
+		"rcarriga/nvim-dap-ui",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
+		},
+		config = function()
+			require("configs.nvim-dap-ui")
+		end,
+	},
 	{
 		-- To be able to mark often used files and easily get back to them
 		"ThePrimeagen/harpoon",
