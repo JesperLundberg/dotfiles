@@ -147,6 +147,7 @@ local plugins = {
 		end,
 	},
 	{
+		-- Code actions
 		"rachartier/tiny-code-action.nvim",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
@@ -155,6 +156,15 @@ local plugins = {
 		event = "LspAttach",
 		config = function()
 			require("tiny-code-action").setup()
+		end,
+	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "LspAttach",
+		priority = 1000, -- needs to be loaded in first
+		config = function()
+			require("tiny-inline-diagnostic").setup()
+			vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
 		end,
 	},
 	{
