@@ -35,10 +35,11 @@ api.nvim_create_autocmd("VimLeavePre", {
 	command = ":silent !kitty @ set-spacing padding=20 margin=10",
 })
 
--- toggle inlay hints (requires nvim version >= 10)
--- api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
--- 	callback = function(args)
--- 		local enabled = args.event ~= "InsertEnter"
--- 		vim.lsp.inlay_hint.enable(args.buf, enabled)
--- 	end,
--- })
+-- Set the commentstring to be // rather than the block comment /* */ for C# files
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("FixCppCommentString", { clear = true }),
+	callback = function(ev)
+		vim.bo[ev.buf].commentstring = "// %s"
+	end,
+	pattern = { "cs" },
+})
