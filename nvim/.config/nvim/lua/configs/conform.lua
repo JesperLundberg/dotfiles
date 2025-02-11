@@ -10,6 +10,12 @@ M.opts = {
 			cmd = { "xmlformat" },
 			args = { "--selfclose", "-" },
 		},
+		yamlfix = {
+			-- Adds environment args to the yamlfix formatter
+			env = {
+				YAMLFIX_WHITELINES = "1", -- Allow 1 empty line
+			},
+		},
 	},
 	formatters_by_ft = {
 		cs = { "csharpier" },
@@ -22,6 +28,7 @@ M.opts = {
 		lua = { "stylua" },
 		markdown = { "prettier", "injected" },
 		xml = { "xmlformat" },
+		yaml = { "yamlfix" },
 	},
 }
 
