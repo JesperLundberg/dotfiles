@@ -146,6 +146,14 @@ local plugins = {
 			require("configs.lspconfig")
 		end,
 	},
+	-- {
+	-- 	-- Sonarlint plugin
+	-- 	"https://gitlab.com/schrieveslaach/sonarlint.nvim",
+	-- 	dependencies = {
+	-- 		"neovim/nvim-lspconfig",
+	-- 	},
+	-- 	event = "VeryLazy",
+	-- },
 	{
 		-- Code actions
 		"rachartier/tiny-code-action.nvim",

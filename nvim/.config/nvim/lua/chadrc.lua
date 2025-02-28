@@ -47,6 +47,8 @@ M.ui = {
 			"cursor",
 		},
 		modules = {
+			-- Override the default cursor module to show the current line and the percentage of the file
+			cursor = "%#St_pos_sep#%#St_pos_icon# %#St_pos_text# %l (%p%%) ",
 			harpoon = function()
 				-- simplified version of this https://github.com/letieu/harpoon-lualine
 				local options = {

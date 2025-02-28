@@ -8,6 +8,37 @@ local lspconfig = require("lspconfig")
 
 local data_path = vim.fn.stdpath("data")
 
+-- local mason_path = vim.fn.stdpath("data") .. "/mason"
+-- require("sonarlint").setup({
+-- 	server = {
+-- 		cmd = {
+-- 			"sonarlint-language-server",
+-- 			-- Ensure that sonarlint-language-server uses stdio channel
+-- 			"-stdio",
+-- 			"-analyzers",
+-- 			-- paths to the analyzers you need, using those for python and java in this example
+-- 			vim.fn.expand(mason_path .. "/share/sonarlint-analyzers/sonarcsharp.jar"),
+-- 			vim.fn.expand(mason_path .. "/share/sonarlint-analyzers/csharpenterprise.jar"),
+-- 		},
+-- 		init_options = {
+-- 			omnisharpDirectory = vim.fn.expand(mason_path .. "/packages/sonarlint-language-server/extension/omnisharp"),
+-- 			csharpOssPath = vim.fn.expand(mason_path .. "/share/sonarlint-analyzers/sonarcsharp.jar"),
+-- 			csharpEnterprisePath = vim.fn.expand(mason_path .. "/share/sonarlint-analyzers/csharpenterprise.jar"),
+-- 		},
+-- 		root_dir = require("lspconfig.util").root_pattern(".sln", ".csproj", ".vbproj")(vim.fn.getcwd()),
+-- 	},
+-- 	filetypes = {
+-- 		"cs",
+-- 	},
+-- 	settings = {
+-- 		sonarlint = {
+-- 			rules = {
+-- 				["csharpsquid:S6667"] = { level = "error" },
+-- 			},
+-- 		},
+-- 	},
+-- })
+
 -- Activate LSPs
 local servers = { "marksman" } --, "ts_ls" }
 for _, lsp in pairs(servers) do
