@@ -40,7 +40,7 @@ M.ui = {
 			"file",
 			"git",
 			"%=",
-			"harpoon",
+			"arrow",
 			"diagnostics",
 			"clients",
 			"cwd",
@@ -49,49 +49,15 @@ M.ui = {
 		modules = {
 			-- Override the default cursor module to show the current line and the percentage of the file
 			cursor = "%#St_pos_sep#%#St_pos_icon# %#St_pos_text# %l (%p%%) ",
-			harpoon = function()
-				-- simplified version of this https://github.com/letieu/harpoon-lualine
-				local options = {
-					icon_open = "{",
-					icon_close = "}",
-					indicators = { "1", "2", "3", "4" },
-					active_indicators = { "[1]", "[2]", "[3]", "[4]" },
-					separator = " ",
-				}
-				local list = require("harpoon"):list()
-				local root_dir = list.config:get_root_dir()
-				local current_file_path = vim.api.nvim_buf_get_name(0)
 
-				-- how many files should be shown (maxes out at indicators.length)
-				local length = math.min(list:length(), #options.indicators)
-
-				local status = { options.icon_open }
-				local get_full_path = function(root, value)
-					if vim.loop.os_uname().sysname == "Windows_NT" then
-						return root .. "\\" .. value
-					end
-
-					return root .. "/" .. value
-				end
-
-				-- build the status line with indicators if file is active or not
-				for i = 1, length do
-					local value = list:get(i).value
-					local full_path = get_full_path(root_dir, value)
-
-					if full_path == current_file_path then
-						table.insert(status, options.active_indicators[i])
-					else
-						table.insert(status, options.indicators[i])
-					end
-				end
-
-				-- use icon as end delimiter as well
-				table.insert(status, #status + 1, options.icon_close)
-
-				return table.concat(status, options.separator)
+			-- Show the icon and index if the current file is on arrow
+			arrow = function()
+				local arrow_statusline = require("arrow.statusline")
+				arrow_statusline.is_on_arrow_file() -- return nil if current file is not on arrow.  Return the index if it is.
+				return "{ " .. arrow_statusline.text_for_statusline_with_icons() .. " }" -- Same, but with an bow and arrow icon ;D
 			end,
 
+			-- Show the currently attatched clients (lsps, formatters)
 			clients = function()
 				local clients = {}
 				local buf = vim.api.nvim_get_current_buf()
