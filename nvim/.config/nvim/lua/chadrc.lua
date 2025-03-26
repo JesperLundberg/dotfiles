@@ -53,8 +53,9 @@ M.ui = {
 			-- Show the icon and index if the current file is on arrow
 			arrow = function()
 				local arrow_statusline = require("arrow.statusline")
-				arrow_statusline.is_on_arrow_file() -- return nil if current file is not on arrow.  Return the index if it is.
-				return "{ " .. arrow_statusline.text_for_statusline_with_icons() .. " }" -- Same, but with an bow and arrow icon ;D
+				if arrow_statusline.is_on_arrow_file() then
+					return "{ " .. arrow_statusline.text_for_statusline_with_icons() .. " }"
+				end
 			end,
 
 			-- Show the currently attatched clients (lsps, formatters)
