@@ -48,7 +48,7 @@ M.ui = {
 		},
 		modules = {
 			-- Override the default cursor module to show the current line and the percentage of the file
-			cursor = "%#St_pos_sep#%#St_pos_icon# %#St_pos_text# %l (%p%%) ",
+			cursor = "%#St_pos_sep#%#St_pos_icon# %#St_pos_text# %l (%p%%)",
 
 			-- Show the icon and index if the current file is on arrow
 			arrow = function()
@@ -56,6 +56,7 @@ M.ui = {
 				if arrow_statusline.is_on_arrow_file() then
 					return "{ " .. arrow_statusline.text_for_statusline_with_icons() .. " }"
 				end
+				return ""
 			end,
 
 			-- Show the currently attatched clients (lsps, formatters)
