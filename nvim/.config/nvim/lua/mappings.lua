@@ -15,6 +15,10 @@ map("n", "l", "o<ESC>", { desc = "General Newline after cursor" })
 map("n", "L", "O<ESC>", { desc = "General Newline before cursor" })
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "General Write current buffer" })
 
+-- Lsp
+map("n", "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "General Goto implementation" })
+map("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "General Show all references" })
+
 -- Windowmgmt
 map("n", "<A-S-Left>", "<C-w>h", { desc = "General Window left" })
 map("n", "<A-S-Right>", "<C-w>l", { desc = "General Window right" })
