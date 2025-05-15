@@ -1,13 +1,13 @@
 local plugins = {
-	-- {
-	-- 	-- Notes for project
-	-- 	dir = "~/dev/eget/notisnisse.nvim/",
-	-- 	dependencies = {
-	-- 		"kkharji/sqlite.lua",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 	},
-	-- 	event = "VeryLazy",
-	-- },
+	{
+		-- Notes for project
+		dir = "~/dev/eget/notisnisse.nvim/",
+		dependencies = {
+			"kkharji/sqlite.lua",
+			"nvim-lua/plenary.nvim",
+		},
+		event = "VeryLazy",
+	},
 	{
 		-- Cube scramble generator
 		"JesperLundberg/svartafanan.nvim",
@@ -113,14 +113,14 @@ local plugins = {
 		"nvim-tree/nvim-tree.lua",
 		enabled = false,
 	},
-	{
-		-- Movement plugin
-		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings()
-		end,
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	-- Movement plugin
+	-- 	"ggandor/leap.nvim",
+	-- 	config = function()
+	-- 		require("leap").add_default_mappings()
+	-- 	end,
+	-- 	event = "VeryLazy",
+	-- },
 	{
 		-- Just to override and set ensure_installed
 		"nvim-treesitter/nvim-treesitter",
@@ -235,6 +235,24 @@ local plugins = {
 		version = false,
 		config = function()
 			require("mini.ai").setup({})
+		end,
+		event = "BufRead",
+	},
+	{
+		"echasnovski/mini.jump",
+		version = false,
+		config = function()
+			require("mini.jump").setup({
+				mappings = {
+					-- Do not override Arrow mapping
+					repeat_jump = "",
+				},
+				delay = {
+					-- Delay between jump and highlighting all possible jumps
+					-- Basically disable as I don't like the look
+					highlight = 1000000,
+				},
+			})
 		end,
 		event = "BufRead",
 	},
