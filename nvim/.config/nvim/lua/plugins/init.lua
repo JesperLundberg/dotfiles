@@ -1,18 +1,18 @@
 local plugins = {
-	{
-		-- Notes for project
-		dir = "~/dev/eget/notisnisse.nvim/",
-		dependencies = {
-			"kkharji/sqlite.lua",
-			"nvim-lua/plenary.nvim",
-		},
-		event = "VeryLazy",
-	},
-	{
-		-- Cube scramble generator
-		"JesperLundberg/svartafanan.nvim",
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	-- Notes for project
+	-- 	dir = "~/dev/eget/notisnisse.nvim/",
+	-- 	dependencies = {
+	-- 		"kkharji/sqlite.lua",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	event = "VeryLazy",
+	-- },
+	-- {
+	-- 	-- Cube scramble generator
+	-- 	"JesperLundberg/svartafanan.nvim",
+	-- 	event = "VeryLazy",
+	-- },
 	-- {
 	-- 	-- Cube scramble generator
 	-- 	dir = "~/dev/eget/svartafanan.nvim/",
@@ -30,17 +30,17 @@ local plugins = {
 	-- 	end,
 	-- 	event = "VeryLazy",
 	-- },
-	{
-		"JesperLundberg/tomat.nvim",
-		dependencies = {
-			"rcarriga/nvim-notify",
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("tomat").setup()
-		end,
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	"JesperLundberg/tomat.nvim",
+	-- 	dependencies = {
+	-- 		"rcarriga/nvim-notify",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require("tomat").setup()
+	-- 	end,
+	-- 	event = "VeryLazy",
+	-- },
 	-- {
 	-- 	dir = "~/dev/eget/projektgunnar.nvim/",
 	-- 	dependencies = {
@@ -61,11 +61,7 @@ local plugins = {
 	{
 		-- Delete, change etc does not overwrite clipboard content
 		"gbprod/cutlass.nvim",
-		opts = {
-			-- do not use s S mappings (to not override leap.nvim)
-			exclude = { "ns", "nS" },
-		},
-		lazy = false,
+		lazy = "BufRead",
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -91,7 +87,7 @@ local plugins = {
 		config = function()
 			require("configs.lint")
 		end,
-		event = "VeryLazy",
+		event = "BufRead",
 	},
 	{
 		"MeanderingProgrammer/markdown.nvim",
@@ -100,27 +96,19 @@ local plugins = {
 		config = function()
 			require("render-markdown").setup({})
 		end,
-		event = "VeryLazy",
+		event = "BufRead",
 	},
 	{
 		-- Code formatter
 		"stevearc/conform.nvim",
 		opts = require("configs.conform").opts,
-		event = "VeryLazy",
+		event = "BufRead",
 	},
 	{
 		-- Disable nvim-tree that is included in NvChad
 		"nvim-tree/nvim-tree.lua",
 		enabled = false,
 	},
-	-- {
-	-- 	-- Movement plugin
-	-- 	"ggandor/leap.nvim",
-	-- 	config = function()
-	-- 		require("leap").add_default_mappings()
-	-- 	end,
-	-- 	event = "VeryLazy",
-	-- },
 	{
 		-- Just to override and set ensure_installed
 		"nvim-treesitter/nvim-treesitter",
@@ -146,14 +134,6 @@ local plugins = {
 			require("configs.lspconfig")
 		end,
 	},
-	-- {
-	-- 	-- Sonarlint plugin
-	-- 	"https://gitlab.com/schrieveslaach/sonarlint.nvim",
-	-- 	dependencies = {
-	-- 		"neovim/nvim-lspconfig",
-	-- 	},
-	-- 	event = "VeryLazy",
-	-- },
 	{
 		-- Code actions
 		"rachartier/tiny-code-action.nvim",
@@ -181,7 +161,7 @@ local plugins = {
 		config = function()
 			require("todo-comments").setup({})
 		end,
-		event = "VeryLazy",
+		event = "BufRead",
 	},
 	{
 		-- Copilot plugin
@@ -218,7 +198,7 @@ local plugins = {
 				},
 			})
 		end,
-		event = "VeryLazy",
+		event = "BufRead",
 	},
 	{
 		-- Highlight the word under the cursor
@@ -263,28 +243,28 @@ local plugins = {
 		end,
 		event = "InsertEnter",
 	},
-	{
-		-- Debug Framework
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-		},
-		config = function()
-			require("configs.nvim-dap")
-		end,
-		event = "LspAttach",
-	},
-	{
-		-- UI for debugging
-		"rcarriga/nvim-dap-ui",
-		dependencies = {
-			"mfussenegger/nvim-dap",
-			"nvim-neotest/nvim-nio",
-		},
-		config = function()
-			require("configs.nvim-dap-ui")
-		end,
-	},
+	-- {
+	-- 	-- Debug Framework
+	-- 	"mfussenegger/nvim-dap",
+	-- 	dependencies = {
+	-- 		"rcarriga/nvim-dap-ui",
+	-- 	},
+	-- 	config = function()
+	-- 		require("configs.nvim-dap")
+	-- 	end,
+	-- 	event = "LspAttach",
+	-- },
+	-- {
+	-- 	-- UI for debugging
+	-- 	"rcarriga/nvim-dap-ui",
+	-- 	dependencies = {
+	-- 		"mfussenegger/nvim-dap",
+	-- 		"nvim-neotest/nvim-nio",
+	-- 	},
+	-- 	config = function()
+	-- 		require("configs.nvim-dap-ui")
+	-- 	end,
+	-- },
 	{
 		-- Move between files that are regularly visited
 		"otavioschwanck/arrow.nvim",
@@ -319,13 +299,13 @@ local plugins = {
 	},
 	{
 		"folke/lazydev.nvim",
-		event = "VeryLazy",
+		event = "LspAttach",
 	},
 	{
 		-- Show errors in the solution
 		"folke/trouble.nvim",
 		opts = {},
-		event = "VeryLazy",
+		event = "LspAttach",
 	},
 	{
 		"nvim-lua/plenary.nvim",
