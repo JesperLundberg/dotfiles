@@ -56,12 +56,6 @@ lspconfig.bicep.setup({
 	cmd = { "dotnet", data_path .. "/mason/packages/bicep-lsp/extension/bicepLanguageServer/Bicep.LangServer.dll" },
 })
 
--- lspconfig.astro.setup({
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsonconfig.json", ".git"),
--- })
-
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -91,6 +85,9 @@ lspconfig.omnisharp.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	cmd = { "dotnet", data_path .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+	handlers = {
+		["textDocument/definition"] = require("omnisharp_extended").handler,
+	},
 	settings = {
 		FormattingOptions = {
 			-- Enables support for reading code style, naming convention and analyzer

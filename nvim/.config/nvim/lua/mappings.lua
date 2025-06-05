@@ -16,8 +16,18 @@ map("n", "L", "O<ESC>", { desc = "General Newline before cursor" })
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "General Write current buffer" })
 
 -- Lsp
-map("n", "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "General Goto implementation" })
-map("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "General Show all references" })
+map("n", "gd", function()
+	require("omnisharp_extended").goto_definition(false)
+end, { desc = "OmniSharp Goto Definition" })
+map("n", "gD", function()
+	require("omnisharp_extended").goto_definition(true)
+end, { desc = "OmniSharp Fallback Definition" })
+map("n", "<leader>gi", function()
+	require("omnisharp_extended").lsp_implementation()
+end, { desc = "General Goto implementation" })
+map("n", "<leader>gr", function()
+	require("omnisharp_extended").lsp_references()
+end, { desc = "General Show all references" })
 
 -- Windowmgmt
 map("n", "<A-S-Left>", "<C-w>h", { desc = "General Window left" })

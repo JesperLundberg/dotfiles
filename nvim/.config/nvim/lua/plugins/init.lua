@@ -1,4 +1,5 @@
 local plugins = {
+	{ import = "nvchad.blink.lazyspec" },
 	-- {
 	-- 	-- Notes for project
 	-- 	dir = "~/dev/eget/notisnisse.nvim/",
@@ -61,7 +62,8 @@ local plugins = {
 	{
 		-- Delete, change etc does not overwrite clipboard content
 		"gbprod/cutlass.nvim",
-		lazy = "BufRead",
+		opts = {},
+		event = "BufRead",
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -128,6 +130,10 @@ local plugins = {
 	{
 		-- Setup for lsp and formatting
 		"neovim/nvim-lspconfig",
+
+		dependencies = {
+			"Hoffs/omnisharp-extended-lsp.nvim",
+		},
 
 		-- The setup of the different lsps
 		config = function()
