@@ -1,5 +1,9 @@
 local plugins = {
 	{ import = "nvchad.blink.lazyspec" },
+	{
+		"Saghen/blink.cmp",
+		opts = { completion = { ghost_text = { enabled = false } } },
+	},
 	-- {
 	-- 	-- Notes for project
 	-- 	dir = "~/dev/eget/notisnisse.nvim/",
@@ -84,13 +88,13 @@ local plugins = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
 	},
-	{
-		"mfussenegger/nvim-lint",
-		config = function()
-			require("configs.lint")
-		end,
-		event = "BufRead",
-	},
+	-- {
+	-- 	"mfussenegger/nvim-lint",
+	-- 	config = function()
+	-- 		require("configs.lint")
+	-- 	end,
+	-- 	event = "BufRead",
+	-- },
 	{
 		"MeanderingProgrammer/markdown.nvim",
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
