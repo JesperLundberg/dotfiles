@@ -1,7 +1,7 @@
 local plugins = {
 	{ import = "nvchad.blink.lazyspec" },
 	{
-		"Saghen/blink.cmp",
+		"saghen/blink.cmp",
 		opts = { completion = { ghost_text = { enabled = false } } },
 	},
 	-- {
