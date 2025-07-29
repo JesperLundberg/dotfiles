@@ -162,6 +162,7 @@ local plugins = {
 		priority = 1000, -- needs to be loaded in first
 		config = function()
 			require("tiny-inline-diagnostic").setup()
+			vim.diagnostic.config({ virtual_text = true })
 		end,
 	},
 	{
@@ -173,15 +174,15 @@ local plugins = {
 		end,
 		event = "BufRead",
 	},
-	{
-		-- Copilot plugin
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		config = function()
-			require("configs.copilot")
-		end,
-		event = "InsertEnter",
-	},
+	-- {
+	-- 	-- Copilot plugin
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	config = function()
+	-- 		require("configs.copilot")
+	-- 	end,
+	-- 	event = "InsertEnter",
+	-- },
 	{
 		-- File manager
 		"echasnovski/mini.files",

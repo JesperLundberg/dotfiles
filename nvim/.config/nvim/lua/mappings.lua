@@ -134,26 +134,6 @@ map(
 	{ desc = "Trouble Toggle trouble with workspace diagnostics", silent = true }
 )
 
--- Harpoon
-map("n", "<leader>ha", function()
-	require("harpoon"):list():add()
-end, { desc = "Harpoon Add file" })
-map("n", "<leader>hu", function()
-	require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
-end, { desc = "Harpoon Toggle quick menu" })
-map("n", "<C-1>", function()
-	require("harpoon"):list():select(1)
-end, { desc = "Harpoon Navigate to file 1" })
-map("n", "<C-2>", function()
-	require("harpoon"):list():select(2)
-end, { desc = "Harpoon Navigate to file 2" })
-map("n", "<C-3>", function()
-	require("harpoon"):list():select(3)
-end, { desc = "Harpoon Navigate to file 3" })
-map("n", "<C-4>", function()
-	require("harpoon"):list():select(4)
-end, { desc = "Harpoon Navigate to file 4" })
-
 -- Neotest
 map("n", "<leader>tt", function()
 	require("neotest").run.run()

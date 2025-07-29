@@ -84,7 +84,7 @@ lspconfig.omnisharp.setup({
 	on_init = on_init,
 	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = { "dotnet", data_path .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+	cmd = { "dotnet", data_path .. "/mason/packages/omnisharp/OmniSharp.dll" },
 	handlers = {
 		["textDocument/definition"] = require("omnisharp_extended").handler,
 	},
