@@ -7,6 +7,8 @@ opt.relativenumber = true
 opt.autoread = true
 opt.scrolloff = 10
 
+vim.diagnostic.config({ virtual_text = true })
+
 -- highlight yank
 local highlight_group = api.nvim_create_augroup("YankHighlight", { clear = true })
 

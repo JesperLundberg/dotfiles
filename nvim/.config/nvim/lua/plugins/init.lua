@@ -156,15 +156,15 @@ local plugins = {
 			require("tiny-code-action").setup()
 		end,
 	},
-	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "LspAttach",
-		priority = 1000, -- needs to be loaded in first
-		config = function()
-			require("tiny-inline-diagnostic").setup()
-			vim.diagnostic.config({ virtual_text = true })
-		end,
-	},
+	-- {
+	-- 	"rachartier/tiny-inline-diagnostic.nvim",
+	-- 	event = "LspAttach",
+	-- 	priority = 1000, -- needs to be loaded in first
+	-- 	config = function()
+	-- 		require("tiny-inline-diagnostic").setup()
+	-- 		vim.diagnostic.config({ virtual_text = false })
+	-- 	end,
+	-- },
 	{
 		-- Show all todo comments in solution
 		"folke/todo-comments.nvim",
