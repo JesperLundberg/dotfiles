@@ -44,45 +44,45 @@ vim.keymap.set("n", "gO", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "L
 vim.keymap.set("n", "gW", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "LSP: WS Symbols" })
 
 -- ProjektGunnar
-vim.keymap.set(
-	"n",
-	"<leader>pap",
-	"<cmd>ProjektGunnar AddNugetToProject<cr>",
-	{ desc = "ProjektGunnar Add packages to project" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>pup",
-	"<cmd>ProjektGunnar UpdateNugetsInProject<cr>",
-	{ desc = "ProjektGunnar Update packages in project" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>pus",
-	"<cmd>ProjektGunnar UpdateNugetsInSolution<cr>",
-	{ desc = "ProjektGunnar Update packages in solution" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>prp",
-	"<cmd>ProjektGunnar RemoveNugetFromProject<cr>",
-	{ desc = "ProjektGunnar Remove nuget from project" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>pasp",
-	"<cmd>ProjektGunnar AddProjectToSolution<cr>",
-	{ desc = "ProjektGunnar Add project to solution" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>par",
-	"<cmd>ProjektGunnar AddProjectToProject<cr>",
-	{ desc = "ProjektGunnar Add project reference to other project" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>prr",
-	"<cmd>ProjektGunnar RemoveProjectFromProject<cr>",
-	{ desc = "ProjektGunnar Remove project reference from project" }
-)
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>pap",
+-- 	"<cmd>ProjektGunnar AddNugetToProject<cr>",
+-- 	{ desc = "ProjektGunnar Add packages to project" }
+-- )
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>pup",
+-- 	"<cmd>ProjektGunnar UpdateNugetsInProject<cr>",
+-- 	{ desc = "ProjektGunnar Update packages in project" }
+-- )
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>pus",
+-- 	"<cmd>ProjektGunnar UpdateNugetsInSolution<cr>",
+-- 	{ desc = "ProjektGunnar Update packages in solution" }
+-- )
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>prp",
+-- 	"<cmd>ProjektGunnar RemoveNugetFromProject<cr>",
+-- 	{ desc = "ProjektGunnar Remove nuget from project" }
+-- )
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>pasp",
+-- 	"<cmd>ProjektGunnar AddProjectToSolution<cr>",
+-- 	{ desc = "ProjektGunnar Add project to solution" }
+-- )
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>par",
+-- 	"<cmd>ProjektGunnar AddProjectToProject<cr>",
+-- 	{ desc = "ProjektGunnar Add project reference to other project" }
+-- )
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>prr",
+-- 	"<cmd>ProjektGunnar RemoveProjectFromProject<cr>",
+-- 	{ desc = "ProjektGunnar Remove project reference from project" }
+-- )

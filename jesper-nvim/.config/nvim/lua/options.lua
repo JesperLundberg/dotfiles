@@ -57,10 +57,10 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.o.inccommand = "split"
 
 -- Show which line your cursor is on
-vim.o.cursorline = true
+-- vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.o.scrolloff = 20
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -74,6 +74,11 @@ vim.diagnostic.config({ virtual_text = true })
 vim.opt.termguicolors = true
 -- vim.opt.background = "dark"
 
-vim.opt.expandtab = true -- Spaces instead of tabs
-vim.opt.shiftwidth = 2 -- How many to indent
-vim.opt.tabstop = 2 -- How wife a tab is visually
+-- Spaces instead of tabs
+vim.opt.expandtab = true
+
+-- How many to indent
+vim.opt.shiftwidth = 2
+
+-- How wide a tab is visually
+vim.opt.tabstop = 2
