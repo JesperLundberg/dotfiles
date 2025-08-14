@@ -39,7 +39,8 @@ return {
 						vim.notify("LspAttach for " .. vim.api.nvim_buf_get_name(event.buf))
 					end
 
-					-- NOTE: Keymaps for lsp is in telescope file!
+					vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { desc = "LSP: Rename" })
+					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" })
 
 					-- Rename the variable under your cursor.
 					--  Most Language Servers support renaming across files, etc.
