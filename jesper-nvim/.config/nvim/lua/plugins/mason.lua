@@ -10,14 +10,15 @@ return {
 			local servers = {
 				lua_ls = {},
 				-- roslyn = {},
-				omnisharp = {},
+				-- omnisharp = {},
 			}
 
 			local ensure_installed = vim.tbl_keys(servers)
 			vim.list_extend(ensure_installed, {
 				"lua-language-server",
 				"stylua",
-				"omnisharp",
+				-- "omnisharp",
+				"roslyn",
 				"csharpier",
 				"netcoredbg",
 				"bicep-lsp",
