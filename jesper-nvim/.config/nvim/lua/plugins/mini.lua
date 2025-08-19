@@ -61,6 +61,38 @@ return {
 				return vim.fn.fnamemodify(fname, ":.")
 			end
 
+			-- Diagnostic part
+
+			-- Diagnostic part (clean)
+			local function diag_segment_for_statusline()
+				local sev = vim.diagnostic.severity
+				local n_err = #vim.diagnostic.get(0, { severity = sev.ERROR })
+				local n_warn = #vim.diagnostic.get(0, { severity = sev.WARN })
+				local n_hint = #vim.diagnostic.get(0, { severity = sev.HINT })
+
+				if (n_err + n_warn + n_hint) == 0 then
+					return { hl = "", strings = { "" } } -- nothing to show; mini.statusline ignores nil
+				end
+
+				-- Choose highlight based on highest severity
+				local hl = (n_err > 0 and "DiagnosticError") or (n_warn > 0 and "DiagnosticWarn") or "DiagnosticHint"
+
+				-- Build a string containing all severities and their numbers
+				local parts = {}
+				if n_err > 0 then
+					table.insert(parts, (" %d"):format(n_err))
+				end
+				if n_warn > 0 then
+					table.insert(parts, (" %d"):format(n_warn))
+				end
+				if n_hint > 0 then
+					table.insert(parts, ("̶ %d"):format(n_hint))
+				end
+
+				-- parts is never empty
+				return { hl = hl, strings = { table.concat(parts, "  ") } }
+			end
+
 			-- Set the actual statusline
 			statusline.setup({
 				use_icons = vim.g.have_nerd_font,
@@ -84,10 +116,7 @@ return {
 							{ hl = "MiniStatuslineFilename", strings = { filename } },
 							"%=",
 							-- Right
-							{
-								hl = "MiniStatuslineDevinfo",
-								strings = { statusline.section_diagnostics({ trunc_width = 75 }) },
-							},
+							diag_segment_for_statusline(),
 							{ hl = "MiniStatuslineDevinfo", strings = { statusline.section_lsp() } },
 							{ hl = "MiniStatuslineFilename", strings = { statusline.section_filetype() } },
 							{ hl = mode_hl, strings = { statusline.section_location() } },
