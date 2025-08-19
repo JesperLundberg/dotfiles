@@ -2,6 +2,9 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- General
+vim.keymap.set("i", "<C-e>", "<C-o>$", { desc = "General: go to end of line in insert mode" })
+vim.keymap.set("i", "<C-a>", "<C-o>^", { desc = "General: go to beginning of line in insert mode" })
+
 vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { desc = "General: Exit terminal mode" })
 
 vim.keymap.set("n", "U", "<C-r>", { desc = "General: Redo" })
