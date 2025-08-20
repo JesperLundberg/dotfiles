@@ -1,3 +1,4 @@
+-- Go to empty buffer rather than showing version and such
 vim.opt.shortmess:append("I")
 
 -- Make line numbers default
@@ -43,13 +44,6 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
---
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
---   and `:help lua-options-guide`
 vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
@@ -64,11 +58,10 @@ vim.o.scrolloff = 20
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
 vim.o.confirm = true
 
 -- always show the diagnostics
-vim.diagnostic.config({ virtual_text = true })
+-- vim.diagnostic.config({ virtual_text = true })
 
 -- Set dark background and use term colours
 vim.opt.termguicolors = true

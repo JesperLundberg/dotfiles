@@ -9,7 +9,4 @@ return {
 				or require("lspconfig.util").root_pattern(".git")(fname)
 		end,
 	},
-	-- "seblyng/roslyn.nvim",
-	-- opts = {},
-	-- lazy = false,
 }
