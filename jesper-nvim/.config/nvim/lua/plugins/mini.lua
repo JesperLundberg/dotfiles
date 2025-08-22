@@ -19,42 +19,34 @@ local function cwd_relative_path(bufnr)
 	return vim.fn.fnamemodify(fname, ":.")
 end
 
---- Get the entire segment for diagnostics with colours based on highest severity
--- TODO: Break this and colour each part according to it's own severity
-local function segment_for_statusline()
+--- Create a list of separate diagnostic segments (one per severity)
+local function diagnostic_groups()
 	local sev = vim.diagnostic.severity
 	local n_err = #vim.diagnostic.get(0, { severity = sev.ERROR })
 	local n_warn = #vim.diagnostic.get(0, { severity = sev.WARN })
 	local n_info = #vim.diagnostic.get(0, { severity = sev.INFO })
 	local n_hint = #vim.diagnostic.get(0, { severity = sev.HINT })
 
+	-- Return empty list if no diagnostics
 	if (n_err + n_warn + n_info + n_hint) == 0 then
-		return { hl = "", strings = { "" } }
+		return {}
 	end
 
-	-- Choose highlight based on highest severity
-	local hl = (n_err > 0 and "DiagnosticError")
-		or (n_warn > 0 and "DiagnosticWarn")
-		or (n_info > 0 and "DiagnosticInfo")
-		or "DiagnosticHint"
+	local groups = {}
 
-	-- Build a string containing all severities and their numbers
-	local parts = {}
-	if n_err > 0 then
-		table.insert(parts, (" %d"):format(n_err))
-	end
-	if n_warn > 0 then
-		table.insert(parts, (" %d"):format(n_warn))
-	end
-	if n_info > 0 then
-		table.insert(parts, (" %d"):format(n_info))
-	end
-	if n_hint > 0 then
-		table.insert(parts, (" %d"):format(n_hint))
+	local function push(count, icon, hl)
+		if count > 0 then
+			table.insert(groups, { hl = hl, strings = { ("%s %d"):format(icon, count) } })
+		end
 	end
 
-	-- parts is never empty
-	return { hl = hl, strings = { table.concat(parts, "  ") } }
+	-- Each part gets it's own highlight
+	push(n_err, "", "DiagnosticError")
+	push(n_warn, "", "DiagnosticWarn")
+	push(n_info, "", "DiagnosticInfo")
+	push(n_hint, "", "DiagnosticHint")
+
+	return groups
 end
 
 --- Gets the active lsps and formatters for current buffer
@@ -81,14 +73,14 @@ return {
 		config = function()
 			local statusline = require("mini.statusline")
 
-			-- Set the actual statusline
 			statusline.setup({
 				use_icons = vim.g.have_nerd_font,
 				content = {
 					active = function()
 						local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
 
-						return statusline.combine_groups({
+						-- Build a table with all groups/sections needed
+						local groups = {
 							-- Left
 							{ hl = mode_hl, strings = { mode } },
 							{
@@ -98,14 +90,21 @@ return {
 									statusline.section_diff({ trunc_width = 75 }),
 								},
 							},
-							{ hl = "MiniStatuslineFilename", strings = { cwd_relative_path(0) } }, -- Buffer 0 is the active buffer
+							{ hl = "MiniStatuslineFilename", strings = { cwd_relative_path(0) } },
 							"%=",
-							-- Right
-							segment_for_statusline(),
+						}
+
+						-- Diagnostics as separate segments to enable them to get their own highlights
+						vim.list_extend(groups, diagnostic_groups())
+
+						-- Right
+						vim.list_extend(groups, {
 							{ hl = "MiniStatuslineDevinfo", strings = { get_lsps() } },
 							{ hl = "MiniStatuslineFilename", strings = { get_filetype() } },
 							{ hl = mode_hl, strings = { get_position() } },
 						})
+
+						return statusline.combine_groups(groups)
 					end,
 				},
 			})
