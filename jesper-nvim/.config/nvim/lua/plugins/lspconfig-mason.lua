@@ -1,5 +1,4 @@
 return {
-
 	-- Lua extras for better typing/completion of the Neovim API
 	{
 		"folke/lazydev.nvim",

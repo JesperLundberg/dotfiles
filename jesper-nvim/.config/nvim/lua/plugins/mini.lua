@@ -25,14 +25,18 @@ local function segment_for_statusline()
 	local sev = vim.diagnostic.severity
 	local n_err = #vim.diagnostic.get(0, { severity = sev.ERROR })
 	local n_warn = #vim.diagnostic.get(0, { severity = sev.WARN })
+	local n_info = #vim.diagnostic.get(0, { severity = sev.INFO })
 	local n_hint = #vim.diagnostic.get(0, { severity = sev.HINT })
 
-	if (n_err + n_warn + n_hint) == 0 then
-		return { hl = "", strings = { "" } } -- nothing to show; mini.statusline ignores nil
+	if (n_err + n_warn + n_info + n_hint) == 0 then
+		return { hl = "", strings = { "" } }
 	end
 
 	-- Choose highlight based on highest severity
-	local hl = (n_err > 0 and "DiagnosticError") or (n_warn > 0 and "DiagnosticWarn") or "DiagnosticHint"
+	local hl = (n_err > 0 and "DiagnosticError")
+		or (n_warn > 0 and "DiagnosticWarn")
+		or (n_info > 0 and "DiagnosticInfo")
+		or "DiagnosticHint"
 
 	-- Build a string containing all severities and their numbers
 	local parts = {}
@@ -41,6 +45,9 @@ local function segment_for_statusline()
 	end
 	if n_warn > 0 then
 		table.insert(parts, (" %d"):format(n_warn))
+	end
+	if n_info > 0 then
+		table.insert(parts, (" %d"):format(n_info))
 	end
 	if n_hint > 0 then
 		table.insert(parts, (" %d"):format(n_hint))
