@@ -31,23 +31,21 @@ return {
 		config = function()
 			---------------------------------------------------------------------------
 			-- 0) Diagnostic signs (gutter icons) and diagnostic rendering
-			--    Put this early so it applies before any server attaches.
 			---------------------------------------------------------------------------
-			local diag_icons = {
-				Error = " ",
-				Warn = " ",
-				Info = " ",
-				Hint = " ",
-			}
-			for type, icon in pairs(diag_icons) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
+			local s = vim.diagnostic.severity
 			vim.diagnostic.config({
-				signs = true,
+				signs = {
+					text = {
+						[s.ERROR] = " ",
+						[s.WARN] = " ",
+						[s.INFO] = " ",
+						[s.HINT] = " ",
+					},
+				},
 				underline = true,
 				update_in_insert = false,
 				severity_sort = true,
+				virtual_text = true,
 			})
 
 			---------------------------------------------------------------------------
