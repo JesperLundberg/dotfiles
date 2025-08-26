@@ -30,6 +30,27 @@ return {
 		},
 		config = function()
 			---------------------------------------------------------------------------
+			-- 0) Diagnostic signs (gutter icons) and diagnostic rendering
+			--    Put this early so it applies before any server attaches.
+			---------------------------------------------------------------------------
+			local diag_icons = {
+				Error = " ",
+				Warn = " ",
+				Info = " ",
+				Hint = " ",
+			}
+			for type, icon in pairs(diag_icons) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
+			vim.diagnostic.config({
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
+			})
+
+			---------------------------------------------------------------------------
 			-- 1) on_attach: keymaps, inlay hints toggle, and document highlighting
 			---------------------------------------------------------------------------
 			vim.api.nvim_create_autocmd("LspAttach", {
