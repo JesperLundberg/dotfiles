@@ -69,7 +69,7 @@ end
 
 return {
 	{
-		"echasnovski/mini.statusline",
+		"nvim-mini/mini.statusline",
 		config = function()
 			local statusline = require("mini.statusline")
 
@@ -111,7 +111,7 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.jump",
+		"nvim-mini/mini.jump",
 		version = false,
 		config = function()
 			require("mini.jump").setup({
@@ -129,26 +129,26 @@ return {
 		event = "BufRead",
 	},
 	{
-		"echasnovski/mini.surround",
+		"nvim-mini/mini.surround",
 		config = function()
 			require("mini.surround").setup({})
 		end,
 	},
 	{
-		"echasnovski/mini.ai",
+		"nvim-mini/mini.ai",
 		config = function()
 			require("mini.ai").setup({ n_lines = 500 })
 		end,
 	},
 	{
-		"echasnovski/mini.icons",
+		"nvim-mini/mini.icons",
 		config = function()
 			require("mini.icons").setup()
 		end,
 	},
 	{
 		-- File manager
-		"echasnovski/mini.files",
+		"nvim-mini/mini.files",
 		version = false,
 		config = function()
 			require("mini.files").setup({

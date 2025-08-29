@@ -75,3 +75,6 @@ vim.opt.shiftwidth = 2
 
 -- How wide a tab is visually
 vim.opt.tabstop = 2
+
+-- Always show entire statusline but only for active buffer (i.e. do not split statusbar when using splits)
+vim.opt.laststatus = 3
