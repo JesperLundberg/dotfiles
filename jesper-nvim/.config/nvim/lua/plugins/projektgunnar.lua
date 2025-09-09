@@ -4,8 +4,7 @@ return {
 		"JesperLundberg/projektgunnar.nvim",
 		-- dir = "~/dev/eget/projektgunnar.nvim/",
 		dependencies = {
-			"echasnovski/mini.pick",
-			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
 			require("projektgunnar").setup({
