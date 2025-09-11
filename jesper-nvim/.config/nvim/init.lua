@@ -13,6 +13,9 @@ require("options")
 -- [[ Autocommands ]]
 require("autocommands")
 
+-- [[ Usercommands ]]
+require("usercommands")
+
 -- [[ Basic Keymaps ]]
 require("keymaps")
 
