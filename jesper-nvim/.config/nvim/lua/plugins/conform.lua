@@ -27,6 +27,7 @@ return {
 					yamlfix = {
 						env = {
 							YAMLFIX_WHITELINES = "1", -- Allow 1 empty line
+							YAMLFIX_EXPLICIT_START = "false", -- Do not start file with --- at the top
 						},
 					},
 				},
