@@ -1,4 +1,4 @@
--- Go to empty buffer rather than showing version and such
+-- Go to empty buffer rather than showing startup splash screen
 vim.opt.shortmess:append("I")
 
 -- Make line numbers default
@@ -49,9 +49,6 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = "split"
-
--- Show which line your cursor is on
--- vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 20
