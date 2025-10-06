@@ -139,7 +139,7 @@ return {
 				"stylua",
 
 				-- C#
-				"roslyn", -- "omnisharp"
+				"roslyn",
 				"csharpier",
 				"netcoredbg",
 
