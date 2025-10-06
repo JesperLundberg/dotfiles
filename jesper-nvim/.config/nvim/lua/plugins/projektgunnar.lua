@@ -4,11 +4,11 @@ return {
 		"JesperLundberg/projektgunnar.nvim",
 		-- dir = "~/dev/eget/projektgunnar.nvim/",
 		dependencies = {
-			"nvim-telescope/telescope.nvim",
+			"folke/snacks.nvim",
 		},
 		config = function()
 			require("projektgunnar").setup({
-				prefer = { "telescope" },
+				prefer = { "snacks" },
 			})
 		end,
 		event = "VeryLazy",
