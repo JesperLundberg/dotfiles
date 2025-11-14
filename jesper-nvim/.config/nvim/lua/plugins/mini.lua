@@ -47,6 +47,9 @@ return {
 					go_out_plus = "<Left>",
 					synchronize = "<C-s>",
 				},
+				windows = {
+					width_focus = 80,
+				},
 			})
 		end,
 		event = "VeryLazy",
