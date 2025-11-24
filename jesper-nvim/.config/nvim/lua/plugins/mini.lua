@@ -1,7 +1,6 @@
 return {
-
 	{
-		"echasnovski/mini.jump",
+		"nvim-mini/mini.jump",
 		version = false,
 		config = function()
 			require("mini.jump").setup({
@@ -19,105 +18,27 @@ return {
 		event = "BufRead",
 	},
 	{
-		"echasnovski/mini.statusline",
-		config = function()
-			local statusline = require("mini.statusline")
-
-			-- Overwrite certain helpers
-			--- @diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%l/%-L (%p%%)"
-			end
-
-			--- @diagnostic disable-next-line: duplicate-set-field
-			statusline.section_lsp = function()
-				local clients, buf = {}, vim.api.nvim_get_current_buf()
-				for _, c in pairs(vim.lsp.get_clients({ bufnr = buf })) do
-					table.insert(clients, c.name)
-				end
-				local ok, conform = pcall(require, "conform")
-				if ok then
-					for _, f in pairs(conform.list_formatters(0)) do
-						table.insert(clients, f.name)
-					end
-				end
-				if #clients == 0 then
-					return ""
-				end
-				return (vim.o.columns > 100 and (table.concat(clients, ", ") .. " ")) or "  LSP "
-			end
-
-			statusline.section_filetype = function()
-				local ft = vim.bo.filetype
-				return (ft ~= "" and ft) or ""
-			end
-
-			local function cwd_relative_path(bufnr)
-				bufnr = bufnr or 0
-				local fname = vim.api.nvim_buf_get_name(bufnr)
-				if fname == "" then
-					return ""
-				end
-				return vim.fn.fnamemodify(fname, ":.")
-			end
-
-			-- Set the actual statusline
-			statusline.setup({
-				use_icons = vim.g.have_nerd_font,
-				content = {
-					active = function()
-						local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-
-						-- Use the current buffer (0)
-						local filename = cwd_relative_path(0)
-
-						return statusline.combine_groups({
-							-- Left
-							{ hl = mode_hl, strings = { mode } },
-							{
-								hl = "MiniStatuslineDevinfo",
-								strings = {
-									statusline.section_git({ trunc_width = 75 }),
-									statusline.section_diff({ trunc_width = 75 }),
-								},
-							},
-							{ hl = "MiniStatuslineFilename", strings = { filename } },
-							"%=",
-							-- Right
-							{
-								hl = "MiniStatuslineDevinfo",
-								strings = { statusline.section_diagnostics({ trunc_width = 75 }) },
-							},
-							{ hl = "MiniStatuslineDevinfo", strings = { statusline.section_lsp() } },
-							{ hl = "MiniStatuslineFilename", strings = { statusline.section_filetype() } },
-							{ hl = mode_hl, strings = { statusline.section_location() } },
-						})
-					end,
-				},
-			})
-		end,
-	},
-	{
-		"echasnovski/mini.surround",
+		"nvim-mini/mini.surround",
 		config = function()
 			require("mini.surround").setup({})
 		end,
 	},
 	{
-		"echasnovski/mini.ai",
+		"nvim-mini/mini.ai",
 		config = function()
 			require("mini.ai").setup({ n_lines = 500 })
 		end,
+		event = "BufRead",
 	},
 	{
-		"echasnovski/mini.icons",
+		"nvim-mini/mini.icons",
 		config = function()
 			require("mini.icons").setup()
 		end,
 	},
 	{
 		-- File manager
-		"echasnovski/mini.files",
+		"nvim-mini/mini.files",
 		version = false,
 		config = function()
 			require("mini.files").setup({
@@ -125,6 +46,9 @@ return {
 					go_in_plus = "<Right>",
 					go_out_plus = "<Left>",
 					synchronize = "<C-s>",
+				},
+				windows = {
+					width_focus = 80,
 				},
 			})
 		end,

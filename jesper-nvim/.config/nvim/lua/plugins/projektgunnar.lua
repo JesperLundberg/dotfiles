@@ -2,10 +2,15 @@ return {
 	{
 		-- Handle dotnet packages and references
 		"JesperLundberg/projektgunnar.nvim",
+		-- dir = "~/dev/eget/projektgunnar.nvim/",
 		dependencies = {
-			"echasnovski/mini.pick",
-			"nvim-lua/plenary.nvim",
+			"folke/snacks.nvim",
 		},
+		config = function()
+			require("projektgunnar").setup({
+				prefer = { "snacks" },
+			})
+		end,
 		event = "VeryLazy",
 		keys = {
 			{
