@@ -23,12 +23,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("VimLeavePre", {
 	command = ":silent !kitty @ set-spacing padding=20 margin=10",
 })
-
--- Set the commentstring to be // rather than the block comment /* */ for C# files
-vim.api.nvim_create_autocmd("FileType", {
-	group = vim.api.nvim_create_augroup("FixCSharpCommentString", { clear = true }),
-	callback = function(ev)
-		vim.bo[ev.buf].commentstring = "// %s"
-	end,
-	pattern = { "cs", "bicep" },
-})
