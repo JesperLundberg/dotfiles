@@ -6,14 +6,10 @@ return {
 		opts = {
 			ensure_installed = {
 				"bash",
-				"diff",
 				"lua",
-				"luadoc",
 				"markdown",
 				"markdown_inline",
-				"query",
 				"vim",
-				"vimdoc",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = false,
