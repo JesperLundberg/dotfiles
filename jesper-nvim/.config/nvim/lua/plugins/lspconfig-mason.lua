@@ -113,7 +113,6 @@ return {
 				registries = {
 					"github:mason-org/mason-registry",
 					-- Community registry for extra packages (keep if you use any of these)
-					"github:Crashdummyy/mason-registry",
 				},
 			})
 
@@ -126,17 +125,6 @@ return {
 				-- Lua
 				"lua-language-server",
 				"stylua",
-
-				-- C#
-				"roslyn",
-				"csharpier",
-				"netcoredbg",
-
-				-- Other tools
-				"bicep-lsp",
-				"prettier",
-				"xmlformatter",
-				"yamlfix",
 			})
 
 			require("mason-tool-installer").setup({
