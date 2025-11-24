@@ -11,7 +11,7 @@ return {
 		},
 	},
 
-	-- Core LSP setup with Mason, installers, status UI, and blink.cmp capabilities
+	-- Core LSP setup with Mason, installers, status UI, and capabilities
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -21,12 +21,6 @@ return {
 
 			-- Install LSPs/linters/formatters/debuggers declaratively
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-			-- Lightweight LSP progress/status
-			{ "j-hui/fidget.nvim", opts = {} },
-
-			-- Completion client (we pull LSP capabilities from it)
-			"saghen/blink.cmp",
 		},
 		config = function()
 			---------------------------------------------------------------------------
@@ -97,11 +91,6 @@ return {
 					end, "[T]oggle Inlay [H]ints")
 				end,
 			})
-
-			---------------------------------------------------------------------------
-			-- 2) Capabilities from blink.cmp so servers advertise completion features
-			---------------------------------------------------------------------------
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			---------------------------------------------------------------------------
 			-- 3) Declare LSP servers (add more entries as needed)
