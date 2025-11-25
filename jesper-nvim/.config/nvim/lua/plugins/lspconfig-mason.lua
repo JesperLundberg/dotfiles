@@ -63,7 +63,6 @@ return {
 					vim.notify("LspAttach for " .. vim.api.nvim_buf_get_name(event.buf))
 
 					-- Common LSP actions
-					map("<leader>ra", vim.lsp.buf.rename, "Rename")
 					vim.keymap.set(
 						{ "n", "x" },
 						"<leader>ca",
