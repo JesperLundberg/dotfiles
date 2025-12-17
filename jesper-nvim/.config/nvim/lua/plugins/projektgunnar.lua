@@ -51,7 +51,7 @@ return {
 			{
 				"<leader>par",
 				function()
-					require("projektgunnar.main").add_project_to_project()
+					require("projektgunnar.main").add_project_reference()
 				end,
 				desc = "ProjektGunnar Add project reference to other project",
 			},
