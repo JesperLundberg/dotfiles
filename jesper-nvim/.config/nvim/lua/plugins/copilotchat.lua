@@ -1,32 +1,33 @@
 return {
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		lazy = false,
-		opts = {
-			suggestion = { enabled = true, auto_trigger = true },
-			panel = { enabled = false },
-			filetypes = {
-				lua = true,
-				csharp = true,
-			},
-		},
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	lazy = false,
+	-- 	opts = {
+	-- 		suggestion = { enabled = false, auto_trigger = false },
+	-- 		panel = { enabled = false },
+	-- 	},
+	-- },
 
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		branch = "main",
 		dependencies = {
-			"zbirenbaum/copilot.lua",
+			-- "zbirenbaum/copilot.lua",
 			"nvim-lua/plenary.nvim",
 			"folke/snacks.nvim",
 		},
+		lazy = "false",
 		opts = {
 			ui_select = true,
 			window = { layout = "float" },
 			context = {
-				enabled = false,
+				enabled = true,
 			},
+			filetypes = {
+				"*",
+			},
+			model = "claude-sonnet-4.5",
 		},
 		keys = {
 			{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Toggle Chat" },
