@@ -18,3 +18,5 @@ end, {
 	nargs = "?", -- optional argument
 	complete = "filetype", -- gives you completion for filetypes
 })
+
+vim.keymap.set("n", "<leader>os", "<cmd>OpenScratch<cr>", { desc = "General: Open scratch buffer" })
