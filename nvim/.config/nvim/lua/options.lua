@@ -1,47 +1,77 @@
-require("nvchad.options")
+-- Go to empty buffer rather than showing startup splash screen
+vim.opt.shortmess:append("I")
 
-local opt = vim.opt
-local api = vim.api
+-- Make line numbers default
+vim.o.number = true
+-- Make line numbers relative
+vim.o.relativenumber = true
 
-opt.relativenumber = true
-opt.autoread = true
-opt.scrolloff = 10
+-- Enable mouse mode, can be useful for resizing splits for example!
+vim.o.mouse = "a"
 
-vim.diagnostic.config({ virtual_text = true })
+-- Don't show the mode, since it's already in the status line
+vim.o.showmode = false
 
--- highlight yank
-local highlight_group = api.nvim_create_augroup("YankHighlight", { clear = true })
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+	vim.o.clipboard = "unnamedplus"
+end)
 
-api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = "*",
-})
+-- Enable break indent
+vim.o.breakindent = true
 
--- fix comment on new line
-api.nvim_create_autocmd({ "bufenter", "bufwinenter" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.cmd([[set formatoptions-=c formatoptions-=r formatoptions-=o]])
-	end,
-})
+-- Save undo history
+vim.o.undofile = true
 
--- Change the padding and margin of the kitty terminal when entering and leaving neovim
-api.nvim_create_autocmd("VimEnter", {
-	command = ":silent !kitty @ set-spacing padding=0 margin=0",
-})
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
-api.nvim_create_autocmd("VimLeavePre", {
-	command = ":silent !kitty @ set-spacing padding=20 margin=10",
-})
+-- Keep signcolumn on by default
+vim.o.signcolumn = "yes"
 
--- Set the commentstring to be // rather than the block comment /* */ for C# files
-vim.api.nvim_create_autocmd("FileType", {
-	group = vim.api.nvim_create_augroup("FixCppCommentString", { clear = true }),
-	callback = function(ev)
-		vim.bo[ev.buf].commentstring = "// %s"
-	end,
-	pattern = { "cs", "bicep" },
-})
+-- Decrease update time
+vim.o.updatetime = 250
+
+-- Decrease mapped sequence wait time
+vim.o.timeoutlen = 300
+
+-- Configure how new splits should be opened
+vim.o.splitright = true
+vim.o.splitbelow = true
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+vim.o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Preview substitutions live, as you type!
+vim.o.inccommand = "split"
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.o.scrolloff = 20
+
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+vim.o.confirm = true
+
+-- always show the diagnostics
+-- vim.diagnostic.config({ virtual_text = true })
+
+-- Set dark background and use term colours
+vim.opt.termguicolors = true
+-- vim.opt.background = "dark"
+
+-- Spaces instead of tabs
+vim.opt.expandtab = true
+
+-- How many to indent
+vim.opt.shiftwidth = 2
+
+-- How wide a tab is visually
+vim.opt.tabstop = 2
+
+-- Always show entire statusline but only for active buffer (i.e. do not split statusbar when using splits)
+vim.opt.laststatus = 3
