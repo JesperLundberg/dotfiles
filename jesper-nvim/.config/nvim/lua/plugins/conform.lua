@@ -9,17 +9,6 @@ return {
 					lsp_fallback = true,
 				},
 				formatters = {
-					csharpier = function()
-						local useDotnet = not vim.fn.executable("csharpier")
-						local command = useDotnet and "dotnet csharpier" or "csharpier"
-						local args = { "format", "$FILENAME" } or { "--write-stdout" }
-						return {
-							command = command,
-							args = args,
-							stdin = false,
-							require_cwd = false,
-						}
-					end,
 					xmlformat = {
 						cmd = { "xmlformat" },
 						args = { "--selfclose", "-" },
