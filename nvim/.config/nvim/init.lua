@@ -21,3 +21,11 @@ require("keymaps")
 
 -- plugins
 require("pack")
+
+-- use the builtin ui2
+require("vim._core.ui2").enable({
+	progress = {
+		-- show progress bars for LSP and other async jobs
+		enable = true,
+	},
+})

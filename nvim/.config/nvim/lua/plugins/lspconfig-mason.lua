@@ -8,12 +8,11 @@ M.spec = {
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 	-- UI
-	{ src = "https://github.com/j-hui/fidget.nvim" },
+	-- { src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/saghen/blink.cmp" },
 }
 
-function M.setup()
-	-- 0) Diagnostics
+local function setup_diagnostics()
 	local s = vim.diagnostic.severity
 	vim.diagnostic.config({
 		signs = {
@@ -29,71 +28,64 @@ function M.setup()
 		severity_sort = true,
 		virtual_text = true,
 	})
+end
 
-	-- 1) LspAttach keymaps + highlights
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-		callback = function(event)
-			-- Only use highlights and such if there's an lsp that can provide highlights
-			local client = vim.lsp.get_client_by_id(event.data.client_id)
-			if not client or not client.server_capabilities.documentHighlightProvider then
-				return
-			end
+-- Reusable on_attach for every LSP client
+local function on_attach(client, bufnr)
+	local function map(keys, func, desc, mode)
+		mode = mode or "n"
+		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+	end
 
-			local function map(keys, func, desc, mode)
-				mode = mode or "n"
-				vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-			end
+	map("<leader>ra", vim.lsp.buf.rename, "Rename")
+	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "LSP: Code Action" })
 
-			vim.notify("LspAttach for " .. vim.api.nvim_buf_get_name(event.buf))
+	-- Document highlight (conditioned on provider)
+	if client.server_capabilities.documentHighlightProvider then
+		local hl = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+			buffer = bufnr,
+			group = hl,
+			callback = vim.lsp.buf.document_highlight,
+		})
+		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+			buffer = bufnr,
+			group = hl,
+			callback = vim.lsp.buf.clear_references,
+		})
 
-			map("<leader>ra", vim.lsp.buf.rename, "Rename")
+		vim.api.nvim_create_autocmd("LspDetach", {
+			group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+			callback = function(ev2)
+				pcall(vim.lsp.buf.clear_references)
+				vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = ev2.buf })
+			end,
+		})
+	end
 
-			vim.keymap.set(
-				{ "n", "x" },
-				"<leader>ca",
-				vim.lsp.buf.code_action,
-				{ buffer = event.buf, desc = "LSP: Code Action" }
-			)
+	map("<leader>th", function()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+	end, "[T]oggle Inlay [H]ints")
+end
 
-			-- Document highlight
-			local hl = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-				buffer = event.buf,
-				group = hl,
-				callback = vim.lsp.buf.document_highlight,
-			})
-			vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-				buffer = event.buf,
-				group = hl,
-				callback = vim.lsp.buf.clear_references,
-			})
-			vim.api.nvim_create_autocmd("LspDetach", {
-				group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-				callback = function(ev2)
-					pcall(vim.lsp.buf.clear_references)
-					vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = ev2.buf })
-				end,
-			})
-
-			map("<leader>th", function()
-				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-			end, "[T]oggle Inlay [H]ints")
-		end,
-	})
-
+local function setup_blink_cmp()
 	require("blink.cmp").setup({
 		keymap = { preset = "default" },
 		appearance = {
 			nerd_font_variant = "mono",
 		},
-		fuzzy = { implementation = "lua" }, -- Clean, no warnings
+		fuzzy = { implementation = "lua" },
 	})
+end
+
+function M.setup()
+	setup_diagnostics()
+	setup_blink_cmp()
 
 	-- 2) Capabilities
 	local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-	-- 3) LSP servers
+	-- 3) LSP servers (config only, not `.setup()` calls)
 	local servers = {
 		lua_ls = {
 			settings = {
@@ -113,7 +105,7 @@ function M.setup()
 	})
 
 	-- 5) Mason tools
-	local ensure_installed = vim.tbl_keys(servers or {})
+	local ensure_installed = vim.tbl_keys(servers)
 	vim.list_extend(ensure_installed, {
 		"lua-language-server",
 		"stylua",
@@ -129,7 +121,9 @@ function M.setup()
 		ensure_installed = ensure_installed,
 	})
 
-	-- 6) Mason-lspconfig
+	-- 6) Mason-lspconfig + 0.12 LSP style
+	-- Note: mason-lspconfig is still the recommended way to wire Mason + LSP.
+	-- Under the hood, it will call vim.lsp.config and vim.lsp.enable.
 	require("mason-lspconfig").setup({
 		ensure_installed = {},
 		automatic_installation = false,
@@ -137,7 +131,11 @@ function M.setup()
 			function(server_name)
 				local server = servers[server_name] or {}
 				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-				require("lspconfig")[server_name].setup(server)
+				server.on_attach = server.on_attach or on_attach
+
+				-- Use vim.lsp.config for 0.12‑style setup
+				vim.lsp.config(server_name, server)
+				vim.lsp.enable() -- each server is enabled once
 			end,
 		},
 	})

@@ -1,10 +1,5 @@
 {
   "plugins": {
-    "CopilotChat.nvim": {
-      "rev": "0b3133ffbb470b1616c47170b544d0b9a3bbcf5b",
-      "src": "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
-      "version": "'main'"
-    },
     "FTerm.nvim": {
       "rev": "d1320892cc2ebab472935242d9d992a2c9570180",
       "src": "https://github.com/numToStr/FTerm.nvim"
@@ -24,10 +19,6 @@
     "cutlass.nvim": {
       "rev": "d01b5c1943050fcda8edf5c89d4419c41a65890e",
       "src": "https://github.com/gbprod/cutlass.nvim"
-    },
-    "fidget.nvim": {
-      "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
-      "src": "https://github.com/j-hui/fidget.nvim"
     },
     "gitsigns.nvim": {
       "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
