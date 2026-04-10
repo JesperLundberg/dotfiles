@@ -7,9 +7,6 @@ M.spec = {
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
-	-- UI
-	-- { src = "https://github.com/j-hui/fidget.nvim" },
-	{ src = "https://github.com/saghen/blink.cmp" },
 }
 
 local function setup_diagnostics()
@@ -30,7 +27,6 @@ local function setup_diagnostics()
 	})
 end
 
--- Reusable on_attach for every LSP client
 local function on_attach(client, bufnr)
 	local function map(keys, func, desc, mode)
 		mode = mode or "n"
@@ -56,36 +52,39 @@ local function on_attach(client, bufnr)
 
 		vim.api.nvim_create_autocmd("LspDetach", {
 			group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-			callback = function(ev2)
+			callback = function(ev)
 				pcall(vim.lsp.buf.clear_references)
-				vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = ev2.buf })
+				vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = ev.buf })
 			end,
 		})
 	end
 
-	map("<leader>th", function()
-		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
-	end, "[T]oggle Inlay [H]ints")
-end
-
-local function setup_blink_cmp()
-	require("blink.cmp").setup({
-		keymap = { preset = "default" },
-		appearance = {
-			nerd_font_variant = "mono",
-		},
-		fuzzy = { implementation = "lua" },
-	})
+	-- Optional: still set omnifunc if you want C‑x C‑o to work
+	-- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
 function M.setup()
 	setup_diagnostics()
-	setup_blink_cmp()
 
-	-- 2) Capabilities
-	local capabilities = require("blink.cmp").get_lsp_capabilities()
+	-- Builtin completion options
+	vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
+	vim.opt.shortmess:append("c")
+	vim.lsp.completion.order = {
+		"priority",
+		"preselect",
+		"filterText",
+		"label",
+		"kind",
+		"detail",
+	}
 
-	-- 3) LSP servers (config only, not `.setup()` calls)
+	-- Ensure omnifunc points to LSP for manual completion
+	-- vim.o.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+	-- 1) Capabilities
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+	-- 2) LSP servers
 	local servers = {
 		lua_ls = {
 			settings = {
@@ -96,7 +95,7 @@ function M.setup()
 		},
 	}
 
-	-- 4) Mason
+	-- 3) Mason registries
 	require("mason").setup({
 		registries = {
 			"github:mason-org/mason-registry",
@@ -104,7 +103,7 @@ function M.setup()
 		},
 	})
 
-	-- 5) Mason tools
+	-- 4) Mason tools to install
 	local ensure_installed = vim.tbl_keys(servers)
 	vim.list_extend(ensure_installed, {
 		"lua-language-server",
@@ -121,23 +120,37 @@ function M.setup()
 		ensure_installed = ensure_installed,
 	})
 
-	-- 6) Mason-lspconfig + 0.12 LSP style
-	-- Note: mason-lspconfig is still the recommended way to wire Mason + LSP.
-	-- Under the hood, it will call vim.lsp.config and vim.lsp.enable.
+	-- 5) Mason-lspconfig
 	require("mason-lspconfig").setup({
 		ensure_installed = {},
 		automatic_installation = false,
 		handlers = {
 			function(server_name)
 				local server = servers[server_name] or {}
-				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+				server.capabilities = capabilities
 				server.on_attach = server.on_attach or on_attach
 
-				-- Use vim.lsp.config for 0.12‑style setup
 				vim.lsp.config(server_name, server)
-				vim.lsp.enable() -- each server is enabled once
+				vim.lsp.enable()
 			end,
 		},
+	})
+
+	-- 6) Enable builtin LSP completion via LspAttach
+	vim.api.nvim_create_autocmd("LspAttach", {
+		group = vim.api.nvim_create_augroup("lsp_autocomplete", { clear = true }),
+		callback = function(ev)
+			local client = vim.lsp.get_client_by_id(ev.data.client_id)
+			if client == nil then
+				return
+			end
+			if client:supports_method("textDocument/completion") then
+				vim.lsp.completion.enable(true, client.id, ev.buf, {
+					autotrigger = true,
+				})
+				vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, { desc = "trigger autocomplete" })
+			end
+		end,
 	})
 end
 
