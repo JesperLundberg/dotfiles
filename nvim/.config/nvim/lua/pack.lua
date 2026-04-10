@@ -43,5 +43,25 @@ vim.api.nvim_create_user_command("PackUpdate", function()
 	vim.pack.update(nil, { start = true })
 end, { desc = "Update vim.pack plugins (start=true)" })
 
+vim.api.nvim_create_user_command("PackCleanInactive", function()
+	local all_plugins = vim.pack.get()
+
+	-- Filter inactive ones manually
+	local inactive_names = {}
+	for _, plugin in ipairs(all_plugins) do
+		if not plugin.active then
+			table.insert(inactive_names, plugin.spec.name)
+		end
+	end
+
+	if #inactive_names > 0 then
+		vim.pack.del(inactive_names)
+		print("Deleted " .. #inactive_names .. " inactive plugins")
+	else
+		print("No inactive plugins found")
+	end
+end, { desc = "Clean inactive vim.pack plugins" })
+
 -- Bonus keymap
 vim.keymap.set("n", "<leader>pu", "<cmd>PackUpdate<CR>", { desc = "Pack Update" })
+vim.keymap.set("n", "<leader>pc", "<cmd>PackCleanInactive<CR>", { desc = "Pack Clean Inactive" })

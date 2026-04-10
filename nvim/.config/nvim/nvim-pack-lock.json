@@ -8,10 +8,6 @@
       "rev": "19a38aab94961016430905ebec30d272a01e9742",
       "src": "https://github.com/max397574/better-escape.nvim"
     },
-    "blink.cmp": {
-      "rev": "456d38d1cd3743926f329204c2340f3e7840aad6",
-      "src": "https://github.com/saghen/blink.cmp"
-    },
     "conform.nvim": {
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -45,7 +41,7 @@
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.files": {
-      "rev": "ced297546b8fdb8e215d416d4753a735514a2fe0",
+      "rev": "e8db416c9f5dbce70f5501da28263d45c0a4df6b",
       "src": "https://github.com/nvim-mini/mini.files"
     },
     "mini.icons": {
@@ -81,7 +77,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "plenary.nvim": {
-      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "renamer.nvim": {

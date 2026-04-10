@@ -36,7 +36,7 @@ local function on_attach(client, bufnr)
 	map("<leader>ra", vim.lsp.buf.rename, "Rename")
 	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "LSP: Code Action" })
 
-	-- Document highlight (conditioned on provider)
+	-- Document highlight
 	if client.server_capabilities.documentHighlightProvider then
 		local hl = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -64,7 +64,7 @@ function M.setup()
 	setup_diagnostics()
 
 	-- Builtin completion options
-	vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
+	vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 	vim.opt.shortmess:append("c")
 	vim.lsp.completion.order = {
 		"priority",
