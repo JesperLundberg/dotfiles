@@ -58,9 +58,6 @@ local function on_attach(client, bufnr)
 			end,
 		})
 	end
-
-	-- Optional: still set omnifunc if you want C‑x C‑o to work
-	-- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
 function M.setup()
@@ -78,9 +75,6 @@ function M.setup()
 		"detail",
 	}
 
-	-- Ensure omnifunc points to LSP for manual completion
-	-- vim.o.omnifunc = "v:lua.vim.lsp.omnifunc"
-
 	-- 1) Capabilities
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -90,6 +84,19 @@ function M.setup()
 			settings = {
 				Lua = {
 					completion = { callSnippet = "Replace" },
+					runtime = {
+						version = "LuaJIT",
+						path = { [[@.luarc.lua]], [[@lua5.1]] },
+					},
+					diagnostics = {
+						globals = { "vim", "use" },
+					},
+					workspace = {
+						library = vim.api.nvim_get_runtime_file("", true),
+						maxPreload = 10000,
+						preloadFileSize = 10000,
+					},
+					telemetry = { enable = false },
 				},
 			},
 		},
