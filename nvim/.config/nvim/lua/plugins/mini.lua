@@ -1,11 +1,7 @@
 local M = {}
 
 M.spec = {
-	{ src = "https://github.com/nvim-mini/mini.jump" },
-	{ src = "https://github.com/nvim-mini/mini.surround" },
-	{ src = "https://github.com/nvim-mini/mini.ai" },
-	{ src = "https://github.com/nvim-mini/mini.icons" },
-	{ src = "https://github.com/nvim-mini/mini.files" },
+	{ src = "https://github.com/nvim-mini/mini.nvim" },
 }
 
 function M.lazy()
