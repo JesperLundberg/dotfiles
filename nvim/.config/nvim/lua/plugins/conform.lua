@@ -28,6 +28,8 @@ function M.setup()
 			html = { "prettier" },
 			json = { "prettier" },
 			javascript = { "prettier" },
+			ts = { "prettier" },
+			typescript = { "prettier" },
 			lua = { "stylua" },
 			markdown = { "prettier", "injected" },
 			xml = { "xmlformat" },

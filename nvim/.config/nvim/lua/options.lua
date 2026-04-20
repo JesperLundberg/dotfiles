@@ -75,15 +75,3 @@ vim.opt.tabstop = 2
 
 -- Always show entire statusline but only for active buffer (i.e. do not split statusbar when using splits)
 vim.opt.laststatus = 3
-
--- Completion and LSP completion ranking
-vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
-vim.opt.shortmess:append("c")
-vim.lsp.completion.order = {
-	"priority",
-	"preselect",
-	"filterText",
-	"label",
-	"kind",
-	"detail",
-}
