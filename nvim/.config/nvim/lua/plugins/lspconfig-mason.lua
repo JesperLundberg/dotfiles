@@ -65,8 +65,7 @@ function M.setup()
 
 	-- Builtin completion options
 	vim.o.autocomplete = true
-	vim.o.complete = "."
-	vim.opt.completeopt = { "menu", "menuone", "noinsert" }
+	vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy" }
 	vim.opt.shortmess:append("c")
 	vim.lsp.completion.order = {
 		"priority",
