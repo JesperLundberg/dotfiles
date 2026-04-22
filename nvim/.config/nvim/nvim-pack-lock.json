@@ -5,7 +5,7 @@
       "src": "https://github.com/numToStr/FTerm.nvim"
     },
     "better-escape.nvim": {
-      "rev": "19a38aab94961016430905ebec30d272a01e9742",
+      "rev": "11660bc303772d9a34861a3f2d06f473752b4f69",
       "src": "https://github.com/max397574/better-escape.nvim"
     },
     "conform.nvim": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "418ef4930ddabe80f449c6f1323f8b6abb172d1c",
+      "rev": "d76247d6e3ffa222784be5b156770e37c665f67e",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "mini.statusline": {
@@ -64,12 +64,16 @@
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
+    "projektgunnar.nvim": {
+      "rev": "75b2ef17ee4c0f7f861a39e6c9098ffd7c34c662",
+      "src": "https://github.com/jesperlundberg/projektgunnar.nvim"
+    },
     "renamer.nvim": {
       "rev": "1614d466df53899f11dd5395eaac3c09a275c384",
       "src": "https://github.com/filipdutescu/renamer.nvim"
     },
     "roslyn.nvim": {
-      "rev": "42d1196b4b06411504f897caeee0a3d4940e2654",
+      "rev": "946e559db19bfc5c7bf8be524a9c1acfde8ffffe",
       "src": "https://github.com/seblyng/roslyn.nvim"
     },
     "snacks.nvim": {
