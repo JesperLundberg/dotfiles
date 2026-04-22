@@ -76,6 +76,14 @@ function M.setup()
 		"detail",
 	}
 
+	-- Disable autocomple for non file buffers
+	vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+		callback = function()
+			local bt = vim.bo.buftype
+			vim.opt_local.autocomplete = (bt == "" or bt == "acwrite")
+		end,
+	})
+
 	-- 1) Capabilities
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -97,7 +105,7 @@ function M.setup()
 						maxPreload = 10000,
 						preloadFileSize = 10000,
 					},
-					telemetry = { enable = false },
+					telemetry = { enable = true },
 				},
 			},
 		},
