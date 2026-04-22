@@ -3,8 +3,8 @@ local M = {}
 M.spec = {
 	-- Dependency
 	{ src = "https://github.com/folke/snacks.nvim" },
-	-- Main plugin (local dev install)
-	-- { src = "~/dev/eget/projektgunnar.nvim" }, -- Your local repo
+	-- Main plugin
+	{ src = "https://github.com/jesperlundberg/projektgunnar.nvim" },
 }
 
 -- Keymaps

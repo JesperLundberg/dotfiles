@@ -83,7 +83,6 @@ function M.setup()
 			active = function()
 				local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
 				local groups = {
-					-- Left
 					{ hl = mode_hl, strings = { mode } },
 					{
 						hl = "MiniStatuslineDevinfo",
