@@ -62,7 +62,6 @@ vim.o.confirm = true
 
 -- Set dark background and use term colours
 vim.opt.termguicolors = true
--- vim.opt.background = "dark"
 
 -- Spaces instead of tabs
 vim.opt.expandtab = true

@@ -13,7 +13,7 @@ function M.setup()
 		formatters = {
 			xmlformat = {
 				cmd = { "xmlformat" },
-				args = { "--selfclose", "-" },
+				args = { "--selfclose-space", "--selfclose", "-" },
 			},
 			yamlfix = {
 				env = {

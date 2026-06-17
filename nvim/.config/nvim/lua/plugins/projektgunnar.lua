@@ -23,7 +23,7 @@ function M.setup()
 	end, { desc = "ProjektGunnar Update packages in project" })
 
 	vim.keymap.set("n", "<leader>pus", function()
-		require("projektgunnar.main").update_nugets_in_project()
+		require("projektgunnar.main").update_nugets_in_solution()
 	end, { desc = "ProjektGunnar Update packages in solution" })
 
 	vim.keymap.set("n", "<leader>prp", function()
@@ -42,6 +42,10 @@ function M.setup()
 	vim.keymap.set("n", "<leader>prr", function()
 		require("projektgunnar.main").remove_project_from_project()
 	end, { desc = "ProjektGunnar Remove project reference from project" })
+
+	vim.keymap.set("n", "<leader>pfs", function()
+		require("projektgunnar.solution").forget_cached_solution_file()
+	end, { desc = "ProjektGunnar Forget cached solution" })
 end
 
 return M

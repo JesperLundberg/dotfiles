@@ -84,10 +84,7 @@ function M.setup()
 		end,
 	})
 
-	-- 1) Capabilities
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-	-- 2) LSP servers
+	-- 1) LSP servers
 	local servers = {
 		lua_ls = {
 			settings = {
@@ -111,7 +108,7 @@ function M.setup()
 		},
 	}
 
-	-- 3) Mason registries
+	-- 2) Mason registries
 	require("mason").setup({
 		registries = {
 			"github:mason-org/mason-registry",
@@ -119,7 +116,7 @@ function M.setup()
 		},
 	})
 
-	-- 4) Mason tools to install
+	-- 3) Mason tools to install
 	local ensure_installed = vim.tbl_keys(servers)
 	vim.list_extend(ensure_installed, {
 		"lua-language-server",
@@ -136,14 +133,14 @@ function M.setup()
 		ensure_installed = ensure_installed,
 	})
 
-	-- 5) Mason-lspconfig
+	-- 4) Mason-lspconfig
 	require("mason-lspconfig").setup({
 		ensure_installed = {},
 		automatic_installation = false,
 		handlers = {
 			function(server_name)
 				local server = servers[server_name] or {}
-				server.capabilities = capabilities
+				server.capabilities = vim.lsp.protocol.make_client_capabilities()
 				server.on_attach = server.on_attach or on_attach
 
 				vim.lsp.config(server_name, server)
@@ -152,7 +149,7 @@ function M.setup()
 		},
 	})
 
-	-- 6) Enable builtin LSP completion via LspAttach
+	-- 5) Enable builtin LSP completion via LspAttach
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("lsp_autocomplete", { clear = true }),
 		callback = function(ev)
