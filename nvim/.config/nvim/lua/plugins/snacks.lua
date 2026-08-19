@@ -7,23 +7,17 @@ M.spec = {
 function M.setup()
 	local snacks = require("snacks")
 	snacks.setup({
-		bigfile = { enabled = false },
-		dashboard = { enabled = false },
-		explorer = { enabled = false },
-		indent = { enabled = false },
-		input = { enabled = false },
-		notifier = { enabled = false },
-		quickfile = { enabled = false },
-		scope = { enabled = false },
-		scroll = { enabled = false },
-		statuscolumn = { enabled = false },
-		words = { enabled = false },
+		lazygit = { enabled = true },
 		picker = {
 			enabled = true,
 			reverse = false,
 			ui_select = true,
 		},
 	})
+
+	vim.keymap.set("n", "<leader>lg", function()
+		Snacks.lazygit()
+	end, { desc = "LazyGit" })
 
 	local picker = snacks.picker
 
