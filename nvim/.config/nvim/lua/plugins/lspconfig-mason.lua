@@ -27,37 +27,9 @@ local function setup_diagnostics()
 	})
 end
 
-local function on_attach(client, bufnr)
-	local function map(keys, func, desc, mode)
-		mode = mode or "n"
-		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
-	end
-
-	map("<leader>ra", vim.lsp.buf.rename, "Rename")
+local function on_attach(_, bufnr)
 	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "LSP: Code Action" })
-
-	-- Document highlight
-	if client.server_capabilities.documentHighlightProvider then
-		local hl = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-			buffer = bufnr,
-			group = hl,
-			callback = vim.lsp.buf.document_highlight,
-		})
-		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-			buffer = bufnr,
-			group = hl,
-			callback = vim.lsp.buf.clear_references,
-		})
-
-		vim.api.nvim_create_autocmd("LspDetach", {
-			group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-			callback = function(ev)
-				pcall(vim.lsp.buf.clear_references)
-				vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = ev.buf })
-			end,
-		})
-	end
+	vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { buffer = bufnr, desc = "LSP: Rename" })
 end
 
 function M.setup()
@@ -76,11 +48,10 @@ function M.setup()
 		"detail",
 	}
 
-	-- Disable autocomple for non file buffers
+	-- Disable autocomplete for non file buffers
 	vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
 		callback = function()
-			local bt = vim.bo.buftype
-			vim.opt_local.autocomplete = (bt == "" or bt == "acwrite")
+			vim.opt_local.autocomplete = vim.bo.buftype == "" or vim.bo.buftype == "acwrite"
 		end,
 	})
 
@@ -144,7 +115,7 @@ function M.setup()
 				server.on_attach = server.on_attach or on_attach
 
 				vim.lsp.config(server_name, server)
-				vim.lsp.enable()
+				vim.lsp.enable(server_name)
 			end,
 		},
 	})
@@ -154,10 +125,7 @@ function M.setup()
 		group = vim.api.nvim_create_augroup("lsp_autocomplete", { clear = true }),
 		callback = function(ev)
 			local client = vim.lsp.get_client_by_id(ev.data.client_id)
-			if client == nil then
-				return
-			end
-			if client:supports_method("textDocument/completion") then
+			if client and client:supports_method("textDocument/completion") then
 				vim.lsp.completion.enable(true, client.id, ev.buf, {
 					autotrigger = true,
 				})

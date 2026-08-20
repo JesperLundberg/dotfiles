@@ -4,8 +4,7 @@ M.spec = {
 	{ src = "https://github.com/nvim-mini/mini.statusline" },
 }
 
-local utils = {}
-function utils.add_only_unique(t, item)
+local function add_only_unique(t, item)
 	for _, v in ipairs(t) do
 		if v == item then
 			return
@@ -14,22 +13,9 @@ function utils.add_only_unique(t, item)
 	table.insert(t, item)
 end
 
-local function get_filetype()
-	local ft = vim.bo.filetype
-	return (ft ~= "" and ft) or ""
-end
-
-local function get_position()
-	return "%l/%-L (%p%%)"
-end
-
-local function cwd_relative_path(bufnr)
-	bufnr = bufnr or 0
-	local fname = vim.api.nvim_buf_get_name(bufnr)
-	if fname == "" then
-		return ""
-	end
-	return vim.fn.fnamemodify(fname, ":.")
+local function cwd_relative_path()
+	local fname = vim.api.nvim_buf_get_name(0)
+	return fname ~= "" and vim.fn.fnamemodify(fname, ":.") or ""
 end
 
 local function diagnostic_groups()
@@ -59,14 +45,14 @@ local function diagnostic_groups()
 end
 
 local function get_lsps()
-	local clients, buf = {}, vim.api.nvim_get_current_buf()
-	for _, c in pairs(vim.lsp.get_clients({ bufnr = buf })) do
-		table.insert(clients, c.name)
+	local clients = {}
+	for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+		table.insert(clients, client.name)
 	end
 	local ok, conform = pcall(require, "conform")
 	if ok then
 		for _, f in pairs(conform.list_formatters(0)) do
-			utils.add_only_unique(clients, f.name)
+			add_only_unique(clients, f.name)
 		end
 	end
 	if #clients == 0 then
@@ -91,14 +77,14 @@ function M.setup()
 							statusline.section_diff({ trunc_width = 75 }),
 						},
 					},
-					{ hl = "MiniStatuslineFilename", strings = { cwd_relative_path(0) } },
+					{ hl = "MiniStatuslineFilename", strings = { cwd_relative_path() } },
 					"%=",
 				}
 				vim.list_extend(groups, diagnostic_groups())
 				vim.list_extend(groups, {
 					{ hl = "MiniStatuslineDevinfo", strings = { get_lsps() } },
-					{ hl = "MiniStatuslineFilename", strings = { get_filetype() } },
-					{ hl = mode_hl, strings = { get_position() } },
+					{ hl = "MiniStatuslineFilename", strings = { vim.bo.filetype } },
+					{ hl = mode_hl, strings = { "%l/%-L (%p%%)" } },
 				})
 				return statusline.combine_groups(groups)
 			end,
