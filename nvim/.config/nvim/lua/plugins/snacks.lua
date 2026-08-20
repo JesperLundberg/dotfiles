@@ -16,7 +16,7 @@ function M.setup()
 	})
 
 	vim.keymap.set("n", "<leader>lg", function()
-		Snacks.lazygit()
+		snacks.lazygit()
 	end, { desc = "LazyGit" })
 
 	local picker = snacks.picker

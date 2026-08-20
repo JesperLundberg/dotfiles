@@ -41,6 +41,8 @@ function M.setup()
 			end, { desc = "Jump to previous git [c]hange" })
 		end,
 	})
+
+	vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns blame_line<cr>", { desc = "Gitsigns blame line" })
 end
 
 return M
