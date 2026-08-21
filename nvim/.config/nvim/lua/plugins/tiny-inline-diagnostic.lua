@@ -10,16 +10,4 @@ function M.setup()
 	vim.diagnostic.config({ virtual_text = false })
 end
 
-function M.lazy()
-	vim.api.nvim_create_autocmd("VimEnter", {
-		group = vim.api.nvim_create_augroup("TinyInlineDiagnosticLazy", { clear = true }),
-		once = true,
-		callback = function()
-			pcall(function()
-				require("tiny-inline-diagnostic")
-			end)
-		end,
-	})
-end
-
 return M

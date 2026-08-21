@@ -27,11 +27,6 @@ local function setup_diagnostics()
 	})
 end
 
-local function on_attach(_, bufnr)
-	vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "LSP: Code Action" })
-	vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { buffer = bufnr, desc = "LSP: Rename" })
-end
-
 function M.setup()
 	setup_diagnostics()
 
@@ -112,7 +107,7 @@ function M.setup()
 			function(server_name)
 				local server = servers[server_name] or {}
 				server.capabilities = vim.lsp.protocol.make_client_capabilities()
-				server.on_attach = server.on_attach or on_attach
+				server.on_attach = server.on_attach
 
 				vim.lsp.config(server_name, server)
 				vim.lsp.enable(server_name)

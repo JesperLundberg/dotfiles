@@ -1,76 +1,42 @@
--- Go to empty buffer rather than showing startup splash screen
-vim.opt.shortmess:append("I")
+-- UI
+vim.opt.shortmess:append("I") -- Skip the startup screen
+vim.opt.number = true -- LIne numbers
+vim.opt.relativenumber = true -- Relative line numbers
+vim.opt.mouse = "a" -- Enable mouse support
+vim.opt.showmode = false -- Show mode in command area
+vim.opt.signcolumn = "yes" -- Show the sign column
+vim.opt.termguicolors = true -- 24-bit terminal colors
+vim.opt.laststatus = 3 -- Use one global statusline for all windows
 
--- Make line numbers default
-vim.o.number = true
--- Make line numbers relative
-vim.o.relativenumber = true
+-- Editing
+vim.opt.breakindent = true -- Preserve indentation on wrapped lines
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.shiftwidth = 2 -- Indent by two spaces
+vim.opt.tabstop = 2 -- Display tabs as two spaces
+vim.opt.list = true -- Show whitespace characters
+vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" } -- Configure whitespace symbols
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = "a"
+-- Search
+vim.opt.ignorecase = true -- Ignore case when searching
+vim.opt.smartcase = true -- Match case if search contains uppercase
+vim.opt.inccommand = "split" -- Preview substitutions live
 
--- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
+-- Files
+vim.opt.undofile = true -- Persist undo history between sessions
+vim.opt.confirm = true -- Ask before losing unsaved changes
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+-- Splits
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Timing
+vim.opt.updatetime = 250 -- Time before CursorHold events
+vim.opt.timeoutlen = 300 -- Time to wait for mapped key sequences
+
+-- Cursor
+vim.opt.scrolloff = 20 -- Keep 20 lines visible around the cursor
+
+-- Defer clipboard setup to avoid startup cost
 vim.schedule(function()
-	vim.o.clipboard = "unnamedplus"
+	vim.opt.clipboard = "unnamedplus"
 end)
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.o.signcolumn = "yes"
-
--- Decrease update time
-vim.o.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
-vim.o.list = true
-vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
-
--- Preview substitutions live, as you type!
-vim.o.inccommand = "split"
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 20
-
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
-vim.o.confirm = true
-
--- always show the diagnostics
--- vim.diagnostic.config({ virtual_text = true })
-
--- Set dark background and use term colours
-vim.opt.termguicolors = true
-
--- Spaces instead of tabs
-vim.opt.expandtab = true
-
--- How many to indent
-vim.opt.shiftwidth = 2
-
--- How wide a tab is visually
-vim.opt.tabstop = 2
-
--- Always show entire statusline but only for active buffer (i.e. do not split statusbar when using splits)
-vim.opt.laststatus = 3

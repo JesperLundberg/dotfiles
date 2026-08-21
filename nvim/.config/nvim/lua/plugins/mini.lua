@@ -4,29 +4,16 @@ M.spec = {
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 }
 
-function M.lazy()
-	vim.api.nvim_create_autocmd("BufRead", {
-		group = vim.api.nvim_create_augroup("MiniLazy", { clear = true }),
-		once = true,
-		callback = function()
-			require("plugins.mini")
-		end,
-	})
-end
-
 function M.setup()
 	-- mini.jump
 	require("mini.jump").setup({
 		mappings = {
 			repeat_jump = "",
 		},
-		delay = {
-			highlight = 1000000,
-		},
 	})
 
 	-- mini.surround
-	require("mini.surround").setup({})
+	require("mini.surround").setup()
 
 	-- mini.ai
 	require("mini.ai").setup({ n_lines = 500 })

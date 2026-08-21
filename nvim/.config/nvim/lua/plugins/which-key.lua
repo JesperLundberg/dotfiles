@@ -51,16 +51,4 @@ function M.setup()
 	})
 end
 
-function M.lazy()
-	vim.api.nvim_create_autocmd("VimEnter", {
-		group = vim.api.nvim_create_augroup("WhichKeyLazy", { clear = true }),
-		once = true,
-		callback = function()
-			pcall(function()
-				require("which-key")
-			end)
-		end,
-	})
-end
-
 return M

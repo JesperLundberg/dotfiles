@@ -2,7 +2,6 @@ vim.api.nvim_create_user_command("OpenScratch", function(opts)
 	-- create a scratch buffer
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.bo[buf].bufhidden = "wipe"
-	vim.bo[buf].swapfile = false
 	vim.bo[buf].buftype = "nofile"
 
 	-- set filetype if given
@@ -11,11 +10,11 @@ vim.api.nvim_create_user_command("OpenScratch", function(opts)
 	end
 
 	-- open it in a new split window
-	vim.cmd("split")
+	vim.cmd.split()
 	vim.api.nvim_win_set_buf(0, buf)
 end, {
 	nargs = "?",
-	complete = "filetype", -- gives you completion for filetypes
+	complete = "filetype", -- completion for filetypes
 })
 
 vim.keymap.set("n", "<leader>os", "<cmd>OpenScratch<cr>", { desc = "General: Open scratch buffer" })

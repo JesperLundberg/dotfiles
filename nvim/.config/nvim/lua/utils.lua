@@ -6,7 +6,7 @@ local M = {}
 function M.add_only_unique(list, value)
 	for _, v in ipairs(list) do
 		if v == value then
-			return -- already present
+			return
 		end
 	end
 	list[#list + 1] = value

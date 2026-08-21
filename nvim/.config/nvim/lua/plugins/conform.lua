@@ -38,15 +38,4 @@ function M.setup()
 	})
 end
 
--- Lazy load on BufRead
-function M.lazy()
-	vim.api.nvim_create_autocmd("BufRead", {
-		group = vim.api.nvim_create_augroup("ConformLazy", { clear = true }),
-		once = true,
-		callback = function()
-			require("plugins.conform")
-		end,
-	})
-end
-
 return M

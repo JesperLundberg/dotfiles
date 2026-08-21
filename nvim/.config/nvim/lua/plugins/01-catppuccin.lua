@@ -9,8 +9,8 @@ function M.setup()
 		flavour = "mocha", -- latte, frappe, macchiato, mocha
 		integrations = {
 			treesitter = true,
-			telescope = { enabled = true },
-			blink_cmp = true, -- Adjust if using different cmp
+			telescope = { enabled = false },
+			blink_cmp = false,
 			gitsigns = true,
 			which_key = true,
 		},

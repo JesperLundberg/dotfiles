@@ -15,15 +15,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
--- Change the padding and margin of the kitty terminal when entering and leaving neovim
-vim.api.nvim_create_autocmd("VimEnter", {
-	command = ":silent !kitty @ set-spacing padding=0 margin=0",
-})
-
-vim.api.nvim_create_autocmd("VimLeavePre", {
-	command = ":silent !kitty @ set-spacing padding=20 margin=10",
-})
-
 -- Set the commentstring to be // rather than the block comment /* */ for C# files
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("FixCSharpCommentString", { clear = true }),

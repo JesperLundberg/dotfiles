@@ -15,15 +15,4 @@ function M.setup()
 	})
 end
 
-function M.lazy()
-	vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
-		group = vim.api.nvim_create_augroup("RoslynLazy", { clear = true }),
-		pattern = { "*.cs" },
-		once = true,
-		callback = function()
-			require("plugins.roslyn")
-		end,
-	})
-end
-
 return M
