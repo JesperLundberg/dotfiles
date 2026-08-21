@@ -9,15 +9,14 @@ M.spec = {
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 }
 
-local function setup_diagnostics()
-	local s = vim.diagnostic.severity
+function M.setup()
 	vim.diagnostic.config({
 		signs = {
 			text = {
-				[s.ERROR] = " ",
-				[s.WARN] = " ",
-				[s.INFO] = " ",
-				[s.HINT] = " ",
+				[vim.diagnostic.severity.ERROR] = " ",
+				[vim.diagnostic.severity.WARN] = " ",
+				[vim.diagnostic.severity.INFO] = " ",
+				[vim.diagnostic.severity.HINT] = " ",
 			},
 		},
 		underline = true,
@@ -25,10 +24,6 @@ local function setup_diagnostics()
 		severity_sort = true,
 		virtual_text = true,
 	})
-end
-
-function M.setup()
-	setup_diagnostics()
 
 	-- Builtin completion options
 	vim.o.autocomplete = true
@@ -44,7 +39,8 @@ function M.setup()
 	}
 
 	-- Disable autocomplete for non file buffers
-	vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+	vim.api.nvim_create_autocmd({ "BufEnter" }, {
+		group = vim.api.nvim_create_augroup("autocomplete", { clear = true }),
 		callback = function()
 			vim.opt_local.autocomplete = vim.bo.buftype == "" or vim.bo.buftype == "acwrite"
 		end,
@@ -83,8 +79,7 @@ function M.setup()
 	})
 
 	-- 3) Mason tools to install
-	local ensure_installed = vim.tbl_keys(servers)
-	vim.list_extend(ensure_installed, {
+	local ensure_installed = {
 		"lua-language-server",
 		"stylua",
 		"roslyn",
@@ -94,20 +89,19 @@ function M.setup()
 		"prettier",
 		"xmlformatter",
 		"yamlfix",
-	})
+	}
+
 	require("mason-tool-installer").setup({
 		ensure_installed = ensure_installed,
 	})
 
 	-- 4) Mason-lspconfig
 	require("mason-lspconfig").setup({
-		ensure_installed = {},
 		automatic_installation = false,
 		handlers = {
 			function(server_name)
 				local server = servers[server_name] or {}
 				server.capabilities = vim.lsp.protocol.make_client_capabilities()
-				server.on_attach = server.on_attach
 
 				vim.lsp.config(server_name, server)
 				vim.lsp.enable(server_name)
@@ -124,7 +118,7 @@ function M.setup()
 				vim.lsp.completion.enable(true, client.id, ev.buf, {
 					autotrigger = true,
 				})
-				vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, { desc = "trigger autocomplete" })
+				vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, { desc = "Trigger autocomplete" })
 			end
 		end,
 	})
