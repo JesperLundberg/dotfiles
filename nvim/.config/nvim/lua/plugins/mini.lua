@@ -10,6 +10,9 @@ function M.setup()
 		mappings = {
 			repeat_jump = "",
 		},
+		delay = {
+			highlight = 10 ^ 7,
+		},
 	})
 
 	-- mini.surround
