@@ -32,10 +32,29 @@ function M.setup()
 						"--show-toplevel",
 					}, {
 						text = true,
+						timeout = 5000,
 					}):wait()
 
 					if root.code ~= 0 then
 						error("Not inside a Git repository: " .. root.stderr)
+					end
+
+					local repo_root = vim.trim(root.stdout)
+
+					-- Make sure we have an up to date origin/main to diff against
+					local fetch = vim.system({
+						"git",
+						"fetch",
+						"origin",
+						"main",
+					}, {
+						text = true,
+						cwd = repo_root,
+						timeout = 10000,
+					}):wait()
+
+					if fetch.code ~= 0 then
+						error("Failed to fetch origin/main (does the remote/branch exist?): " .. fetch.stderr)
 					end
 
 					local result = vim.system({
@@ -44,26 +63,21 @@ function M.setup()
 						"origin/main...HEAD",
 					}, {
 						text = true,
-						cwd = vim.trim(root.stdout),
+						cwd = repo_root,
+						timeout = 5000,
 					}):wait()
 
 					if result.code ~= 0 then
-						error(result.stderr)
+						error("git diff failed: " .. result.stderr)
 					end
 
-					if result.stdout == "" then
-						return {
-							{
-								mimetype = "text/plain",
-								data = "No changes found between origin/main and HEAD.",
-							},
-						}
-					end
+					local data = result.stdout ~= "" and result.stdout
+						or "No changes found between origin/main and HEAD."
 
 					return {
 						{
 							mimetype = "text/plain",
-							data = result.stdout,
+							data = data,
 						},
 					}
 				end,
