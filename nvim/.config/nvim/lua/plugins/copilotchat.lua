@@ -17,8 +17,8 @@ function M.setup()
 
 		window = {
 			layout = "float", -- or "vertical", "horizontal"
-			width = 0.45,
-			height = 0.6,
+			width = 0.8,
+			height = 0.8,
 		},
 
 		functions = {
