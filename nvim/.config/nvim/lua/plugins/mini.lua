@@ -21,9 +21,6 @@ function M.setup()
 	-- mini.ai
 	require("mini.ai").setup({ n_lines = 500 })
 
-	-- mini.icons
-	require("mini.icons").setup()
-
 	-- mini.files
 	require("mini.files").setup({
 		mappings = {

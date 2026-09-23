@@ -7,17 +7,12 @@ M.spec = {
 function M.setup()
 	local snacks = require("snacks")
 	snacks.setup({
-		lazygit = { enabled = true },
 		picker = {
 			enabled = true,
 			reverse = false,
 			ui_select = true,
 		},
 	})
-
-	vim.keymap.set("n", "<leader>lg", function()
-		snacks.lazygit()
-	end, { desc = "LazyGit" })
 
 	local picker = snacks.picker
 

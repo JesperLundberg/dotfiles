@@ -10,9 +10,6 @@ vim.g.have_nerd_font = true
 -- Editor options
 require("options")
 
--- Filetypes
-require("filetypes")
-
 -- Autocommands
 require("autocommands")
 
