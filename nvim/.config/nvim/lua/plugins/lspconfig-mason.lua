@@ -42,7 +42,9 @@ function M.setup()
 	vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		group = vim.api.nvim_create_augroup("autocomplete", { clear = true }),
 		callback = function()
-			vim.opt_local.autocomplete = vim.bo.buftype == "" or vim.bo.buftype == "acwrite"
+			vim.opt_local.autocomplete = vim.bo.buftype == ""
+				or vim.bo.buftype == "acwrite"
+				or vim.bo.filetype == "codecompanion"
 		end,
 	})
 
