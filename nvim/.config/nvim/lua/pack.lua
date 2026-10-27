@@ -1,6 +1,7 @@
 local specs = {}
 local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
 
+-- Get all the .lua files in the plugin directory
 for _, file in ipairs(vim.fn.glob(plugins_dir .. "/*.lua", "", 1, 1)) do
 	local ok, module = pcall(dofile, file)
 	if ok and type(module.spec) == "table" then
@@ -23,9 +24,10 @@ for _, file in ipairs(vim.fn.glob(plugins_dir .. "/*.lua", "", 1, 1)) do
 	end
 end
 
+-- Install and require all of them
 vim.pack.add(specs, { install = true, start = true })
 
--- Setup after install
+-- Run setup after install
 vim.schedule(function()
 	for _, file in ipairs(vim.fn.glob(plugins_dir .. "/*.lua", "", 1, 1)) do
 		local ok, module = pcall(dofile, file)
@@ -35,10 +37,12 @@ vim.schedule(function()
 	end
 end)
 
+-- Register command to update all plugins
 vim.api.nvim_create_user_command("PackUpdate", function()
 	vim.pack.update(nil, { start = true })
 end, { desc = "Update vim.pack plugins (start=true)" })
 
+-- Register command to remove inactive plugins
 vim.api.nvim_create_user_command("PackCleanInactive", function()
 	local plugins = vim.pack.get()
 
