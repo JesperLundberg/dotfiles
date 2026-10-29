@@ -22,7 +22,7 @@ function M.setup()
 		underline = true,
 		update_in_insert = false,
 		severity_sort = true,
-		virtual_text = true,
+		virtual_text = false, -- Turn off virtual text diagnostics
 	})
 
 	-- Builtin completion options

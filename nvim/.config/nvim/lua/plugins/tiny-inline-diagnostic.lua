@@ -18,9 +18,6 @@ function M.setup()
 			},
 		},
 	})
-
-	-- Disable inline virtual text since the plugin handles inline diagnostics
-	vim.diagnostic.config({ virtual_text = false })
 end
 
 return M
