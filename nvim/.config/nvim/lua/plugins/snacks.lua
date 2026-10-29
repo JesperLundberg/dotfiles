@@ -22,6 +22,33 @@ function M.setup()
 		snacks.lazygit()
 	end, { desc = "LazyGit" })
 
+	-- Floating terminal (same look as FTerm: centered, 80% size, single border).
+	-- Snacks identifies terminals by cmd + cwd + count, so cwd and count are pinned
+	-- to keep exactly one terminal regardless of directory or `[count]<C-t>`.
+	local term_cwd
+	local function toggle_terminal()
+		local opts = {
+			count = 1,
+			cwd = term_cwd,
+			win = {
+				position = "float",
+				width = 0.8,
+				height = 0.8,
+				border = "single",
+			},
+		}
+
+		-- No live terminal: start a new one in the current directory
+		if not snacks.terminal.get(nil, vim.tbl_extend("force", opts, { create = false })) then
+			term_cwd = vim.fn.getcwd()
+			opts.cwd = term_cwd
+		end
+
+		snacks.terminal.toggle(nil, opts)
+	end
+	map("n", "<C-t>", toggle_terminal, { desc = "Toggle terminal" })
+	map("t", "<C-t>", toggle_terminal, { desc = "Toggle terminal (term)" })
+
 	-- File finders
 	map("n", "<leader>fh", picker.help, { desc = "[f]ind [H]elp" })
 	map("n", "<leader>fk", picker.keymaps, { desc = "[f]ind [K]eymaps" })
