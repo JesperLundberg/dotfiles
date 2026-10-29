@@ -8,7 +8,7 @@ function M.setup()
 	require("conform").setup({
 		format_on_save = {
 			timeout_ms = 500,
-			lsp_fallback = true,
+			lsp_format = "fallback",
 		},
 		formatters = {
 			xmlformat = {
@@ -27,9 +27,6 @@ function M.setup()
 			css = { "prettier" },
 			html = { "prettier" },
 			json = { "prettier" },
-			javascript = { "prettier" },
-			ts = { "prettier" },
-			typescript = { "prettier" },
 			lua = { "stylua" },
 			markdown = { "prettier", "injected" },
 			xml = { "xmlformat" },
