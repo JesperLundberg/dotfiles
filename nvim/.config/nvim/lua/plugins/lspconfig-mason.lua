@@ -49,28 +49,20 @@ function M.setup()
 	})
 
 	-- 1) LSP servers
-	local servers = {
-		lua_ls = {
-			settings = {
-				Lua = {
-					completion = { callSnippet = "Replace" },
-					runtime = {
-						version = "LuaJIT",
-						path = { [[@.luarc.lua]], [[@lua5.1]] },
-					},
-					diagnostics = {
-						globals = { "vim", "use" },
-					},
-					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-						maxPreload = 10000,
-						preloadFileSize = 10000,
-					},
-					telemetry = { enable = true },
+	-- Servers installed through mason-lspconfig are enabled automatically (automatic_enable).
+	vim.lsp.config("lua_ls", {
+		settings = {
+			Lua = {
+				completion = { callSnippet = "Replace" },
+				runtime = { version = "LuaJIT" },
+				workspace = {
+					library = { vim.env.VIMRUNTIME },
+					checkThirdParty = false,
 				},
+				telemetry = { enable = false },
 			},
 		},
-	}
+	})
 
 	-- 2) Mason registries
 	require("mason").setup({
@@ -99,16 +91,7 @@ function M.setup()
 
 	-- 4) Mason-lspconfig
 	require("mason-lspconfig").setup({
-		automatic_installation = false,
-		handlers = {
-			function(server_name)
-				local server = servers[server_name] or {}
-				server.capabilities = vim.lsp.protocol.make_client_capabilities()
-
-				vim.lsp.config(server_name, server)
-				vim.lsp.enable(server_name)
-			end,
-		},
+		automatic_enable = { exclude = { "roslyn", "roslyn_ls" } },
 	})
 
 	-- 5) Enable builtin LSP completion via LspAttach
