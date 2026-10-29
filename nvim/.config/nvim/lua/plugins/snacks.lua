@@ -33,7 +33,7 @@ function M.setup()
 	end, { desc = "[f]ind [F]iles" })
 	vim.keymap.set("n", "<leader>fs", function()
 		picker.pickers()
-	end, { desc = "[f]ind S[elect Picker]" })
+	end, { desc = "[f]ind [S]elect picker" })
 	vim.keymap.set({ "n", "x" }, "<leader>fw", function()
 		picker.grep_word()
 	end, { desc = "[f]ind current [W]ord" })
@@ -69,9 +69,6 @@ function M.setup()
 	vim.keymap.set("n", "gW", function()
 		picker.lsp_workspace_symbols()
 	end, { desc = "LSP: Workspace Symbols" })
-	vim.keymap.set("n", "<leader>re", function()
-		picker.lazy()
-	end, { desc = "Search plugins (Lazy)" })
 end
 
 return M
