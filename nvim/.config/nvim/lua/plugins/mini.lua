@@ -48,7 +48,9 @@ local function get_lsps()
 
 	if ok then
 		for _, f in pairs(conform.list_formatters(0)) do
-			require("utils").add_only_unique(clients, f.name)
+			if not vim.list_contains(clients, f.name) then
+				table.insert(clients, f.name)
+			end
 		end
 	end
 

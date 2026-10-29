@@ -8,18 +8,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- fix comment on new line
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.cmd([[set formatoptions-=c formatoptions-=r formatoptions-=o]])
-	end,
-})
-
--- Set the commentstring to be // rather than the block comment /* */ for C# files
+-- (FileType runs after the ftplugins, which would otherwise re-add these flags.
+-- A global autocmd is needed here since after/ftplugin is per-filetype.)
 vim.api.nvim_create_autocmd("FileType", {
-	group = vim.api.nvim_create_augroup("FixCSharpCommentString", { clear = true }),
-	callback = function(ev)
-		vim.bo[ev.buf].commentstring = "// %s"
+	group = vim.api.nvim_create_augroup("no-auto-comment", { clear = true }),
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
 	end,
-	pattern = { "cs", "bicep" },
 })
