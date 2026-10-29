@@ -20,9 +20,10 @@ function M.setup()
 		display = {
 			chat = {
 				window = {
-					layout = "vertical",
-					position = "right",
-					width = 0.3, -- default is 0.45; lower = narrower
+					layout = "float",
+					border = "rounded",
+					height = 0.9,
+					width = 0.9,
 					opts = {
 						number = false,
 						relativenumber = false,
@@ -48,7 +49,7 @@ function M.setup()
 	local map = vim.keymap.set
 
 	-- Action palette
-	map({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<cr>", { desc = "CodeCompanion: Actions" })
+	map({ "n", "v" }, "<leader>cp", "<cmd>CodeCompanionActions<cr>", { desc = "CodeCompanion: Actions" })
 
 	-- Toggle chat buffer
 	map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanion: Toggle chat" })
