@@ -11,3 +11,11 @@ set -g theme_display_git_branch yes
 set -gx EDITOR nvim
 
 thefuck --alias | source
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/jesperlundberg/.lmstudio/bin
+# End of LM Studio CLI section
+
+export PATH="$HOME/.local/bin:$PATH"
