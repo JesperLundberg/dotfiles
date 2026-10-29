@@ -134,6 +134,9 @@ function M.setup()
 	-- mini.icons
 	require("mini.icons").setup()
 
+	-- mini.pairs
+	require("mini.pairs").setup()
+
 	-- mini.statusline
 	setup_statusline()
 

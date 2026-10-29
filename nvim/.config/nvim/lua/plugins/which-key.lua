@@ -15,6 +15,8 @@ function M.setup()
 			{ "<leader>p", group = "[P]rojektGunnar" },
 			{ "<leader>P", group = "[P]ack" },
 			{ "<leader>o", group = "[O]pen" },
+			{ "<leader>l", group = "[L]azyGit" },
+			{ "<leader>r", group = "[R]ename" },
 		},
 	})
 end

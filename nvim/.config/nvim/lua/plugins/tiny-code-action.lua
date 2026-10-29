@@ -17,7 +17,7 @@ function M.setup()
 	-- Keymaps
 	vim.keymap.set({ "n", "x" }, "<leader>ca", function()
 		require("tiny-code-action").code_action({})
-	end, { noremap = true, silent = true, desc = "Code actions" })
+	end, { desc = "Code actions" })
 end
 
 return M

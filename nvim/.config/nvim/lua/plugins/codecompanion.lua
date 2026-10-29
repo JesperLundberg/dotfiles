@@ -59,9 +59,6 @@ function M.setup()
 
 	-- Inline prompt (works in normal and visual mode)
 	map({ "n", "v" }, "<leader>ci", ":CodeCompanion ", { desc = "CodeCompanion: Inline prompt" })
-
-	-- Expand `cc` to `CodeCompanion` in the command line
-	vim.cmd([[cab cc CodeCompanion]])
 end
 
 return M

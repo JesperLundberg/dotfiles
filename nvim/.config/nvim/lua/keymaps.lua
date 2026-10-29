@@ -10,6 +10,7 @@ vim.keymap.set("n", "L", "O<ESC>", { desc = "General: Newline before cursor" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<cr>", { desc = "General: Write current buffer" })
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "General: Clear highlights" })
+vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { desc = "LSP: Rename symbol" })
 
 -- Windowmgmt
 vim.keymap.set("n", "<A-S-Left>", "<C-w>h", { desc = "General: Window left" })
