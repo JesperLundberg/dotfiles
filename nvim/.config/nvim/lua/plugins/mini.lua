@@ -29,10 +29,10 @@ local function diagnostic_groups()
 		end
 	end
 
-	push(sev.ERROR, "", "DiagnosticError")
-	push(sev.WARN, "", "DiagnosticWarn")
-	push(sev.INFO, "", "DiagnosticInfo")
-	push(sev.HINT, "", "DiagnosticHint")
+	push(sev.ERROR, "", "DiagnosticError")
+	push(sev.WARN, "", "DiagnosticWarn")
+	push(sev.INFO, "", "DiagnosticInfo")
+	push(sev.HINT, "", "DiagnosticHint")
 
 	return groups
 end
