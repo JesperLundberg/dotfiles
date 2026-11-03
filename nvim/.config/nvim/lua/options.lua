@@ -7,6 +7,7 @@ vim.opt.showmode = false -- Show mode in command area
 vim.opt.signcolumn = "yes" -- Show the sign column
 vim.opt.termguicolors = true -- 24-bit terminal colors
 vim.opt.laststatus = 3 -- Use one global statusline for all windows
+vim.opt.winborder = "rounded" -- Rounded borders on floating windows
 
 -- Editing
 vim.opt.breakindent = true -- Preserve indentation on wrapped lines
@@ -24,6 +25,7 @@ vim.opt.inccommand = "split" -- Preview substitutions live
 -- Files
 vim.opt.undofile = true -- Persist undo history between sessions
 vim.opt.confirm = true -- Ask before losing unsaved changes
+vim.opt.swapfile = false -- Don't create swap files
 
 -- Splits
 vim.opt.splitright = true

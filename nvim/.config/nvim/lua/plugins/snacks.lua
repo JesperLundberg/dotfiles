@@ -14,59 +14,56 @@ function M.setup()
 		},
 	})
 
+	local map = vim.keymap.set
 	local picker = snacks.picker
 
+	-- Floating terminal (same look as FTerm: centered, 80% size, single border).
+	-- Snacks identifies terminals by cmd + cwd + count, so cwd and count are pinned
+	-- to keep exactly one terminal regardless of directory or `[count]<C-t>`.
+	local term_cwd
+	local function toggle_terminal()
+		local opts = {
+			count = 1,
+			cwd = term_cwd,
+			win = {
+				position = "float",
+				width = 0.8,
+				height = 0.8,
+				border = "single",
+			},
+		}
+
+		-- No live terminal: start a new one in the current directory
+		if not snacks.terminal.get(nil, vim.tbl_extend("force", opts, { create = false })) then
+			term_cwd = vim.fn.getcwd()
+			opts.cwd = term_cwd
+		end
+
+		snacks.terminal.toggle(nil, opts)
+	end
+	map("n", "<C-t>", toggle_terminal, { desc = "Toggle terminal" })
+	map("t", "<C-t>", toggle_terminal, { desc = "Toggle terminal (term)" })
+
 	-- File finders
-	vim.keymap.set("n", "<leader>fh", function()
-		picker.help()
-	end, { desc = "[f]ind [H]elp" })
-	vim.keymap.set("n", "<leader>fk", function()
-		picker.keymaps()
-	end, { desc = "[f]ind [K]eymaps" })
-	vim.keymap.set("n", "<leader>ff", function()
-		picker.files()
-	end, { desc = "[f]ind [F]iles" })
-	vim.keymap.set("n", "<leader>fs", function()
-		picker.pickers()
-	end, { desc = "[f]ind S[elect Picker]" })
-	vim.keymap.set({ "n", "x" }, "<leader>fw", function()
-		picker.grep_word()
-	end, { desc = "[f]ind current [W]ord" })
-	vim.keymap.set("n", "<leader>fg", function()
-		picker.grep()
-	end, { desc = "[f]ind by [G]rep" })
-	vim.keymap.set("n", "<leader>fd", function()
-		picker.diagnostics()
-	end, { desc = "[f]ind [D]iagnostics" })
-	vim.keymap.set("n", "<leader>fr", function()
-		picker.resume()
-	end, { desc = "[f]ind [R]esume" })
-	vim.keymap.set("n", "<leader>fo", function()
+	map("n", "<leader>fh", picker.help, { desc = "[f]ind [H]elp" })
+	map("n", "<leader>fk", picker.keymaps, { desc = "[f]ind [K]eymaps" })
+	map("n", "<leader>ff", picker.files, { desc = "[f]ind [F]iles" })
+	map("n", "<leader>fs", picker.pickers, { desc = "[f]ind [S]elect picker" })
+	map({ "n", "x" }, "<leader>fw", picker.grep_word, { desc = "[f]ind current [W]ord" })
+	map("n", "<leader>fg", picker.grep, { desc = "[f]ind by [G]rep" })
+	map("n", "<leader>fd", picker.diagnostics, { desc = "[f]ind [D]iagnostics" })
+	map("n", "<leader>fr", picker.resume, { desc = "[f]ind [R]esume" })
+	map("n", "<leader>fo", function()
 		picker.recent({ filter = { cwd = true } })
 	end, { desc = "[f]ind Recent (cwd)" })
-	vim.keymap.set("n", "<leader><leader>", function()
-		picker.buffers()
-	end, { desc = "[ ] Find existing buffers" })
+	map("n", "<leader><leader>", picker.buffers, { desc = "[ ] Find existing buffers" })
 
 	-- LSP
-	vim.keymap.set("n", "<leader>gr", function()
-		picker.lsp_references()
-	end, { desc = "LSP: References" })
-	vim.keymap.set("n", "<leader>gd", function()
-		picker.lsp_definitions()
-	end, { desc = "LSP: Definitions" })
-	vim.keymap.set("n", "<leader>gi", function()
-		picker.lsp_implementations()
-	end, { desc = "LSP: Implementations" })
-	vim.keymap.set("n", "gO", function()
-		picker.lsp_symbols()
-	end, { desc = "LSP: Doc Symbols" })
-	vim.keymap.set("n", "gW", function()
-		picker.lsp_workspace_symbols()
-	end, { desc = "LSP: Workspace Symbols" })
-	vim.keymap.set("n", "<leader>re", function()
-		picker.lazy()
-	end, { desc = "Search plugins (Lazy)" })
+	map("n", "<leader>gr", picker.lsp_references, { desc = "LSP: References" })
+	map("n", "<leader>gd", picker.lsp_definitions, { desc = "LSP: Definitions" })
+	map("n", "<leader>gi", picker.lsp_implementations, { desc = "LSP: Implementations" })
+	map("n", "gO", picker.lsp_symbols, { desc = "LSP: Doc Symbols" })
+	map("n", "gW", picker.lsp_workspace_symbols, { desc = "LSP: Workspace Symbols" })
 end
 
 return M
