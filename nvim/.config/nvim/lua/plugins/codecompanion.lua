@@ -9,6 +9,18 @@ M.spec = {
 }
 
 function M.setup()
+	-- Copilot is only kept for authentication/token handling for CodeCompanion.
+	-- Everything user-facing (ghost text, panel, NES) is disabled.
+	require("copilot").setup({
+		panel = { enabled = false },
+		suggestion = { enabled = false },
+		nes = { enabled = false },
+		filetypes = { ["*"] = false },
+		should_attach = function()
+			return false
+		end,
+	})
+
 	-- Change this one value to switch the model everywhere
 	local adapter = { name = "copilot", model = "claude-sonnet-5.5" }
 
